@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+.joubel-speech-bubble {
+  position: absolute;
+  color: #333;
+  position: absolute;
+  margin-top: 0.45em;
+  z-index: 10;
+  min-width: 6em;
+  right: -1em;
+}
+.joubel-speech-bubble-inner {
+  background: #fbfbfb;
+  box-shadow: 0 0 1em #2c2c2c;
+  border-radius: 0.5em;
+  padding: 0.5em 0.75em;
+  text-align: left;
+  position: relative;
+  word-break: break-all;
+}
+.joubel-speech-bubble-inner:before, 
+.joubel-speech-bubble:before {
+  content: "";
+  position: absolute;
+  right: 15px; /* Setting this in pixels is intentional. We use it when calculating placement of bubble */
+  top: -0.75em;
+  width: 1.5em;
+  height: 1.5em;
+  background: #fff;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.joubel-speech-bubble:before {
+  box-shadow: 0 0 1em #2c2c2c;
+}

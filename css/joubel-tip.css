@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+.joubel-tip-container {
+  display: inline-block;
+  font-weight: normal;
+}
+.joubel-tip-icon {
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  width: 1.5em;
+  height: 1.5em;
+  color: #222;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+}
+.be-quiet .joubel-tip-icon {
+  cursor: auto;
+}
+.joubel-tip-icon:before {
+  font-family: Joubel;
+  content: "\e888"; 
+  
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.joubel-tip-icon:hover {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
+.be-quiet .joubel-tip-icon:hover {
+  -webkit-transform: none;
+  transform: none;
+}
