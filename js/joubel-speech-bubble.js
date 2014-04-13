@@ -17,19 +17,24 @@ H5P.JoubelSpeechBubble = (function ($) {
    * @param {number} maxWidth The maximum width of the bubble
    */
   function JoubelSpeechBubble($container, text, maxWidth) {
-    
     maxWidth = maxWidth || DEFAULT_MAX_WIDTH;
     
-    var removeSpeechBubble = function () {
+    this.remove = function () {
       $('body').off('click.speechBubble');
-      $currentSpeechBubble.remove();
-      $currentSpeechBubble = undefined;
+      if ($currentSpeechBubble !== undefined) {
+        $currentSpeechBubble.remove();
+        $currentSpeechBubble = undefined;
+      }
       // Don't return false here. If the user e.g. clicks a button when the bubble is visible,
       // we want the bubble to disapear AND the button to receive the event
     };
     
-    if($currentSpeechBubble !== undefined) {
-      removeSpeechBubble();
+    this.isHidden = function () {
+      return ($currentSpeechBubble === undefined);
+    };
+    
+    if ($currentSpeechBubble !== undefined) {
+      this.remove();
     }
     
     $parent = $container.parent();
@@ -46,7 +51,7 @@ H5P.JoubelSpeechBubble = (function ($) {
     // If width makes element go outside of body, make it smaller.
     // TODO - This is not ideal, e.g if the $container is far to the left.
     // Improvement: support left- and right-"aligned" bubbles
-    if(left < 0) {
+    if (left < 0) {
       width += left;
       left = 0;
     }
@@ -65,7 +70,9 @@ H5P.JoubelSpeechBubble = (function ($) {
     });
     
     // Handle click to close
-    $('body').on('click.speechBubble', removeSpeechBubble);
+    $('body').on('click.speechBubble', this.remove);
+    
+    return this;
   }
   
   return JoubelSpeechBubble;
