@@ -8,7 +8,7 @@ var H5P = H5P || {};
  */
 H5P.JoubelUI = (function ($) {
   
-  function JoubelUI() {};
+  function JoubelUI() {}
   
   /* Public static functions */
   

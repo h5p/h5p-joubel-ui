@@ -5,7 +5,7 @@ var H5P = H5P || {};
  */
 H5P.JoubelSpeechBubble = (function ($) {
   
-  var $currentSpeechBubble = undefined;
+  var $currentSpeechBubble;
   
   var DEFAULT_MAX_WIDTH = 400;
   
@@ -37,16 +37,16 @@ H5P.JoubelSpeechBubble = (function ($) {
       this.remove();
     }
     
-    $parent = $container.parent();
+    var $h5pContainer = $('.h5p-container');
     // Create bubble
-    $currentSpeechBubble = $('<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' + text + '</div></div></div>').appendTo($('body'));
+    $currentSpeechBubble = $('<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' + text + '</div></div></div>').appendTo($h5pContainer);
   
     // Setting width to 90% of parent
-    var width = $parent.width()*0.9;
+    var width = $h5pContainer.width()*0.9;
     
     // If width is more than max width, use max width
     width = width > maxWidth ? maxWidth : width;
-    var left = $container.offset().left - width + $container.width() + 7.5;
+    var left = $container.offset().left - width + $container.outerWidth() - $h5pContainer.offset().left - ($container.width()/2) + 30;
     
     // If width makes element go outside of body, make it smaller.
     // TODO - This is not ideal, e.g if the $container is far to the left.
@@ -64,7 +64,7 @@ H5P.JoubelSpeechBubble = (function ($) {
     // Set max-width:
     $currentSpeechBubble.css({
       width: width + 'px',
-      top: ($container.offset().top + $container.outerHeight()) + 'px',
+      top: ($container.offset().top + $container.outerHeight() - $h5pContainer.offset().top) + 'px',
       left: left + 'px',
       fontSize: fontSize + 'px'
     });

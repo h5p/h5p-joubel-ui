@@ -12,7 +12,7 @@ H5P.JoubelMessageDialog = (function ($) {
    * @param {string} message The message 
    */
   function JoubelMessageDialog ($container, message) {
-    var timeout = undefined;
+    var timeout;
     
     var removeDialog = function () {
       $warning.remove();
@@ -31,7 +31,7 @@ H5P.JoubelMessageDialog = (function ($) {
     $container.on('click.messageDialog', removeDialog);
     
     return $warning;
-  };
+  }
   
   return JoubelMessageDialog;
 })(H5P.jQuery);
