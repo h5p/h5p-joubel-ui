@@ -5,7 +5,7 @@
   color: #333;
   position: absolute;
   margin-top: 0.45em;
-  z-index: 10;
+  z-index: 301;
   min-width: 6em;
   right: -1em;
 }
