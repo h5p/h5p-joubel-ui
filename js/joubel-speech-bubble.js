@@ -24,7 +24,7 @@ H5P.JoubelSpeechBubble = (function ($) {
     this.remove = function () {
       H5P.$body.off('click.speechBubble');
       if (iDevice) {
-        H5P.$body.css('cursor', 'pointer');
+        H5P.$body.css('cursor', '');
       }
       if ($currentSpeechBubble !== undefined) {
         $currentSpeechBubble.remove();
