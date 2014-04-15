@@ -9,6 +9,8 @@ H5P.JoubelSpeechBubble = (function ($) {
   
   var DEFAULT_MAX_WIDTH = 400;
   
+  var iDevice = navigator.userAgent.match(/iPod|iPhone|iPad/g) ? true : false;
+  
   /**
    * Creates a new speech bubble
    *
@@ -20,7 +22,10 @@ H5P.JoubelSpeechBubble = (function ($) {
     maxWidth = maxWidth || DEFAULT_MAX_WIDTH;
     
     this.remove = function () {
-      $('body').off('click.speechBubble');
+      H5P.$body.off('click.speechBubble');
+      if (iDevice) {
+        H5P.$body.css('cursor', 'pointer');
+      }
       if ($currentSpeechBubble !== undefined) {
         $currentSpeechBubble.remove();
         $currentSpeechBubble = undefined;
@@ -72,8 +77,11 @@ H5P.JoubelSpeechBubble = (function ($) {
     });
     
     // Handle click to close
-    $('body').on('click.speechBubble', this.remove);
-    
+    H5P.$body.on('click.speechBubble', this.remove);
+    if (iDevice) {
+      H5P.$body.css('cursor', 'pointer');
+    }
+
     return this;
   }
   
