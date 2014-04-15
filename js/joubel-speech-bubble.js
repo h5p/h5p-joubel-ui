@@ -46,14 +46,16 @@ H5P.JoubelSpeechBubble = (function ($) {
     
     // If width is more than max width, use max width
     width = width > maxWidth ? maxWidth : width;
-    var left = $container.offset().left - width + $container.outerWidth() - $h5pContainer.offset().left - ($container.width()/2) + 30;
+    var left = $container.offset().left - width + $container.outerWidth() - $h5pContainer.offset().left - ($container.width()/2) + 20;
     
     // If width makes element go outside of body, make it smaller.
     // TODO - This is not ideal, e.g if the $container is far to the left.
     // Improvement: support left- and right-"aligned" bubbles
     if (left < 0) {
-      width += left;
-      left = 0;
+      // 3px is hard coded here just to get some margin
+      // to the left side
+      width += left-3;
+      left = 3;
     }
     
     // Need to set font-size, since element is appended to body.
