@@ -16,7 +16,7 @@
   font-size: 0.8em;
 }
 .joubel-message-dialog:before {
-  font-family: H5PFontAwesome4, H5PFontAwesome;
+  font-family: 'H5PFontAwesome4';
   content: '\f05a';
   padding-right: .5em;
   font-size: 1.3em;

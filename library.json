@@ -4,7 +4,7 @@
   "description": "UI utility library ",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 5,
+  "patchVersion": 6,
   "runnable": 0,
   "machineName": "H5P.JoubelUI",
   "author": "Joubel AS",
@@ -19,5 +19,12 @@
     {"path": "css/joubel-ui.css"},
     {"path": "css/joubel-tip.css"},
     {"path": "css/joubel-speech-bubble.css"}
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 1
+    }
   ]
 }
