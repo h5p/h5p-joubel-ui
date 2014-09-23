@@ -11,6 +11,9 @@ H5P.JoubelTip = (function ($) {
   function JoubelTip(text, params) {
     var speechBubble;
     
+    // Make sure we do not output html!
+    text = H5P.htmlSpecialChars(text);
+    
     params = $.extend({
       showSpeechBubble: true
     }, params);
