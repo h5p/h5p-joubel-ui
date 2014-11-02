@@ -4,7 +4,7 @@
   "description": "UI utility library ",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 7,
+  "patchVersion": 9,
   "runnable": 0,
   "coreApi": {
     "majorVersion": 1,
@@ -13,16 +13,32 @@
   "machineName": "H5P.JoubelUI",
   "author": "Joubel AS",
   "preloadedJs": [
-    {"path": "js/joubel-message-dialog.js"},
-    {"path": "js/joubel-speech-bubble.js"},
-    {"path": "js/joubel-tip.js"},
-    {"path": "js/joubel-ui.js"}
+    {
+      "path": "js/joubel-message-dialog.js"
+    },
+    {
+      "path": "js/joubel-speech-bubble.js"
+    },
+    {
+      "path": "js/joubel-tip.js"
+    },
+    {
+      "path": "js/joubel-ui.js"
+    }
   ],
   "preloadedCss": [
-    {"path": "css/joubel-message-dialog.css"},
-    {"path": "css/joubel-ui.css"},
-    {"path": "css/joubel-tip.css"},
-    {"path": "css/joubel-speech-bubble.css"}
+    {
+      "path": "css/joubel-message-dialog.css"
+    },
+    {
+      "path": "css/joubel-ui.css"
+    },
+    {
+      "path": "css/joubel-tip.css"
+    },
+    {
+      "path": "css/joubel-speech-bubble.css"
+    }
   ],
   "preloadedDependencies": [
     {
