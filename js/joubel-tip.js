@@ -14,7 +14,10 @@ H5P.JoubelTip = (function ($) {
     params = $.extend({
       showSpeechBubble: true
     }, params);
-    
+
+    // Make sure we do not output html!
+    text = H5P.htmlSpecialChars(text);
+
     var $tip = $('<div/>', {
       'class': 'joubel-tip-container' + (params.showSpeechBubble ? '' : ' be-quiet'),
       title: text,
