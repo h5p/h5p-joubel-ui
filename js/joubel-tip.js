@@ -1,28 +1,25 @@
 var H5P = H5P || {};
 
 H5P.JoubelTip = (function ($) {
-  
+
   /**
    * Creates a new tip
-   * 
+   *
    * @param {string} text The text to display in the popup
    * @param {object} params Additional parameters
    */
   function JoubelTip(text, params) {
     var speechBubble;
-    
+
     params = $.extend({
       showSpeechBubble: true
     }, params);
-
-    // Make sure we do not output html!
-    text = H5P.htmlSpecialChars(text);
 
     var $tip = $('<div/>', {
       'class': 'joubel-tip-container' + (params.showSpeechBubble ? '' : ' be-quiet'),
       title: text,
       click: function () {
-        
+
         if (speechBubble !== undefined && !speechBubble.isHidden()) {
           speechBubble.remove();
           speechBubble = undefined;
@@ -37,6 +34,6 @@ H5P.JoubelTip = (function ($) {
     }));
     return $tip;
   }
-  
+
   return JoubelTip;
 })(H5P.jQuery);
