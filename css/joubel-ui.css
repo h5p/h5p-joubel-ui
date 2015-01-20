@@ -10,3 +10,46 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.h5p-joubel-ui-button {
+  display: inline-block;
+  padding: 0.1875em 1em;
+  border: 0.1875em solid #fff;
+  border-radius: 0.375em;
+  margin: 1em 0.5em;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 0 0.5em #999;
+  text-decoration: none;
+
+  background: rgb(100, 152, 254); /* Gradient not supported */
+  background: -moz-linear-gradient(top, rgba(100, 152, 254, 1) 0%, rgba(4, 104, 206, 1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(100, 152, 254, 1)), color-stop(100%, rgba(4, 104, 206, 1))); /* Chrome, Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(100, 152, 254, 1) 0%, rgba(4, 104, 206, 1) 100%); /* Chrome10+, Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(100, 152, 254, 1) 0%, rgba(4, 104, 206, 1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(100, 152, 254, 1) 0%, rgba(4, 104, 206, 1) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(100, 152, 254, 1) 0%, rgba(4, 104, 206, 1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6498fe', endColorstr='#0468ce', GradientType=0); /* IE6-9 */
+}
+.h5p-joubel-ui-button:hover {
+  background: rgb(84, 145, 253); /* Gradient not supported */
+  background: -moz-linear-gradient(top, rgba(84, 145, 253, 1) 0%, rgba(2, 93, 189, 1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(84, 145, 253, 1)), color-stop(100%, rgba(2, 93, 189, 1))); /* Chrome, Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(84, 145, 253, 1) 0%, rgba(2, 93, 189, 1) 100%); /* Chrome10+, Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(84, 145, 253, 1) 0%, rgba(2, 93, 189, 1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(84, 145, 253, 1) 0%, rgba(2, 93, 189, 1) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(84, 145, 253, 1) 0%, rgba(2, 93, 189, 1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5491fd', endColorstr='#025dbd', GradientType=0); /* IE6-9 */
+}
+.h5p-joubel-ui-button:active {
+  outline: none;
+
+  background: rgb(2, 93, 189); /* Gradient not supported */
+  background: -moz-linear-gradient(top, rgba(2, 93, 189, 1) 0%, rgba(84, 145, 253, 1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(2, 93, 189, 1)), color-stop(100%, rgba(84, 145, 253, 1))); /* Chrome, Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(2, 93, 189, 1) 0%, rgba(84, 145, 253, 1) 100%); /* Chrome10+, Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(2, 93, 189, 1) 0%, rgba(84, 145, 253, 1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(2, 93, 189, 1) 0%, rgba(84, 145, 253, 1) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(2, 93, 189, 1) 0%, rgba(84, 145, 253, 1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#025dbd', endColorstr='#5491fd', GradientType=0); /* IE6-9 */
+}
