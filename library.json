@@ -24,6 +24,9 @@
     },
     {
       "path": "js/joubel-ui.js"
+    },
+    {
+      "path": "js/joubel-progress-circle.js"
     }
   ],
   "preloadedCss": [
@@ -38,6 +41,9 @@
     },
     {
       "path": "css/joubel-speech-bubble.css"
+    },
+    {
+      "path": "css/joubel-progress-circle.css"
     }
   ],
   "preloadedDependencies": [

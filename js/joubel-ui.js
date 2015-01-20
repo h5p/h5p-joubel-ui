@@ -21,6 +21,11 @@ H5P.JoubelUI = (function ($) {
   JoubelUI.createMessageDialog = function ($container, message) {
     return new H5P.JoubelMessageDialog($container, message);
   };
+
+  /* Create progress circle */
+  JoubelUI.createProgressCircle = function (number, progressColor, backgroundColor) {
+    return new H5P.JoubelProgressCircle(number, progressColor, backgroundColor);
+  };
   
   return JoubelUI;
 })(H5P.jQuery);
