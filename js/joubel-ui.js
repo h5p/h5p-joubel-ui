@@ -26,16 +26,8 @@ H5P.JoubelUI = (function ($) {
    * Create standard Joubel button
    * 
    * @param {object} params
-   *  May hold the following properties:
-   *   - text
-   *     Button text
-   *   - title
-   *     Title attribute for the button
-   *   - href
-   *     Href attribute for the button (button becomes a tag instead of button)
-   *   - class
-   *     extra classes for the button, multiple values must be separated with
-   *     spaces
+   *  May hold any properties allowed by jQuery. If href is set, an A tag
+   *  is used, if not a button tag is used.
    */
   JoubelUI.createButton = function(params) {
     var type = 'button';
