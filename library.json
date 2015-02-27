@@ -27,11 +27,21 @@
     },
     {
       "path": "js/joubel-progress-circle.js"
+    },
+    {
+      "path": "js/joubel-throbber.js"
+    },
+    {
+      "path": "js/joubel-help-dialog.js"
     }
+
   ],
   "preloadedCss": [
     {
       "path": "css/joubel-message-dialog.css"
+    },
+    {
+      "path": "css/joubel-help-dialog.css"
     },
     {
       "path": "css/joubel-ui.css"

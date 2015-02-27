@@ -1,0 +1,54 @@
+.joubel-help-text-dialog-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #626262;
+}
+
+.joubel-help-text-dialog-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #7F7F7F;
+  opacity: 0.75;
+}
+
+.joubel-help-text-dialog-container {
+  display: block;
+  position: absolute;
+  top: 3.5%;
+  left: 20%;
+  width: 60%;
+  background: white;
+  opacity: 1;
+  max-height: 93%;
+  overflow: auto;
+}
+
+.joubel-help-text-header {
+  border-bottom: 1px solid #E5E5E5;
+  padding: 0.5em 1.5em;
+}
+
+.joubel-help-text-body {
+  padding: 0.5em 1.5em;
+}
+
+.joubel-help-text-remove {
+  position: absolute;
+  right: 1.5em;
+  top: 0.5em;
+  cursor: pointer;
+}
+
+.joubel-help-text-remove:before {
+  font-family: 'H5PFontAwesome4';
+  content: '\f00d';
+  font-size: 1.3em;
+  right: 0em;
+  top: 0em;
+}
