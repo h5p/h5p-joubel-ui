@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   color: #626262;
+  background-color: #EEEEEE;
 }
 
 .joubel-help-text-dialog-background {
@@ -30,8 +31,9 @@
 }
 
 .joubel-help-text-header {
-  border-bottom: 1px solid #E5E5E5;
-  padding: 0.5em 1.5em;
+  font-size: 1.1em;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 0.75em 1.5em;
 }
 
 .joubel-help-text-body {
@@ -41,7 +43,7 @@
 .joubel-help-text-remove {
   position: absolute;
   right: 1.5em;
-  top: 0.5em;
+  top: 0.8em;
   cursor: pointer;
 }
 
