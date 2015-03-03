@@ -32,8 +32,14 @@ H5P.JoubelUI = (function ($) {
     return new H5P.JoubelProgressCircle(number, progressColor, backgroundColor);
   };
 
+  /* Create throbber for loading */
   JoubelUI.createThrobber = function () {
     return new H5P.JoubelThrobber();
+  };
+
+  /* Create simple rounded button */
+  JoubelUI.createSimpleRoundedButton = function () {
+    return new H5P.SimpleRoundedButton();
   };
 
   /**

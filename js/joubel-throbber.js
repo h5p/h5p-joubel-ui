@@ -7,6 +7,7 @@ H5P.JoubelThrobber = (function ($) {
    */
   function JoubelThrobber() {
 
+    // h5p-throbber css is described in core
     var $throbber = $('<div/>', {
       'class': 'h5p-throbber'
     });

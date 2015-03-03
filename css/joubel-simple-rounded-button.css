@@ -1,0 +1,9 @@
+.joubel-simple-rounded-button {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0.25em 0em;
+  padding: 0.5em 1.5em;
+  border-radius: 2em;
+  background-color: #1A73D9;
+  color: #FFFFFF;
+}
