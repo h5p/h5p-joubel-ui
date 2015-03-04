@@ -38,8 +38,8 @@ H5P.JoubelUI = (function ($) {
   };
 
   /* Create simple rounded button */
-  JoubelUI.createSimpleRoundedButton = function () {
-    return new H5P.SimpleRoundedButton();
+  JoubelUI.createSimpleRoundedButton = function (text) {
+    return new H5P.SimpleRoundedButton(text);
   };
 
   /**

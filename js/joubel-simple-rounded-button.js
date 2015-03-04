@@ -8,12 +8,20 @@ H5P.SimpleRoundedButton = (function ($) {
   function SimpleRoundedButton(text) {
 
     var $simpleRoundedButton = $('<div/>', {
-      'class': 'joubel-simple-rounded-button'
+      'class': 'joubel-simple-rounded-button',
+      'html': text,
+      'title': text,
+      'role': 'button',
+      'tabindex': '1'
+    }).keydown(function (e) {
+      var keyPressed = e.which;
+      // 32 - space
+      if (keyPressed === 32) {
+        $(this).click();
+        e.preventDefault();
+      }
+      $(this).focus();
     });
-
-    if (text !== undefined && text.length) {
-      $simpleRoundedButton.html(text);
-    }
 
     return $simpleRoundedButton;
   }

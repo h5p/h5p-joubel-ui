@@ -6,6 +6,7 @@
   left: 0;
   color: #626262;
   background-color: #EEEEEE;
+  z-index: 2;
 }
 
 .joubel-help-text-dialog-background {
