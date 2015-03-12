@@ -42,6 +42,10 @@ H5P.JoubelUI = (function ($) {
     return new H5P.SimpleRoundedButton(text);
   };
 
+  JoubelUI.createExportPage = function (header, body, selectAllTextLabel, exportTextLabel) {
+    return new H5P.JoubelExportPage(header, body, selectAllTextLabel, exportTextLabel);
+  };
+
   /**
    * Create standard Joubel button
    *

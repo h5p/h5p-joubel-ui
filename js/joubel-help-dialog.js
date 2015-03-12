@@ -1,7 +1,7 @@
 var H5P = H5P || {};
 
 /**
- * Class responsible for creating auto-disappearing dialogs
+ * Class responsible for creating a help text dialog
  */
 H5P.JoubelHelpTextDialog = (function ($) {
 
@@ -35,7 +35,8 @@ H5P.JoubelHelpTextDialog = (function ($) {
     }).appendTo($helpTextDialogContainer);
 
     $('<div>', {
-      'class': 'joubel-help-text-remove'
+      'class': 'joubel-help-text-remove',
+      'tabindex': 0
     }).click(function () {
       $helpTextDialogBox.remove();
     }).appendTo($helpTextDialogContainer);

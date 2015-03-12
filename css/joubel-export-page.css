@@ -1,0 +1,78 @@
+/* ------------------------------ popup main container ---------------------- */
+.joubel-create-document {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  background: #EEEEEE;
+  z-index: 2;
+  height: 100%;
+}
+
+/* ------------------------------- main elements ---------------------------- */
+
+.joubel-exportable-header {
+  height: 3em;
+  color: #555;
+  background-color: #fafafa;
+  border-bottom: 1px solid #ccc;
+}
+
+.joubel-exportable-header-inner,
+.joubel-exportable-body {
+  max-width: 800px;
+  margin: auto;
+}
+
+.joubel-exportable-header-inner {
+  padding-top: 1em;
+}
+
+.joubel-exportable-body {
+  padding-top: 2em;
+}
+
+/* ----------------------------- header elements ---------------------------- */
+
+.joubel-exportable-header-text {
+  float: left;
+}
+
+.joubel-exportable-export-button,
+.joubel-exportable-copy-button,
+.joubel-export-page-close {
+  font-family: 'H5PFontAwesome4';
+  float: right;
+  cursor: pointer;
+  padding: 0 1em;
+}
+
+.joubel-export-page-close {
+  position: relative;
+  padding-right: 0;
+  bottom: 0.1em;
+}
+
+.joubel-exportable-export-button:before {
+  content: "\f15c";
+  margin-right: 0.5em;
+}
+
+.joubel-exportable-copy-button:before {
+  content: "\f019";
+  margin-right: 0.5em;
+}
+
+.joubel-export-page-close:before {
+  content: '\f00d';
+  font-size: 1.3em;
+}
+
+
+/* ----------------------------- body elements ------------------------------ */
+
+.joubel-exportable-area {
+  padding: 1em;
+  color: #555;
+  background-color: #FFF;
+  box-shadow: 0 0 5px 1px #CCC;
+}

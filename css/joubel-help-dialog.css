@@ -1,3 +1,4 @@
+/* Main Container */
 .joubel-help-text-dialog-box {
   position: absolute;
   width: 100%;
@@ -5,20 +6,21 @@
   top: 0;
   left: 0;
   color: #626262;
-  background-color: #EEEEEE;
   z-index: 2;
 }
 
+/* Background for help dialog */
 .joubel-help-text-dialog-background {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background: #7F7F7F;
+  background: #555555;
   opacity: 0.75;
 }
 
+/* ------------------------------------ Main content container ------------------------ */
 .joubel-help-text-dialog-container {
   display: block;
   position: absolute;
@@ -31,16 +33,19 @@
   overflow: auto;
 }
 
+/* Header */
 .joubel-help-text-header {
   font-size: 1.1em;
   border-bottom: 1px solid #E0E0E0;
   padding: 0.75em 1.5em;
 }
 
+/* Body */
 .joubel-help-text-body {
   padding: 0.5em 1.5em;
 }
 
+/* Close help dialog container */
 .joubel-help-text-remove {
   position: absolute;
   right: 1.5em;
