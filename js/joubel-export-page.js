@@ -67,7 +67,7 @@ H5P.JoubelExportPage = (function ($) {
     });
 
     // Select all text button event
-    $('.joubel-exportable-copy-button', self.$inner).click(function () {
+    self.$selectAllTextButton = $('.joubel-exportable-copy-button', self.$inner).click(function () {
       self.selectText(self.$exportableArea);
     }).keydown(function (e) {
       var keyPressed = e.which;
@@ -80,7 +80,7 @@ H5P.JoubelExportPage = (function ($) {
     });
 
     // Export document button event
-    $('.joubel-exportable-export-button', self.$inner).click(function () {
+    self.$exportButton = $('.joubel-exportable-export-button', self.$inner).click(function () {
       self.saveText(self.$exportableArea.html());
     }).keydown(function (e) {
       var keyPressed = e.which;
@@ -91,6 +91,15 @@ H5P.JoubelExportPage = (function ($) {
       }
       $(this).focus();
     });
+
+    // Initialize resize listener for responsive design
+    this.standarSelectAllTextLabel = standardSelectAllTextLabel;
+    this.standardExportTextLabel = standardExportTextLabel;
+    $(window).resize(function () {
+      self.resize();
+    });
+
+    this.resize();
 
     return this.$inner;
   }
@@ -130,6 +139,23 @@ H5P.JoubelExportPage = (function ($) {
     htmlString = '<ht' + 'ml><he' + 'ad><me' + 'ta charset="UTF-8"></me' + 'ta></he' + 'ad><bo' + 'dy><p><a href="' + document.URL + '">' + document.URL + '</a></p>' + html + '</bo' + 'dy></ht' + 'ml>';
 
     return htmlString;
+  };
+
+  JoubelExportPage.prototype.resize = function () {
+    var self = this;
+    // Show responsive design when width relative to font size is less than 34
+    var relativeWidthOfContainer = self.$inner.width() / parseInt(self.$inner.css('font-size'), 10);
+    if (relativeWidthOfContainer < 34) {
+      self.$inner.addClass('responsive');
+      // Remove button text
+      self.$selectAllTextButton.html('');
+      self.$exportButton.html('');
+    } else {
+      self.$inner.removeClass('responsive');
+      // Restore button text
+      self.$selectAllTextButton.html(self.standarSelectAllTextLabel);
+      self.$exportButton.html(self.standardExportTextLabel);
+    }
   };
 
   return JoubelExportPage;

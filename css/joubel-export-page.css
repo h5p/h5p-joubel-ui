@@ -6,12 +6,13 @@
   background: #EEEEEE;
   z-index: 2;
   height: 100%;
+  min-width: 375px;
 }
 
 /* ------------------------------- main elements ---------------------------- */
 
 .joubel-exportable-header {
-  height: 3em;
+  height: 3.5em;
   color: #555;
   background-color: #fafafa;
   border-bottom: 1px solid #ccc;
@@ -24,7 +25,7 @@
 }
 
 .joubel-exportable-header-inner {
-  padding-top: 1em;
+  height: 100%;
 }
 
 .joubel-exportable-body {
@@ -35,6 +36,10 @@
 
 .joubel-exportable-header-text {
   float: left;
+  margin-left: 1em;
+  font-size: 1.3em;
+  padding-top: 0.75em;
+  height: calc(100% - 0.75em);
 }
 
 .joubel-exportable-export-button,
@@ -43,13 +48,16 @@
   font-family: 'H5PFontAwesome4';
   float: right;
   cursor: pointer;
-  padding: 0 1em;
+  padding: 1em 1em 0 1em;
+  height: calc(100% - 1em);
+  border-left: 1px solid #eee;
 }
 
 .joubel-export-page-close {
   position: relative;
-  padding-right: 0;
-  bottom: 0.1em;
+  margin-right: 1em;
+  margin-right: 1em;
+  border-right: 1px solid #eee;
 }
 
 .joubel-exportable-export-button:before {
@@ -71,8 +79,30 @@
 /* ----------------------------- body elements ------------------------------ */
 
 .joubel-exportable-area {
+  margin: 0em 1em;
   padding: 1em;
-  color: #555;
+  color: #626262;
   background-color: #FFF;
   box-shadow: 0 0 5px 1px #CCC;
+}
+
+
+/* ----------------------------- Responsive Design -------------------------- */
+
+.joubel-create-document.responsive .joubel-exportable-area {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  margin: 0;
+  height: calc(100% - 3.5em);
+}
+
+.joubel-create-document.responsive .joubel-exportable-body {
+  padding: 0;
+  height: calc(100% - 3.5em);
+}
+
+.joubel-create-document.responsive .joubel-export-page-close {
+  margin-right: 0;
 }
