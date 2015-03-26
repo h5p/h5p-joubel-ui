@@ -8,10 +8,12 @@ H5P.JoubelExportPage = (function ($) {
   /**
    * Display a pop-up containing an exportable text area with action buttons.
    *
-   * @param {jQuery object} $container The container which message dialog will be appended to
-   * @param {string} message The message
+   * @param {String} header Header message
+   * @param {jQuery} $body The container which message dialog will be appended to
+   * @param {String} selectAllTextLabel Select all text button label
+   * @param {String} exportTextLabel Export text button label
    */
-  function JoubelExportPage(header, body, selectAllTextLabel, exportTextLabel) {
+  function JoubelExportPage(header, $body, selectAllTextLabel, exportTextLabel) {
     var self = this;
 
     // Standard labels:
@@ -50,7 +52,7 @@ H5P.JoubelExportPage = (function ($) {
     this.$inner = $(exportPageTemplate);
 
     // Append body to exportable area
-    self.$exportableArea = $('.joubel-exportable-area', self.$inner).append(body);
+    self.$exportableArea = $('.joubel-exportable-area', self.$inner).append($body);
 
     // Exit export page event
     $('.joubel-export-page-close', self.$inner).click(function () {
@@ -95,15 +97,32 @@ H5P.JoubelExportPage = (function ($) {
     // Initialize resize listener for responsive design
     this.standarSelectAllTextLabel = standardSelectAllTextLabel;
     this.standardExportTextLabel = standardExportTextLabel;
-    $(window).resize(function () {
-      self.resize();
-    });
-
-    this.resize();
+    this.initResizeFunctionality();
 
     return this.$inner;
   }
 
+  /**
+   * Initializes listener for resize and performs initial resize when rendered
+   */
+  JoubelExportPage.prototype.initResizeFunctionality = function () {
+    var self = this;
+
+    // Listen for window resize
+    $(window).resize(function () {
+      self.resize();
+    });
+
+    // Initialize responsive view when view is rendered
+    setTimeout(function () {
+      self.resize();
+    }, 0);
+  };
+
+  /**
+   * Select all text in container
+   * @param {jQuery} $container Container containing selected text
+   */
   JoubelExportPage.prototype.selectText = function ($container) {
     var doc = document;
     var text = $container.get(0);
@@ -123,6 +142,10 @@ H5P.JoubelExportPage = (function ($) {
     }
   };
 
+  /**
+   * Save html string to file
+   * @param {string} html html string
+   */
   JoubelExportPage.prototype.saveText = function (html) {
     // Save it as a file:
     var blob = new Blob([this.createDocContent(html)], {
@@ -131,16 +154,20 @@ H5P.JoubelExportPage = (function ($) {
     saveAs(blob, 'exported-text.doc');
   };
 
+  /**
+   * Create doc content from html
+   * @param {string} html Html content
+   * @returns {string} html embedded content
+   */
   JoubelExportPage.prototype.createDocContent = function (html) {
-    var htmlString = html;
-
     // Create HTML:
     // me + ta and other hacks to avoid that new relic injects script...
-    htmlString = '<ht' + 'ml><he' + 'ad><me' + 'ta charset="UTF-8"></me' + 'ta></he' + 'ad><bo' + 'dy><p><a href="' + document.URL + '">' + document.URL + '</a></p>' + html + '</bo' + 'dy></ht' + 'ml>';
-
-    return htmlString;
+    return '<ht' + 'ml><he' + 'ad><me' + 'ta charset="UTF-8"></me' + 'ta></he' + 'ad><bo' + 'dy><p><a href="' + document.URL + '">' + document.URL + '</a></p>' + html + '</bo' + 'dy></ht' + 'ml>';
   };
 
+  /**
+   * Responsive resize function
+   */
   JoubelExportPage.prototype.resize = function () {
     var self = this;
     // Show responsive design when width relative to font size is less than 34
