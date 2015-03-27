@@ -65,7 +65,6 @@ H5P.JoubelExportPage = (function ($) {
         $(this).click();
         e.preventDefault();
       }
-      $(this).focus();
     });
 
     // Select all text button event

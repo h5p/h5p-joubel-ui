@@ -39,6 +39,13 @@ H5P.JoubelHelpTextDialog = (function ($) {
       'tabindex': 0
     }).click(function () {
       $helpTextDialogBox.remove();
+    }).keydown(function (e) {
+      var keyPressed = e.which;
+      // 32 - space
+      if (keyPressed === 32) {
+        $(this).click();
+        e.preventDefault();
+      }
     }).appendTo($helpTextDialogContainer);
 
     return $helpTextDialogBox;
