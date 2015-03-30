@@ -14,7 +14,6 @@
 
 .joubel-simple-rounded-button:active {
   position: relative;
-  top: 3px;
 
   -webkit-box-shadow: inset 0px 3px 1px rgba(9, 45, 103, 1);
   -moz-box-shadow: inset 0px 3px 1px rgba(9, 45, 103, 1);
