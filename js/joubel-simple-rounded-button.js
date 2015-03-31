@@ -7,9 +7,8 @@ H5P.SimpleRoundedButton = (function ($) {
    */
   function SimpleRoundedButton(text) {
 
-    var $simpleRoundedButton = $('<div/>', {
+    var $simpleRoundedButton = $('<div>', {
       'class': 'joubel-simple-rounded-button',
-      'html': text,
       'title': text,
       'role': 'button',
       'tabindex': '1'
@@ -22,6 +21,11 @@ H5P.SimpleRoundedButton = (function ($) {
       }
       $(this).focus();
     });
+
+    $('<span>', {
+      'class': 'joubel-simple-rounded-button-text',
+      'html': text
+    }).appendTo($simpleRoundedButton);
 
     return $simpleRoundedButton;
   }
