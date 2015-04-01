@@ -5,7 +5,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  color: #626262;
+  color: #555;
   z-index: 2;
 }
 
@@ -52,6 +52,10 @@
   right: 1.5em;
   top: 0.8em;
   cursor: pointer;
+}
+
+.joubel-help-text-remove:hover {
+  color: #333;
 }
 
 .joubel-help-text-remove:before {

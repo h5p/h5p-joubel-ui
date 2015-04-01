@@ -42,6 +42,7 @@
   height: calc(100% - 0.75em);
 }
 
+/* Buttons */
 .joubel-exportable-export-button,
 .joubel-exportable-copy-button,
 .joubel-export-page-close {
@@ -51,6 +52,13 @@
   padding: 1em 1em 0 1em;
   height: calc(100% - 1em);
   border-left: 1px solid #eee;
+}
+
+/* Hover effects on buttons */
+.joubel-exportable-export-button:hover,
+.joubel-exportable-copy-button:hover,
+.joubel-export-page-close:hover {
+  color: #333;
 }
 
 .joubel-export-page-close {

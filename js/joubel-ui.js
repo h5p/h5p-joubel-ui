@@ -46,6 +46,10 @@ H5P.JoubelUI = (function ($) {
     return new H5P.JoubelExportPage(header, body, selectAllTextLabel, exportTextLabel);
   };
 
+  JoubelUI.createGrepDialogBox = function (params, filterIdList) {
+    return new H5P.GrepDialogBox(params, filterIdList);
+  };
+
   /**
    * Create standard Joubel button
    *
