@@ -6,7 +6,6 @@
   background: #EEEEEE;
   z-index: 3;
   height: 100%;
-  min-width: 375px;
 }
 
 /* ------------------------------- main elements ---------------------------- */
@@ -46,13 +45,19 @@
 .joubel-exportable-export-button,
 .joubel-exportable-copy-button,
 .joubel-export-page-close {
-  font-family: 'H5PFontAwesome4';
   float: right;
   cursor: pointer;
   padding: 1em 1em 0 1em;
   height: calc(100% - 1em);
   border-left: 1px solid #eee;
 }
+
+.joubel-exportable-export-button:before,
+.joubel-exportable-copy-button:before,
+.joubel-export-page-close:before {
+  font-family: 'H5PFontAwesome4';
+}
+
 
 /* Hover effects on buttons */
 .joubel-exportable-export-button:hover,
@@ -69,12 +74,12 @@
 }
 
 .joubel-exportable-export-button:before {
-  content: "\f15c";
+  content: "\f019";
   margin-right: 0.5em;
 }
 
 .joubel-exportable-copy-button:before {
-  content: "\f019";
+  content: "\f15c";
   margin-right: 0.5em;
 }
 
@@ -113,4 +118,15 @@
 
 .joubel-create-document.responsive .joubel-export-page-close {
   margin-right: 0;
+}
+
+.joubel-create-document.responsive .joubel-exportable-export-button span,
+.joubel-create-document.responsive .joubel-exportable-copy-button span {
+  display: none;
+}
+
+/* No title threshold */
+
+.joubel-create-document.responsive.no-title .joubel-exportable-header-text {
+  display: none;
 }

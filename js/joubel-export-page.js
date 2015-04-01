@@ -58,6 +58,7 @@ H5P.JoubelExportPage = (function ($) {
     $('.joubel-export-page-close', self.$inner).click(function () {
       //Remove export page.
       self.$inner.remove();
+      $(this).blur();
     }).keydown(function (e) {
       var keyPressed = e.which;
       // 32 - space
@@ -70,6 +71,7 @@ H5P.JoubelExportPage = (function ($) {
     // Select all text button event
     self.$selectAllTextButton = $('.joubel-exportable-copy-button', self.$inner).click(function () {
       self.selectText(self.$exportableArea);
+      $(this).blur();
     }).keydown(function (e) {
       var keyPressed = e.which;
       // 32 - space
@@ -77,12 +79,12 @@ H5P.JoubelExportPage = (function ($) {
         $(this).click();
         e.preventDefault();
       }
-      $(this).focus();
     });
 
     // Export document button event
     self.$exportButton = $('.joubel-exportable-export-button', self.$inner).click(function () {
       self.saveText(self.$exportableArea.html());
+      $(this).blur();
     }).keydown(function (e) {
       var keyPressed = e.which;
       // 32 - space
@@ -90,7 +92,6 @@ H5P.JoubelExportPage = (function ($) {
         $(this).click();
         e.preventDefault();
       }
-      $(this).focus();
     });
 
     // Initialize resize listener for responsive design
@@ -169,18 +170,21 @@ H5P.JoubelExportPage = (function ($) {
    */
   JoubelExportPage.prototype.resize = function () {
     var self = this;
+    var staticRemoveLabelsThreshold = 37;
+    var staticRemoveTitleThreshold = 23;
     // Show responsive design when width relative to font size is less than 34
     var relativeWidthOfContainer = self.$inner.width() / parseInt(self.$inner.css('font-size'), 10);
-    if (relativeWidthOfContainer < 34) {
+
+    if (relativeWidthOfContainer < staticRemoveLabelsThreshold) {
       self.$inner.addClass('responsive');
-      // Remove button text
-      self.$selectAllTextButton.html('');
-      self.$exportButton.html('');
     } else {
       self.$inner.removeClass('responsive');
-      // Restore button text
-      self.$selectAllTextButton.html(self.standarSelectAllTextLabel);
-      self.$exportButton.html(self.standardExportTextLabel);
+    }
+
+    if (relativeWidthOfContainer < staticRemoveTitleThreshold) {
+      self.$inner.addClass('no-title');
+    } else {
+      self.$inner.removeClass('no-title');
     }
   };
 
