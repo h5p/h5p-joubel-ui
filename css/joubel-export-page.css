@@ -6,6 +6,7 @@
   background: #EEEEEE;
   z-index: 3;
   height: 100%;
+  overflow: auto;
 }
 
 /* ------------------------------- main elements ---------------------------- */
@@ -29,6 +30,7 @@
 
 .joubel-exportable-body {
   padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 /* ----------------------------- header elements ---------------------------- */
