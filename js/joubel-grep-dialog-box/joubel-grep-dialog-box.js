@@ -136,18 +136,16 @@ H5P.GrepDialogBox = (function ($) {
     // Append to curriculumView or to parent curriculum
     if (selectedItem !== undefined && selectedItem.type === CURRICULUM) {
       var selectedItemIndex = -1;
+
       // Find index of selected item
-      self.curriculumNames.some(function (curriculumName, idx) {
-        if (curriculumName.value === selectedItem.value) {
-          selectedItemIndex = idx;
-          return true;
+      self.$curriculumView.children().children().each(function (elementIndex) {
+        if ($(this).html() === selectedItem.value) {
+          selectedItemIndex = elementIndex;
         }
-        return false;
       });
-      if (selectedItemIndex > -1 && selectedItemIndex < self.curriculumNames.length) {
-        $throbberContainer
-          .addClass('right-aligned')
-          .appendTo(self.$curriculumView.children().children().eq(selectedItemIndex));
+
+      if (selectedItemIndex > -1 && selectedItemIndex < self.$curriculumView.children().children().length) {
+        $throbberContainer.appendTo(self.$curriculumView.children().children().eq(selectedItemIndex));
       }
     } else {
       $throbberContainer.appendTo(self.$curriculumView);
@@ -280,7 +278,7 @@ H5P.GrepDialogBox = (function ($) {
   /**
    * Creates the full list to display in dialog box from provided data
    * @param {Array} dataList Array containing all dialog box list data
-   * @param filterString
+   * @param {String} filterString Curriculums will be filtered on this string
    */
   GrepDialogBox.prototype.createViewList = function (dataList, filterString) {
     var self = this;
@@ -414,7 +412,7 @@ H5P.GrepDialogBox = (function ($) {
     var childIndex = parentIndex + 1;
     if (childIndex < this.curriculumNames.length && this.curriculumNames[childIndex].type > selectedItem.type) {
       // Update view
-      this.updateViewList(this.$curriculumView, this.curriculumNames);
+      this.updateViewList(this.$curriculumView, this.curriculumNames, this.$searchInput.val());
       return;
     }
 
@@ -530,10 +528,25 @@ H5P.GrepDialogBox = (function ($) {
    */
   GrepDialogBox.prototype.filterDataList = function (filterString) {
     var filteredCurriculumNames = [];
+    var prevCurriculum = null;
     this.curriculumNames.forEach(function (curriculumNameInstance) {
-      // Check if filter string is a substring
-      if (curriculumNameInstance.value.toLowerCase().indexOf(filterString.toLowerCase()) > -1) {
-        filteredCurriculumNames.push(curriculumNameInstance);
+      // Only filter curriculums
+      if (curriculumNameInstance.type === CURRICULUM) {
+        var isMatching = false;
+
+        // Check if filter string is a substring
+        if (curriculumNameInstance.value.toLowerCase().indexOf(filterString.toLowerCase()) > -1) {
+          filteredCurriculumNames.push(curriculumNameInstance);
+          isMatching = true;
+        }
+
+        // Set curriculum as previous curriculum
+        prevCurriculum = {instance: curriculumNameInstance, isMatching: isMatching};
+      } else {
+        // Add non curriculum data entry if previous curriculum was matching filter string
+        if (prevCurriculum !== null && prevCurriculum.isMatching) {
+          filteredCurriculumNames.push(curriculumNameInstance);
+        }
       }
     });
 

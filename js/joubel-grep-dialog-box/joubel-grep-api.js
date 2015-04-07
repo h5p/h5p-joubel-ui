@@ -20,6 +20,7 @@ H5P.GrepAPI = (function ($) {
   function GrepAPI(targetGrepUrl) {
     this.$ = $(this);
     this.jsonData = [];
+    this.isProcessingGrepCall = false;
     if (this.grepUrl === undefined) {
       this.grepUrl = standardGrepUrl;
     } else {
@@ -41,7 +42,21 @@ H5P.GrepAPI = (function ($) {
       dataUrl = self.grepUrl;
     }
 
+    // Do not process multiple calls at the same time.
+    if (this.isProcessingGrepCall) {
+      return this;
+    }
+
+    this.isProcessingGrepCall = true;
+    this.executeGrepCall(dataUrl, grepDialogBox, selectedItem, filterIdList);
+
     grepDialogBox.createLoadingScreen(selectedItem);
+
+    return this;
+  };
+
+  GrepAPI.prototype.executeGrepCall = function (dataUrl, grepDialogBox, selectedItem, filterIdList) {
+    var self = this;
 
     // Find IE version
     function isIE() {
@@ -61,6 +76,7 @@ H5P.GrepAPI = (function ($) {
         xdr.onerror = function () {
           //Error Occured
           grepDialogBox.setErrorMessage(ERROR_CONNECTION);
+          self.isProcessingGrepCall = false;
         };
 
         // Success
@@ -68,6 +84,7 @@ H5P.GrepAPI = (function ($) {
           self.jsonString = xdr.target.responseText;
           self.jsonData = JSON.parse(xdr.target.responseText);
           grepDialogBox.updateDialogView(self.getDataList(selectedItem.type, filterIdList), selectedItem.type);
+          self.isProcessingGrepCall = false;
         };
 
         setTimeout(function () {
@@ -85,13 +102,13 @@ H5P.GrepAPI = (function ($) {
         self.jsonString = data;
         self.jsonData = JSON.parse(data);
         grepDialogBox.updateDialogView(self.getDataList(selectedItem.type, filterIdList), selectedItem.type);
+        self.isProcessingGrepCall = false;
       },
       error: function () {
         grepDialogBox.setErrorMessage(ERROR_CONNECTION);
+        self.isProcessingGrepCall = false;
       }
     });
-
-    return this;
   };
 
   /**
