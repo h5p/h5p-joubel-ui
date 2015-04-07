@@ -104,6 +104,10 @@
 
 /* ----------------------------- Responsive Design -------------------------- */
 
+.joubel-create-document.responsive {
+  background: #FFF;
+}
+
 .joubel-create-document.responsive .joubel-exportable-area {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
