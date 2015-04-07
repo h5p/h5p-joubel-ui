@@ -11,7 +11,7 @@ H5P.SimpleRoundedButton = (function ($) {
       'class': 'joubel-simple-rounded-button',
       'title': text,
       'role': 'button',
-      'tabindex': '1'
+      'tabindex': '0'
     }).keydown(function (e) {
       var keyPressed = e.which;
       // 32 - space
