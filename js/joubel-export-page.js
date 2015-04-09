@@ -83,10 +83,6 @@ H5P.JoubelExportPage = (function ($) {
     // Remove buttons that are not working properly for mobiles at the moment
     if (isMobile.any()) {
       self.$exportButton.remove();
-    }
-
-    // Remove select all text button on iOS devices, since selection is not working properly
-    if (isMobile.iOS()) {
       self.$selectAllTextButton.remove();
     }
 
