@@ -5,6 +5,25 @@ var H5P = H5P || {};
  * Class responsible for creating an export page
  */
 H5P.JoubelExportPage = (function ($) {
+
+  var isMobile = {
+    Android: function () {
+      return (/Android/i).test(navigator.userAgent);
+    },
+    BlackBerry: function () {
+      return (/BlackBerry/i).test(navigator.userAgent);
+    },
+    iOS: function () {
+      return (/iPhone|iPad|iPod/i).test(navigator.userAgent);
+    },
+    Windows: function () {
+      return (/IEMobile/i).test(navigator.userAgent);
+    },
+    any: function () {
+      return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+    }
+  };
+
   /**
    * Display a pop-up containing an exportable text area with action buttons.
    *
@@ -51,9 +70,37 @@ H5P.JoubelExportPage = (function ($) {
 
     this.$inner = $(exportPageTemplate);
 
-    // Append body to exportable area
-    self.$exportableArea = $('.joubel-exportable-area', self.$inner).append($body);
+    // Replace newlines with html line breaks
+    var $bodyReplacedLineBreaks = $body.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
+    // Append body to exportable area
+    self.$exportableArea = $('.joubel-exportable-area', self.$inner).append($bodyReplacedLineBreaks);
+
+    self.initExitExportPageButton();
+    self.initExportButton();
+    self.initSelectAllTextButton();
+
+    // Remove buttons that are not working properly for mobiles at the moment
+    if (isMobile.any()) {
+      self.$exportButton.remove();
+    }
+
+    // Remove select all text button on iOS devices, since selection is not working properly
+    if (isMobile.iOS()) {
+      self.$selectAllTextButton.remove();
+    }
+
+    // Initialize resize listener for responsive design
+    this.initResizeFunctionality();
+
+    return this.$inner;
+  }
+
+  /**
+   * Initialize exit export page button
+   */
+  JoubelExportPage.prototype.initExitExportPageButton = function () {
+    var self = this;
     // Exit export page event
     $('.joubel-export-page-close', self.$inner).click(function () {
       //Remove export page.
@@ -67,20 +114,13 @@ H5P.JoubelExportPage = (function ($) {
         e.preventDefault();
       }
     });
+  };
 
-    // Select all text button event
-    self.$selectAllTextButton = $('.joubel-exportable-copy-button', self.$inner).click(function () {
-      self.selectText(self.$exportableArea);
-      $(this).blur();
-    }).keydown(function (e) {
-      var keyPressed = e.which;
-      // 32 - space
-      if (keyPressed === 32) {
-        $(this).click();
-        e.preventDefault();
-      }
-    });
-
+  /**
+   * Initialize export button interactions
+   */
+  JoubelExportPage.prototype.initExportButton = function () {
+    var self = this;
     // Export document button event
     self.$exportButton = $('.joubel-exportable-export-button', self.$inner).click(function () {
       self.saveText(self.$exportableArea.html());
@@ -93,14 +133,27 @@ H5P.JoubelExportPage = (function ($) {
         e.preventDefault();
       }
     });
+  };
 
-    // Initialize resize listener for responsive design
-    this.standarSelectAllTextLabel = standardSelectAllTextLabel;
-    this.standardExportTextLabel = standardExportTextLabel;
-    this.initResizeFunctionality();
 
-    return this.$inner;
-  }
+  /**
+   * Initialize select all text button interactions
+   */
+  JoubelExportPage.prototype.initSelectAllTextButton = function () {
+    var self = this;
+    // Select all text button event
+    self.$selectAllTextButton = $('.joubel-exportable-copy-button', self.$inner).click(function () {
+      self.selectText(self.$exportableArea);
+      $(this).blur();
+    }).keydown(function (e) {
+      var keyPressed = e.which;
+      // 32 - space
+      if (keyPressed === 32) {
+        $(this).click();
+        e.preventDefault();
+      }
+    });
+  };
 
   /**
    * Initializes listener for resize and performs initial resize when rendered
@@ -162,7 +215,7 @@ H5P.JoubelExportPage = (function ($) {
   JoubelExportPage.prototype.createDocContent = function (html) {
     // Create HTML:
     // me + ta and other hacks to avoid that new relic injects script...
-    return '<ht' + 'ml><he' + 'ad><me' + 'ta charset="UTF-8"></me' + 'ta></he' + 'ad><bo' + 'dy><p><a href="' + document.URL + '">' + document.URL + '</a></p>' + html + '</bo' + 'dy></ht' + 'ml>';
+    return '<ht' + 'ml><he' + 'ad><me' + 'ta charset="UTF-8"></me' + 'ta></he' + 'ad><bo' + 'dy>' + html + '</bo' + 'dy></ht' + 'ml>';
   };
 
   /**
