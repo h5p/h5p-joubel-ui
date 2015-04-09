@@ -26,7 +26,7 @@ H5P.GrepDialogBox = (function ($) {
 
     // l10n
     this.params = $.extend({}, {
-      header: 'Choose goal from list',
+      chooseGoalText: 'Choose goal from list',
       goalsAddedText: 'Number of goals added:',
       grepDialogDone: 'Done',
       filterGoalsPlaceholder: 'Filter on words...'
