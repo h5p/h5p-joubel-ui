@@ -1,0 +1,26 @@
+.joubel-simple-rounded-button {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0.25em 0;
+  padding: 0.3em 1.2em;
+  border-radius: 2em;
+  background-color: #20588f;
+  color: #FFFFFF;
+}
+
+.joubel-simple-rounded-button:hover {
+  background-color: #1a4773;
+}
+
+.joubel-simple-rounded-button:active {
+  position: relative;
+
+  -webkit-box-shadow: inset 0 3px 1px #103155;
+  -moz-box-shadow: inset 0 3px 1px #103155;
+  box-shadow: inset 0 3px 1px #103155;
+}
+
+.joubel-simple-rounded-button:active .joubel-simple-rounded-button-text {
+  position: relative;
+  top: 2px;
+}
