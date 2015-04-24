@@ -106,6 +106,7 @@
   height: calc(100% - 10.5em);
   /* 100% - margin(1em) * 2 - padding(2em) * 2 */
   width: calc(100% - 6em);
+  left: 0;
 }
 
 

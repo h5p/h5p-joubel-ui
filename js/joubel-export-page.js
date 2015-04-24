@@ -1,4 +1,4 @@
-/*global Blob, saveAs */
+/*global Blob, saveAs, JSZipUtils, Docxgen */
 var H5P = H5P || {};
 
 /**
@@ -31,9 +31,16 @@ H5P.JoubelExportPage = (function ($) {
    * @param {jQuery} $body The container which message dialog will be appended to
    * @param {String} selectAllTextLabel Select all text button label
    * @param {String} exportTextLabel Export text button label
+   * @param {String} templateLibraryFolder The library identifier in the format "machineName-majorVersion.minorVersion" where docx template is placed
+   * @param {String} templateName The template docx file in the format "templatename.docx"
+   * @param {Object} templateContent Object containing template content
    */
-  function JoubelExportPage(header, $body, selectAllTextLabel, exportTextLabel) {
+  function JoubelExportPage(header, $body, selectAllTextLabel, exportTextLabel, templateLibraryFolder, templateName, templateContent) {
     var self = this;
+
+    this.templateLibraryFolder = templateLibraryFolder;
+    this.templateName = templateName;
+    this.templateContent = templateContent;
 
     // Standard labels:
     var standardSelectAllTextLabel = 'Select all';
@@ -196,11 +203,39 @@ H5P.JoubelExportPage = (function ($) {
    * @param {string} html html string
    */
   JoubelExportPage.prototype.saveText = function (html) {
-    // Save it as a file:
-    var blob = new Blob([this.createDocContent(html)], {
-      type: "application/msword;charset=utf-8"
-    });
-    saveAs(blob, 'exported-text.doc');
+    var self = this;
+
+    if (this.templateLibraryFolder === undefined || this.templateName === undefined) {
+      // Use old method
+
+      // Save it as a file:
+      var blob = new Blob([this.createDocContent(html)], {
+        type: "application/msword;charset=utf-8"
+      });
+      saveAs(blob, 'exported-text.doc');
+    } else {
+      var test2 = H5P.getLibraryPath(this.templateLibraryFolder);
+      //var test3 = H5P.getPath();
+
+      var loadFile = function (url, callback) {
+        JSZipUtils.getBinaryContent(url, function (err, data) {
+          callback(null, data);
+        });
+      };
+
+      loadFile(test2 + '/' + self.templateName, function (err, content) {
+        var doc = new Docxgen(content);
+        if (self.templateContent !== undefined) {
+          doc.setData(self.templateContent); //set the templateVariables
+        }
+        doc.render(); //apply them (replace all occurences of {first_name} by Hipp, ...)
+        var out = doc.getZip().generate({type: "blob"}); //Output the document using Data-URI
+        saveAs(out, "exported-text.docx");
+      });
+    }
+
+
+
   };
 
   /**
