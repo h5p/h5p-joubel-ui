@@ -219,22 +219,64 @@ H5P.JoubelExportPage = (function ($) {
    */
   JoubelExportPage.prototype.resize = function () {
     var self = this;
-    var staticRemoveLabelsThreshold = 37;
-    var staticRemoveTitleThreshold = 23;
-    // Show responsive design when width relative to font size is less than 34
-    var relativeWidthOfContainer = self.$inner.width() / parseInt(self.$inner.css('font-size'), 10);
+    var $innerTmp = self.$inner.clone()
+      .css('position', 'absolute')
+      .removeClass('responsive')
+      .removeClass('no-title')
+      .appendTo(self.$inner.parent());
 
-    if (relativeWidthOfContainer < staticRemoveLabelsThreshold) {
+    // Determine if view should be responsive
+    var $headerInner = $('.joubel-exportable-header-inner', $innerTmp);
+    var leftMargin = parseInt($('.joubel-exportable-header-text', $headerInner).css('font-size'), 10);
+    var rightMargin = parseInt($('.joubel-export-page-close', $headerInner).css('font-size'), 10);
+
+    var dynamicRemoveLabelsThreshold = this.calculateHeaderThreshold($innerTmp, (leftMargin + rightMargin));
+    var headerWidth = $headerInner.width();
+
+    if (headerWidth <= dynamicRemoveLabelsThreshold) {
       self.$inner.addClass('responsive');
+      $innerTmp.addClass('responsive');
     } else {
       self.$inner.removeClass('responsive');
+      $innerTmp.remove();
+      return;
     }
 
-    if (relativeWidthOfContainer < staticRemoveTitleThreshold) {
+    // Determine if view should have no title
+    headerWidth = $headerInner.width();
+    var dynamicRemoveTitleThreshold = this.calculateHeaderThreshold($innerTmp, leftMargin);
+
+    if (headerWidth <= dynamicRemoveTitleThreshold) {
       self.$inner.addClass('no-title');
     } else {
       self.$inner.removeClass('no-title');
     }
+
+    $innerTmp.remove();
+  };
+
+  /**
+   * Calculates width of header elements
+   */
+  JoubelExportPage.prototype.calculateHeaderThreshold = function ($container, margin) {
+    var staticPadding = 1;
+
+    if (margin === undefined || isNaN(margin)) {
+      margin = 0;
+    }
+
+    // Calculate elements width
+    var $exportButtonTmp = $('.joubel-exportable-export-button', $container);
+    var $selectTextButtonTmp = $('.joubel-exportable-copy-button', $container);
+    var $removeDialogButtonTmp = $('.joubel-export-page-close', $container);
+    var $titleTmp = $('.joubel-exportable-header-text', $container);
+
+    var dynamicThreshold = $exportButtonTmp.outerWidth() +
+      $selectTextButtonTmp.outerWidth() +
+      $removeDialogButtonTmp.outerWidth() +
+      $titleTmp.outerWidth();
+
+    return dynamicThreshold + margin + staticPadding;
   };
 
   return JoubelExportPage;

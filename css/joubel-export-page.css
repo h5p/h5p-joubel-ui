@@ -6,7 +6,7 @@
   background: #EEEEEE;
   z-index: 3;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 /* ------------------------------- main elements ---------------------------- */
@@ -99,6 +99,13 @@
   color: #626262;
   background-color: #FFF;
   box-shadow: 0 0 5px 1px #CCC;
+
+  overflow: auto;
+  position: absolute;
+  /* 100% - header(3.5em) - padding(1.5em) * 2 - body padding(2em) * 2 */
+  height: calc(100% - 10.5em);
+  /* 100% - margin(1em) * 2 - padding(2em) * 2 */
+  width: calc(100% - 6em);
 }
 
 
@@ -114,6 +121,7 @@
   box-shadow: none;
 
   margin: 0;
+  width: calc(100% - 4em);
   height: calc(100% - 3.5em);
 }
 
