@@ -28,8 +28,8 @@ H5P.JoubelUI = (function ($) {
   };
 
   /* Create progress circle */
-  JoubelUI.createProgressCircle = function (number, progressColor, backgroundColor) {
-    return new H5P.JoubelProgressCircle(number, progressColor, backgroundColor);
+  JoubelUI.createProgressCircle = function (number, progressColor, fillColor, backgroundColor) {
+    return new H5P.JoubelProgressCircle(number, progressColor, fillColor, backgroundColor);
   };
 
   /* Create throbber for loading */

@@ -13,17 +13,23 @@ H5P.JoubelProgressCircle = (function ($) {
    * @param {string} progressColor Color for the progress meter
    * @param {string} backgroundColor Color behind the progress meter
    */
-  function ProgressCircle(number, progressColor, backgroundColor) {
-    var progressColor = progressColor || '#096bcb';
-    var backgroundColor = backgroundColor || '#e0e0e0';
+  function ProgressCircle(number, progressColor, fillColor, backgroundColor) {
+    var progressColor = progressColor || '#9EB5C7';
+    var fillColor = fillColor || '#f0f0f0';
+    var backgroundColor = backgroundColor || '#ffffff';
+
 
     //Verify number
     try {
       number = Number(number);
-      if (number === '') throw 'is empty';
-      if (isNaN(number)) throw 'is not a number';
+      if (number === '') {
+        throw 'is empty';
+      }
+      if (isNaN(number)) {
+        throw 'is not a number';
+      }
     } catch (e) {
-      console.log('Progress circle input '+ e);
+      console.log('Progress circle input' + e);
       number = 'err';
     }
     //Draw circle
@@ -31,7 +37,7 @@ H5P.JoubelProgressCircle = (function ($) {
       number = 100;
     }
 
-    //Wrapper
+    // Circle wrapper
     var $wrapper = $('<div/>', {
       'class': "joubel-progress-circle-wrapper"
     });
@@ -42,7 +48,7 @@ H5P.JoubelProgressCircle = (function ($) {
     }).appendTo($wrapper);
 
     //Background circle
-    var $circle = $('<div/>', {
+    var $backgroundCircle = $('<div/>', {
       'class': "joubel-progress-circle-circle"
     }).appendTo($activeBorder);
 
@@ -50,25 +56,84 @@ H5P.JoubelProgressCircle = (function ($) {
     $('<span/>', {
       'text': number,
       'class': "joubel-progress-circle-percentage"
-    }).appendTo($circle);
-
+    }).appendTo($backgroundCircle);
 
     var deg = number * 3.6;
     if (deg <= 180) {
       $activeBorder
         .css('background-image',
-        'linear-gradient(' + (90 + deg) + 'deg, transparent 50%, ' + backgroundColor + ' 50%),' +
-        'linear-gradient(90deg, ' + backgroundColor + ' 50%, transparent 50%)');
+        'linear-gradient(' + (90 + deg) + 'deg, transparent 50%, ' + fillColor + ' 50%),' +
+        'linear-gradient(90deg, ' + fillColor + ' 50%, transparent 50%)')
+        .css('border', '2px solid' + backgroundColor);
     }
     else {
       $activeBorder
         .css('background-image',
         'linear-gradient(' + (deg - 90) + 'deg, transparent 50%, ' + progressColor + ' 50%),' +
-        'linear-gradient(90deg, ' + backgroundColor + ' 50%, transparent 50%)');
+        'linear-gradient(90deg, ' + fillColor + ' 50%, transparent 50%)')
+        .css('border', '2px solid' + backgroundColor);
     }
+
+    this.$activeBorder = $activeBorder;
+    this.$backgroundCircle = $backgroundCircle;
+    this.$wrapper = $wrapper;
+
+    this.initResizeFunctionality();
+
     return $wrapper;
   }
 
+  /**
+   * Initializes resize functionality for the progress circle
+   */
+  ProgressCircle.prototype.initResizeFunctionality = function () {
+    var self = this;
+
+    $(window).resize(function () {
+      // Queue resize
+      setTimeout(function () {
+        self.resize();
+      });
+    });
+
+    // First resize
+    setTimeout(function () {
+      self.resize();
+    }, 0);
+  };
+
+  /**
+   * Resize function makes progress circle grow or shrink relative to parent container
+   */
+  ProgressCircle.prototype.resize = function () {
+    var $parent = this.$wrapper.parent();
+
+    if ($parent !== undefined && $parent) {
+
+      // Measurements
+      var fontSize = parseInt($parent.css('font-size'), 10);
+
+      // Static sizes
+      var fontSizeMultiplum = 3;
+      var progressCircleWidthPx = parseInt((fontSize / 4.5), 10) % 2 === 0 ? parseInt((fontSize / 4.5), 10) : parseInt((fontSize / 4.5), 10) + 1;
+      var progressCircleOffset = progressCircleWidthPx / 2;
+
+      var width = fontSize * fontSizeMultiplum;
+      var height = fontSize * fontSizeMultiplum;
+      this.$activeBorder.css({
+        'width': width,
+        'height': height
+      });
+
+      this.$backgroundCircle.css({
+        'width': width - progressCircleWidthPx,
+        'height': height - progressCircleWidthPx,
+        'top': progressCircleOffset,
+        'left': progressCircleOffset
+      });
+    }
+  };
+
   return ProgressCircle;
 
-})(H5P.jQuery);
+}(H5P.jQuery));
