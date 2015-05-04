@@ -207,3 +207,20 @@
 
   height: 100%;
 }
+
+/* IE9 fix */
+.h5p-curriculum-popup-container.ie9 .h5p-curriculum-popup .h5p-curriculum-view {
+  height: 77%;
+}
+
+.h5p-curriculum-popup-container.ie9 .h5p-curriculum-popup .h5p-curriculum-view.has-bottom-bar {
+  height: 67%;
+}
+
+.h5p-documentation-tool-main-content.responsive .h5p-curriculum-popup-container.ie9 .h5p-curriculum-view {
+  height: 71%;
+}
+
+.h5p-documentation-tool-main-content.responsive .h5p-curriculum-popup-container.ie9 .h5p-curriculum-view.has-bottom-bar {
+  height: 57%;
+}

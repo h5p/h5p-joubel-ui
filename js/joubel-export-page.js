@@ -16,6 +16,9 @@ H5P.JoubelExportPage = (function ($) {
     iOS: function () {
       return (/iPhone|iPad|iPod/i).test(navigator.userAgent);
     },
+    ie9: function () {
+      return (/MSIE 9/i).test(navigator.userAgent);
+    },
     Windows: function () {
       return (/IEMobile/i).test(navigator.userAgent);
     },
@@ -87,9 +90,13 @@ H5P.JoubelExportPage = (function ($) {
     self.initExportButton();
     self.initSelectAllTextButton();
 
-    // Remove buttons that are not working properly for mobiles at the moment
-    if (isMobile.any()) {
+    // Does not work on IE9 and mobiles except android
+    if (isMobile.ie9() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows()) {
       self.$exportButton.remove();
+    }
+
+    // Does not work on mobiles, but works on IE9
+    if (isMobile.any()) {
       self.$selectAllTextButton.remove();
     }
 

@@ -11,6 +11,10 @@ H5P.GrepDialogBox = (function ($) {
   var COMPETENCE_AIM_SET = 1;
   var COMPETENCE_AIM = 2;
 
+  var isIE9 = function () {
+    return (/MSIE 9/i).test(navigator.userAgent);
+  };
+
   /**
    * Initialize module.
    * @param {Object} params Object containing parameters
@@ -76,6 +80,10 @@ H5P.GrepDialogBox = (function ($) {
     this.$curriculumView = $('<div>', {
       'class': 'h5p-curriculum-view'
     }).appendTo(this.$curriculumDialog);
+
+    if (isIE9()) {
+      this.$curriculumDialogContainer.addClass('ie9');
+    }
 
     this.isCreated = true;
 
@@ -251,6 +259,7 @@ H5P.GrepDialogBox = (function ($) {
     if (!this.hasBottomBar) {
       self.$bottomBar.appendTo(self.$curriculumDialog);
       this.hasBottomBar = true;
+      self.$curriculumView.addClass('has-bottom-bar');
     }
 
     if (self.selectedCompetenceAims.length <= 0) {
