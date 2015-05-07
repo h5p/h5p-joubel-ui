@@ -10,7 +10,7 @@
   line-height: 1.5em;
   width: 1.5em;
   height: 1.5em;
-  color: #222;
+  color: #777;
   cursor: pointer;
   -webkit-transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
@@ -22,15 +22,14 @@
 }
 .joubel-tip-icon:before {
   font-family: Joubel;
-  content: "\e888"; 
-  
+  content: "\e888";
+
   /* Better Font Rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 .joubel-tip-icon:hover {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  color: #333;
 }
 .be-quiet .joubel-tip-icon:hover {
   -webkit-transform: none;

@@ -27,8 +27,12 @@ H5P.JoubelSpeechBubble = (function ($) {
         H5P.$body.css('cursor', '');
       }
       if ($currentSpeechBubble !== undefined) {
-        $currentSpeechBubble.remove();
-        $currentSpeechBubble = undefined;
+        // Apply transition, then remove speech bubble
+        $currentSpeechBubble.removeClass('show');
+        setTimeout(function () {
+          $currentSpeechBubble.remove();
+          $currentSpeechBubble = undefined;
+        }, 500);
       }
       // Don't return false here. If the user e.g. clicks a button when the bubble is visible,
       // we want the bubble to disapear AND the button to receive the event
@@ -46,6 +50,11 @@ H5P.JoubelSpeechBubble = (function ($) {
 
     // Create bubble
     $currentSpeechBubble = $('<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' + text + '</div></div></div>').appendTo($h5pContainer);
+
+    // Show speech bubble with transition
+    setTimeout(function () {
+      $currentSpeechBubble.addClass('show');
+    }, 0);
 
     // Setting width to 90% of parent
     var width = $h5pContainer.width()*0.9;
