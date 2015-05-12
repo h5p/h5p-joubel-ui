@@ -8,7 +8,14 @@
   z-index: 301;
   min-width: 6em;
   right: -1em;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
+
+.joubel-speech-bubble.show {
+  opacity: 1;
+}
+
 .joubel-speech-bubble-inner {
   background: #fbfbfb;
   box-shadow: 0 0 0.5em #2c2c2c;
@@ -18,7 +25,7 @@
   position: relative;
   word-wrap: break-word; /* Long words have to break */
 }
-.joubel-speech-bubble-inner:before, 
+.joubel-speech-bubble-inner:before,
 .joubel-speech-bubble:before {
   content: "";
   position: absolute;

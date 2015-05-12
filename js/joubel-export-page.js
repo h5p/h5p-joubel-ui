@@ -1,4 +1,4 @@
-/*global Blob, saveAs */
+/*global Blob, saveAs, JSZipUtils, Docxgen */
 var H5P = H5P || {};
 
 /**
@@ -16,6 +16,9 @@ H5P.JoubelExportPage = (function ($) {
     iOS: function () {
       return (/iPhone|iPad|iPod/i).test(navigator.userAgent);
     },
+    ie9: function () {
+      return (/MSIE 9/i).test(navigator.userAgent);
+    },
     Windows: function () {
       return (/IEMobile/i).test(navigator.userAgent);
     },
@@ -31,9 +34,16 @@ H5P.JoubelExportPage = (function ($) {
    * @param {jQuery} $body The container which message dialog will be appended to
    * @param {String} selectAllTextLabel Select all text button label
    * @param {String} exportTextLabel Export text button label
+   * @param {String} templateLibraryFolder The library identifier in the format "machineName-majorVersion.minorVersion" where docx template is placed
+   * @param {String} templateName The template docx file in the format "templatename.docx"
+   * @param {Object} templateContent Object containing template content
    */
-  function JoubelExportPage(header, $body, selectAllTextLabel, exportTextLabel) {
+  function JoubelExportPage(header, $body, selectAllTextLabel, exportTextLabel, templateLibraryFolder, templateName, templateContent) {
     var self = this;
+
+    this.templateLibraryFolder = templateLibraryFolder;
+    this.templateName = templateName;
+    this.templateContent = templateContent;
 
     // Standard labels:
     var standardSelectAllTextLabel = 'Select all';
@@ -80,9 +90,13 @@ H5P.JoubelExportPage = (function ($) {
     self.initExportButton();
     self.initSelectAllTextButton();
 
-    // Remove buttons that are not working properly for mobiles at the moment
-    if (isMobile.any()) {
+    // Does not work on IE9 and mobiles except android
+    if (isMobile.ie9() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows()) {
       self.$exportButton.remove();
+    }
+
+    // Does not work on mobiles, but works on IE9
+    if (isMobile.any()) {
       self.$selectAllTextButton.remove();
     }
 
@@ -196,11 +210,39 @@ H5P.JoubelExportPage = (function ($) {
    * @param {string} html html string
    */
   JoubelExportPage.prototype.saveText = function (html) {
-    // Save it as a file:
-    var blob = new Blob([this.createDocContent(html)], {
-      type: "application/msword;charset=utf-8"
-    });
-    saveAs(blob, 'exported-text.doc');
+    var self = this;
+
+    if (this.templateLibraryFolder === undefined || this.templateName === undefined) {
+      // Use old method
+
+      // Save it as a file:
+      var blob = new Blob([this.createDocContent(html)], {
+        type: "application/msword;charset=utf-8"
+      });
+      saveAs(blob, 'exported-text.doc');
+    } else {
+      var test2 = H5P.getLibraryPath(this.templateLibraryFolder);
+      //var test3 = H5P.getPath();
+
+      var loadFile = function (url, callback) {
+        JSZipUtils.getBinaryContent(url, function (err, data) {
+          callback(null, data);
+        });
+      };
+
+      loadFile(test2 + '/' + self.templateName, function (err, content) {
+        var doc = new Docxgen(content);
+        if (self.templateContent !== undefined) {
+          doc.setData(self.templateContent); //set the templateVariables
+        }
+        doc.render(); //apply them (replace all occurences of {first_name} by Hipp, ...)
+        var out = doc.getZip().generate({type: "blob"}); //Output the document using Data-URI
+        saveAs(out, "exported-text.docx");
+      });
+    }
+
+
+
   };
 
   /**
@@ -219,22 +261,64 @@ H5P.JoubelExportPage = (function ($) {
    */
   JoubelExportPage.prototype.resize = function () {
     var self = this;
-    var staticRemoveLabelsThreshold = 37;
-    var staticRemoveTitleThreshold = 23;
-    // Show responsive design when width relative to font size is less than 34
-    var relativeWidthOfContainer = self.$inner.width() / parseInt(self.$inner.css('font-size'), 10);
+    var $innerTmp = self.$inner.clone()
+      .css('position', 'absolute')
+      .removeClass('responsive')
+      .removeClass('no-title')
+      .appendTo(self.$inner.parent());
 
-    if (relativeWidthOfContainer < staticRemoveLabelsThreshold) {
+    // Determine if view should be responsive
+    var $headerInner = $('.joubel-exportable-header-inner', $innerTmp);
+    var leftMargin = parseInt($('.joubel-exportable-header-text', $headerInner).css('font-size'), 10);
+    var rightMargin = parseInt($('.joubel-export-page-close', $headerInner).css('font-size'), 10);
+
+    var dynamicRemoveLabelsThreshold = this.calculateHeaderThreshold($innerTmp, (leftMargin + rightMargin));
+    var headerWidth = $headerInner.width();
+
+    if (headerWidth <= dynamicRemoveLabelsThreshold) {
       self.$inner.addClass('responsive');
+      $innerTmp.addClass('responsive');
     } else {
       self.$inner.removeClass('responsive');
+      $innerTmp.remove();
+      return;
     }
 
-    if (relativeWidthOfContainer < staticRemoveTitleThreshold) {
+    // Determine if view should have no title
+    headerWidth = $headerInner.width();
+    var dynamicRemoveTitleThreshold = this.calculateHeaderThreshold($innerTmp, leftMargin);
+
+    if (headerWidth <= dynamicRemoveTitleThreshold) {
       self.$inner.addClass('no-title');
     } else {
       self.$inner.removeClass('no-title');
     }
+
+    $innerTmp.remove();
+  };
+
+  /**
+   * Calculates width of header elements
+   */
+  JoubelExportPage.prototype.calculateHeaderThreshold = function ($container, margin) {
+    var staticPadding = 1;
+
+    if (margin === undefined || isNaN(margin)) {
+      margin = 0;
+    }
+
+    // Calculate elements width
+    var $exportButtonTmp = $('.joubel-exportable-export-button', $container);
+    var $selectTextButtonTmp = $('.joubel-exportable-copy-button', $container);
+    var $removeDialogButtonTmp = $('.joubel-export-page-close', $container);
+    var $titleTmp = $('.joubel-exportable-header-text', $container);
+
+    var dynamicThreshold = $exportButtonTmp.outerWidth() +
+      $selectTextButtonTmp.outerWidth() +
+      $removeDialogButtonTmp.outerWidth() +
+      $titleTmp.outerWidth();
+
+    return dynamicThreshold + margin + staticPadding;
   };
 
   return JoubelExportPage;

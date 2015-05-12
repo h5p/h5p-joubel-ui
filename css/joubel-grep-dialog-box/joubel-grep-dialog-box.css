@@ -146,14 +146,10 @@
 }
 
 .h5p-curriculum-popup-container .h5p-view-list-container .h5p-view-list-entry.h5p-competence-aim-instance:before {
-  content: "";
+  font-family: "H5PFontAwesome4";
+  content: "\f096";
   position: absolute;
   left: 1em;
-  width: 11px;
-  height: 11px;
-  border-radius: 2px;
-  border: 1px solid #999;
-  top: 0.8em;
 }
 
 /* --------------------------------- Selected list items ---------------------*/
@@ -168,19 +164,8 @@
 }
 
 .h5p-curriculum-popup-container .h5p-view-list-container .h5p-view-list-entry.h5p-competence-aim-instance.selected:before {
-  background-color: #333;
-  border: 1px solid #333;
+  content: "\f14a";
   opacity: 0.5;
-}
-
-.h5p-curriculum-popup-container .h5p-view-list-container .h5p-view-list-entry.h5p-competence-aim-instance.selected:after {
-  font-family: "H5PFontAwesome4";
-  content: "\f00c";
-  position: absolute;
-  left: 2.05em;
-  top: 0.85em;
-  font-size: 9px;
-  color: #a1b6cc;
 }
 
 /* ---------------------- Bottom bar ----------------------------------*/
@@ -221,4 +206,21 @@
   justify-content: center;
 
   height: 100%;
+}
+
+/* IE9 fix */
+.h5p-curriculum-popup-container.ie9 .h5p-curriculum-popup .h5p-curriculum-view {
+  height: 77%;
+}
+
+.h5p-curriculum-popup-container.ie9 .h5p-curriculum-popup .h5p-curriculum-view.has-bottom-bar {
+  height: 67%;
+}
+
+.h5p-documentation-tool-main-content.responsive .h5p-curriculum-popup-container.ie9 .h5p-curriculum-view {
+  height: 71%;
+}
+
+.h5p-documentation-tool-main-content.responsive .h5p-curriculum-popup-container.ie9 .h5p-curriculum-view.has-bottom-bar {
+  height: 57%;
 }
