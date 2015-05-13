@@ -42,14 +42,6 @@ H5P.JoubelUI = (function ($) {
     return new H5P.SimpleRoundedButton(text);
   };
 
-  JoubelUI.createExportPage = function (header, body, selectAllTextLabel, exportTextLabel, templateLibraryFolder, templateName, templateContent) {
-    return new H5P.JoubelExportPage(header, body, selectAllTextLabel, exportTextLabel, templateLibraryFolder, templateName, templateContent);
-  };
-
-  JoubelUI.createGrepDialogBox = function (params, filterIdList) {
-    return new H5P.GrepDialogBox(params, filterIdList);
-  };
-
   /**
    * Create standard Joubel button
    *
