@@ -14,15 +14,6 @@
   "author": "Joubel AS",
   "preloadedJs": [
     {
-      "path": "js/joubel-grep-dialog-box/joubel-grep-api.js"
-    },
-    {
-      "path": "js/joubel-grep-dialog-box/joubel-grep-dialog-box.js"
-    },
-    {
-      "path": "js/joubel-export-page.js"
-    },
-    {
       "path": "js/joubel-help-dialog.js"
     },
     {
@@ -48,12 +39,6 @@
     }
   ],
   "preloadedCss": [
-    {
-      "path": "css/joubel-grep-dialog-box/joubel-grep-dialog-box.css"
-    },
-    {
-      "path": "css/joubel-export-page.css"
-    },
     {
       "path": "css/joubel-help-dialog.css"
     },

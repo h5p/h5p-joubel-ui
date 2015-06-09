@@ -28,8 +28,8 @@ H5P.JoubelUI = (function ($) {
   };
 
   /* Create progress circle */
-  JoubelUI.createProgressCircle = function (number, progressColor, backgroundColor) {
-    return new H5P.JoubelProgressCircle(number, progressColor, backgroundColor);
+  JoubelUI.createProgressCircle = function (number, progressColor, fillColor, backgroundColor) {
+    return new H5P.JoubelProgressCircle(number, progressColor, fillColor, backgroundColor);
   };
 
   /* Create throbber for loading */
@@ -40,14 +40,6 @@ H5P.JoubelUI = (function ($) {
   /* Create simple rounded button */
   JoubelUI.createSimpleRoundedButton = function (text) {
     return new H5P.SimpleRoundedButton(text);
-  };
-
-  JoubelUI.createExportPage = function (header, body, selectAllTextLabel, exportTextLabel) {
-    return new H5P.JoubelExportPage(header, body, selectAllTextLabel, exportTextLabel);
-  };
-
-  JoubelUI.createGrepDialogBox = function (params, filterIdList) {
-    return new H5P.GrepDialogBox(params, filterIdList);
   };
 
   /**
