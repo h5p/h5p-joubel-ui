@@ -42,6 +42,13 @@ H5P.JoubelUI = (function ($) {
     return new H5P.SimpleRoundedButton(text);
   };
 
+   /* Create Slider */
+  JoubelUI.createSlider = function ($container, params) {
+    return new H5P.JoubelSlider(params);
+  };
+
+
+
   /**
    * Create standard Joubel button
    *
