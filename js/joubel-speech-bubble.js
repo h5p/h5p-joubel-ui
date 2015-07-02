@@ -14,9 +14,10 @@ H5P.JoubelSpeechBubble = (function ($) {
   /**
    * Creates a new speech bubble
    *
-   * @param {jQuery object} $container The speaking object
+   * @param {H5P.jQuery} $container The speaking object
    * @param {string} text The text to display
    * @param {number} maxWidth The maximum width of the bubble
+   * @return {H5P.JoubelSpeechBubble}
    */
   function JoubelSpeechBubble($container, text, maxWidth) {
     maxWidth = maxWidth || DEFAULT_MAX_WIDTH;
