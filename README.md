@@ -4,6 +4,14 @@ h5p-joubel-ui
 This is a utility library for creating UI widgets. It does not implement attach, so it has to bee actively used by
 other libraries
 
+Version history
+===============
+Version  | Description
+---------| -------------
+1.0      | Initial version
+1.1      | Added H5P.JoubelUI.createHelpTextDialog(), H5P.JoubelUI.createProgressCircle(), H5P.JoubelUI.createThrobber(), H5P.JoubelUI.createSimpleRoundedButton() and H5P.JoubelUI.createButton()
+1.2      | Added H5P.JoubelUI.createScoreBar() and H5P.JoubelUI.createSlider()
+
 License
 =======
 (The MIT License)

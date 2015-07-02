@@ -38,6 +38,9 @@
       "path": "js/joubel-slider.js"
     },
     {
+      "path": "js/joubel-score-bar.js"
+    },
+    {
       "path": "js/joubel-ui.js"
     }
   ],
@@ -64,6 +67,9 @@
       "path": "css/joubel-slider.css"
     },
     {
+      "path": "css/joubel-score-bar.css"
+    },
+    {
       "path": "css/joubel-ui.css"
     }
   ],
@@ -76,7 +82,7 @@
     {
       "machineName": "H5P.Transition",
       "majorVersion": 1,
-      "minorVersion": 0
+      "minorVersion": 1
     }
   ]
 }
