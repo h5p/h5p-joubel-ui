@@ -43,10 +43,7 @@ H5P.JoubelScoreBar = (function ($) {
     var createHtml = function () {
       // Container div
       self.$scoreBar = $('<div>', {
-        'class': 'h5p-joubelui-score-bar',
-        click: function () {
-          self.incrementScore();
-        }
+        'class': 'h5p-joubelui-score-bar'
       });
 
       // The progress bar wrapper
@@ -119,7 +116,7 @@ H5P.JoubelScoreBar = (function ($) {
       setTimeout(function () {
         self.$progress.addClass('animate');
         self.$progress.css({
-          width: (fullscore ? 100 : (self.score*100/(self.maxScore-1))) + '%'
+          width: (fullscore ? '102' : (self.score*100/(self.maxScore-1))) + '%'
         });
 
         H5P.Transition.sequence([
@@ -149,7 +146,7 @@ H5P.JoubelScoreBar = (function ($) {
             }
           }
         ]);
-      }, 0);
+      }, 300);
     };
 
     createHtml();

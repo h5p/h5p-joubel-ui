@@ -22,6 +22,7 @@
   cursor: pointer;
   color: #fff;
   box-shadow: 0 0 0.5em #999;
+  text-shadow: none; /* Reset because some themes have set text shadow */
 
   background: rgb(100,152,254); /* Old browsers */
   background: -moz-linear-gradient(top,  rgba(100,152,254,1) 0%, rgba(4,104,206,1) 100%); /* FF3.6+ */
