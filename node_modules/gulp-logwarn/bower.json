@@ -1,0 +1,24 @@
+{
+  "name": "gulp-logwarn",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pmcalabrese/gulp-logwarn",
+  "authors": [
+    "Pachito Marco Calabrese <pm.calabrese@gmail.com>"
+  ],
+  "description": "A configurable gulp plugin that warns you if you left debug code",
+  "keywords": [
+    "gulpplugin",
+    "console",
+    "string",
+    "finder"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
