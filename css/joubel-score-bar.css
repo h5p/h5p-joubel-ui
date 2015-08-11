@@ -50,6 +50,7 @@
   top: 0;
   border-radius: 50%;
   border: 2px solid #ddd;
+  background: #fff;
   font-family: 'H5PFontAwesome4';
   text-align: center;
   -webkit-transition: transform .4s ease-in-out;
