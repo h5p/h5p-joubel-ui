@@ -111,7 +111,6 @@ H5P.JoubelScoreBar = (function ($) {
      */
     self.updateVisuals = function () {
       var fullscore = hasFullScore();
-      self.$progress.css({width: 0});
 
       setTimeout(function () {
         self.$progress.addClass('animate');
