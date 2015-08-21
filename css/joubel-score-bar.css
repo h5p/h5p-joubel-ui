@@ -50,6 +50,7 @@
   top: 0;
   border-radius: 50%;
   border: 2px solid #ddd;
+  background: #fff;
   font-family: 'H5PFontAwesome4';
   text-align: center;
   -webkit-transition: transform .4s ease-in-out;
@@ -75,11 +76,13 @@
   -moz-transition: transform .3s ease-in-out;
   -o-transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
+  -webkit-transform: scale(0.01);
   transform: scale(0.01);
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
 }
 .full-score .h5p-joubelui-score-bar-full-score-star.animate-background {
+  -webkit-transform: scale(1);
   transform: scale(1);
 }
 .full-score .h5p-joubelui-score-bar-default-star {
@@ -107,18 +110,48 @@
   -webkit-animation: pound .8s 1;
 }
 @keyframes pound {
-	from { transform: scale(0); }
-	20% { transform: scale(1.4); }
-  60% { transform: scale(1.0); }
-  80% { transform: scale(1.2); }
-	to { transform: scale(1); }
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  20% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+  }
+  60% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }
 @-webkit-keyframes pound {
-  from { transform: scale(0); }
-	20% { transform: scale(1.4); }
-  60% { transform: scale(1.0); }
-  80% { transform: scale(1.2); }
-	to { transform: scale(1); }
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  20% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+  }
+  60% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }
 /* Full score - half star */
 .h5p-joubelui-score-bar-full-score-star::after {
