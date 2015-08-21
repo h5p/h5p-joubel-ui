@@ -104,8 +104,10 @@
   transition: transform .4s ease-in-out;
   -webkit-transform-style: preserve-3d;
 }
+.h5p-joubelui-score-bar-full-score-star.show-star::before {
+  display: inline-block;
+}
 .h5p-joubelui-score-bar-full-score-star.animate-star::before {
-  display:inline-block;
   animation: pound .8s 1;
   -webkit-animation: pound .8s 1;
 }
