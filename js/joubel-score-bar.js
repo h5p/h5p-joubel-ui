@@ -111,7 +111,6 @@ H5P.JoubelScoreBar = (function ($) {
      */
     self.updateVisuals = function () {
       var fullscore = hasFullScore();
-      self.$progress.css({width: 0});
 
       setTimeout(function () {
         self.$progress.addClass('animate');
@@ -136,12 +135,13 @@ H5P.JoubelScoreBar = (function ($) {
             $element: self.$fullScoreStar,
             timeout: 400,
             end: function () {
-              self.$fullScoreStar.addClass('animate-star');
+              self.$fullScoreStar.addClass('animate-star show-star');
             }
           },
           {
             $element: self.$fullScoreStar,
             end: function () {
+              self.$fullScoreStar.removeClass('animate-star');
               self.$fullScoreStar.addClass('animate-star-blink');
             }
           }
