@@ -78,7 +78,11 @@ H5P.JoubelScoreBar = (function ($) {
      * @param  {number} score
      */
     self.setScore = function (score) {
-      self.score = score;
+      // Do nothing if score hasn't changed
+      if (score === self.score) {
+        return;
+      }
+      self.score = score > self.maxScore ? self.maxScore : score;
       self.updateVisuals();
     };
 
@@ -89,9 +93,7 @@ H5P.JoubelScoreBar = (function ($) {
      * @param  {number=}        incrementBy Optional parameter, defaults to 1
      */
     self.incrementScore = function (incrementBy) {
-      incrementBy = incrementBy || 1;
-      self.score += incrementBy;
-      self.updateVisuals();
+      self.setScore(self.score + (incrementBy || 1));
     };
 
     /**
@@ -115,7 +117,7 @@ H5P.JoubelScoreBar = (function ($) {
       setTimeout(function () {
         self.$progress.addClass('animate');
         self.$progress.css({
-          width: (fullscore ? '102' : (self.score*100/(self.maxScore-1))) + '%'
+          width: (fullscore ? '102' : (self.maxScore-1 !== 0 ? (self.score*100/(self.maxScore-1)) : 0)) + '%'
         });
 
         H5P.Transition.sequence([
