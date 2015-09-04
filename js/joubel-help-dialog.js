@@ -8,8 +8,9 @@ H5P.JoubelHelpTextDialog = (function ($) {
   /**
    * Display a pop-up containing a message.
    *
-   * @param {jQuery object} $container The container which message dialog will be appended to
-   * @param {string} message The message
+   * @param {H5P.jQuery}  $container  The container which message dialog will be appended to
+   * @param {string}      message     The message
+   * @return {H5P.jQuery}
    */
   function JoubelHelpTextDialog(header, message) {
     var $helpTextDialogBox = $('<div>', {

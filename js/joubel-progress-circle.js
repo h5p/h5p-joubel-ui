@@ -123,7 +123,7 @@ H5P.JoubelProgressCircle = (function ($) {
       var fontSize = parseInt($parent.css('font-size'), 10);
 
       // Static sizes
-      var fontSizeMultiplum = 3;
+      var fontSizeMultiplum = 3.75;
       var progressCircleWidthPx = parseInt((fontSize / 4.5), 10) % 2 === 0 ? parseInt((fontSize / 4.5), 10) : parseInt((fontSize / 4.5), 10) + 1;
       var progressCircleOffset = progressCircleWidthPx / 2;
 
