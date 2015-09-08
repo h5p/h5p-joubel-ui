@@ -117,9 +117,9 @@ H5P.JoubelScoreBar = (function ($) {
       setTimeout(function () {
         self.$progress.addClass('animate');
         self.$progress.css({
-          width: (fullscore ? '102' : (self.maxScore-1 !== 0 ? (self.score*100/(self.maxScore-1)) : 0)) + '%'
-        });
+          width: (fullscore ? '102' : (self.maxScore - 1 !== 0 ? (self.score * 100 / (self.maxScore - 1)) : 0)) + '%'
 
+        });
         H5P.Transition.sequence([
           {
             $element: self.$progress,
