@@ -27,6 +27,8 @@
   border: none;
   box-shadow: none;
   outline: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .h5p-joubelui-button:first-child {
   margin: 0 0.5em 1em 0;
