@@ -6,6 +6,7 @@ var H5P = H5P || {};
 H5P.JoubelSpeechBubble = (function ($) {
 
   var $currentSpeechBubble;
+  var $currentContainer;
 
   var DEFAULT_MAX_WIDTH = 400;
 
@@ -21,30 +22,18 @@ H5P.JoubelSpeechBubble = (function ($) {
    */
   function JoubelSpeechBubble($container, text, maxWidth) {
     maxWidth = maxWidth || DEFAULT_MAX_WIDTH;
-
-    this.remove = function () {
-      H5P.$body.off('click.speechBubble');
-      if (iDevice) {
-        H5P.$body.css('cursor', '');
-      }
-      if ($currentSpeechBubble !== undefined) {
-        // Apply transition, then remove speech bubble
-        $currentSpeechBubble.removeClass('show');
-        setTimeout(function () {
-          $currentSpeechBubble.remove();
-          $currentSpeechBubble = undefined;
-        }, 500);
-      }
-      // Don't return false here. If the user e.g. clicks a button when the bubble is visible,
-      // we want the bubble to disapear AND the button to receive the event
-    };
+    $currentContainer = $container;
 
     this.isHidden = function () {
       return ($currentSpeechBubble === undefined);
     };
+    
+    this.remove = function () {
+      remove();
+    };
 
     if ($currentSpeechBubble !== undefined) {
-      this.remove();
+      remove();
     }
 
     var $h5pContainer = $container.parents('.h5p-container');
@@ -88,13 +77,41 @@ H5P.JoubelSpeechBubble = (function ($) {
     });
 
     // Handle click to close
-    H5P.$body.on('click.speechBubble', this.remove);
+    H5P.$body.on('click.speechBubble', remove);
     if (iDevice) {
       H5P.$body.css('cursor', 'pointer');
     }
 
     return this;
   }
+  
+  // Remove speechbubble if it belongs to a dom element that is about to be hidden
+  H5P.externalDispatcher.on('domHidden', function (event) {
+    if ($currentSpeechBubble !== undefined && event.data.$dom.find($currentContainer).length !== 0) {
+      remove();
+    }
+  });
+  
+  /**
+   * Static function for removing the speechbubble
+   */
+  var remove = function() {
+    H5P.$body.off('click.speechBubble');
+    if (iDevice) {
+      H5P.$body.css('cursor', '');
+    }
+    if ($currentSpeechBubble !== undefined) {
+      // Apply transition, then remove speech bubble
+      $currentSpeechBubble.removeClass('show');
+      setTimeout(function () {
+        $currentSpeechBubble.remove();
+        $currentSpeechBubble = undefined;
+      }, 500);
+    }
+    // Don't return false here. If the user e.g. clicks a button when the bubble is visible,
+    // we want the bubble to disapear AND the button to receive the event
+  };
+  
 
   return JoubelSpeechBubble;
 })(H5P.jQuery);
