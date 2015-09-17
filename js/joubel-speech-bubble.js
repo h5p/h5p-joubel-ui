@@ -24,6 +24,7 @@ H5P.JoubelSpeechBubble = (function ($) {
 
     this.remove = function () {
       H5P.$body.off('click.speechBubble');
+      $container.parents('.h5p-dialog').off('click.speechBubble');
       if (iDevice) {
         H5P.$body.css('cursor', '');
       }
@@ -47,7 +48,12 @@ H5P.JoubelSpeechBubble = (function ($) {
       this.remove();
     }
 
-    var $h5pContainer = $container.parents('.h5p-container');
+    var $h5pContainer = $container.closest('.h5p-frame');
+
+    // Check closest h5p frame first, then check for container in case there is no frame.
+    if (!$h5pContainer.length) {
+      $h5pContainer = $container.closest('.h5p-container');
+    }
 
     // Create bubble
     $currentSpeechBubble = $('<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' + text + '</div></div></div>').appendTo($h5pContainer);
@@ -89,6 +95,11 @@ H5P.JoubelSpeechBubble = (function ($) {
 
     // Handle click to close
     H5P.$body.on('click.speechBubble', this.remove);
+
+    // Handle clicks when inside IV which blocks bubbling.
+    $container.parents('.h5p-dialog')
+      .on('click.speechBubble', this.remove);
+
     if (iDevice) {
       H5P.$body.css('cursor', 'pointer');
     }
