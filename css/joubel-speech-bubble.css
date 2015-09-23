@@ -11,6 +11,12 @@
   opacity: 0;
   transition: opacity 0.5s ease;
 }
+.joubel-speech-bubble p:first-child {
+  margin-top: 0;
+}
+.joubel-speech-bubble p:last-child {
+  margin-bottom: 0;
+}
 
 .joubel-speech-bubble.show {
   opacity: 1;
