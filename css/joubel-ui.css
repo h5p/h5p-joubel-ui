@@ -12,6 +12,7 @@
 }
 
 /* Styling of button */
+.h5peditor .ui-dialog .h5p-joubelui-button,
 .h5peditor .h5p-joubelui-button,
 .h5p-joubelui-button {
   font-size: 1em;
@@ -27,6 +28,8 @@
   border: none;
   box-shadow: none;
   outline: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .h5p-joubelui-button:first-child {
   margin: 0 0.5em 1em 0;

@@ -2,12 +2,12 @@
 
 .joubel-speech-bubble {
   position: absolute;
+  top: 0;
+  left: 0;
   color: #333;
-  position: absolute;
-  margin-top: 0.45em;
   z-index: 301;
-  min-width: 6em;
-  right: -1em;
+  margin-top: 0.45em;
+  min-width: 1em;
   opacity: 0;
   transition: opacity 0.5s ease;
 }

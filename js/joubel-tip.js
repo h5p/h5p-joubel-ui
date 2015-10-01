@@ -15,9 +15,14 @@ H5P.JoubelTip = (function ($) {
       showSpeechBubble: true
     }, params);
 
+    var parsedTitle = text;
+    if ($.parseHTML($.trim(text)).length) {
+      parsedTitle = $.parseHTML($.trim(text))[0].textContent;
+    }
+
     var $tip = $('<div/>', {
       'class': 'joubel-tip-container' + (params.showSpeechBubble ? '' : ' be-quiet'),
-      title: text,
+      title: parsedTitle,
       click: function () {
 
         if (speechBubble !== undefined && !speechBubble.isHidden()) {
