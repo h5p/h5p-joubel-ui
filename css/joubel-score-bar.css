@@ -174,4 +174,6 @@
   position: absolute;
   top: -0.05em;
   left: 0.4em;
+  height: 100%;
+  line-height: 2;
 }
