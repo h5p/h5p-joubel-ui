@@ -14,7 +14,7 @@ H5P.JoubelProgressbar = (function ($) {
     this.steps = steps;
 
     this.$progressbar = $('<div>', {
-      'class': 'h5p-progressbar',
+      'class': 'h5p-joubelui-progressbar',
       on: {
         click: function () {
           self.toggleTooltip();
@@ -31,7 +31,7 @@ H5P.JoubelProgressbar = (function ($) {
       }
     });
     this.$background = $('<div>', {
-      'class': 'h5p-progressbar-background'
+      'class': 'h5p-joubelui-progressbar-background'
     }).appendTo(this.$progressbar);
 
     $('body').click(function () {
