@@ -89,11 +89,13 @@
   display:none;
 }
 .h5p-joubelui-score-bar-default-star::before {
+  font-family: 'H5PFontAwesome4';
   content: '\f005';
   color: #ddd;
 }
 /* Full score - full star */
 .h5p-joubelui-score-bar-full-score-star::before {
+  font-family: 'H5PFontAwesome4';
   display:none;
   content: '\f005';
   color: #ffc400;
