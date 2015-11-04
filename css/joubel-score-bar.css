@@ -159,6 +159,7 @@
 }
 /* Full score - half star */
 .h5p-joubelui-score-bar-full-score-star::after {
+  font-family: 'H5PFontAwesome4';
   content: '\f089';
   color: transparent;
   -webkit-transition: color .8s ease-in-out;
