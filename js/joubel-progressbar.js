@@ -25,8 +25,8 @@ H5P.JoubelProgressbar = (function ($) {
         },
         mouseleave: function () {
           setTimeout(function () {
-            self.hideTooltip();
-          }, 1000)
+            //self.hideTooltip();
+          }, 1500)
         }
       }
     });
@@ -44,6 +44,8 @@ H5P.JoubelProgressbar = (function ($) {
    * @method showTooltip
    */
   JoubelProgressbar.prototype.showTooltip = function () {
+    var self = this;
+
     if (this.currentStep === 0 || this.tooltip !== undefined) {
       return;
     }
@@ -54,9 +56,23 @@ H5P.JoubelProgressbar = (function ($) {
       classes: 'drop-theme-arrows-bounce h5p-joubelui-drop',
       position: 'top right',
       openOn: 'always',
-      tetherOptions: this.isLastStep() ? {} : {
+      tetherOptions: {
         attachment: 'bottom center',
         targetAttachment: 'top right'
+      }
+    });
+    this.tooltip.on('open', function () {
+      var $drop = $(self.tooltip.drop);
+      var parentWidth = $drop.parent().width();
+      var left = $drop.position().left;
+      var dropWidth = $drop.width();
+
+      // Need to handle drops getting outside of the progressbar:
+      if (left < 0) {
+        $drop.css({marginLeft: (-left) + 'px'});
+      }
+      else if (left + dropWidth > parentWidth) {
+        $drop.css({marginLeft: (parentWidth - (left + dropWidth)) + 'px'});
       }
     });
   }
