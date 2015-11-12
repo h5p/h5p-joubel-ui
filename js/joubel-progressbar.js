@@ -50,6 +50,8 @@ H5P.JoubelProgressbar = (function ($) {
       return;
     }
 
+    var parentWidth = self.$progressbar.width();
+
     this.tooltip = new H5P.Drop({
       target: this.$background.get(0),
       content: this.currentStep + '/' + this.steps,
@@ -63,7 +65,6 @@ H5P.JoubelProgressbar = (function ($) {
     });
     this.tooltip.on('open', function () {
       var $drop = $(self.tooltip.drop);
-      var parentWidth = $drop.parent().width();
       var left = $drop.position().left;
       var dropWidth = $drop.width();
 
