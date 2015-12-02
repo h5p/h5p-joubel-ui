@@ -11,6 +11,7 @@ Version  | Description
 1.0      | Initial version
 1.1      | Added H5P.JoubelUI.createHelpTextDialog(), H5P.JoubelUI.createProgressCircle(), H5P.JoubelUI.createThrobber(), H5P.JoubelUI.createSimpleRoundedButton() and H5P.JoubelUI.createButton()
 1.2      | Added H5P.JoubelUI.createScoreBar() and H5P.JoubelUI.createSlider()
+1.3      | Added H5P.JoubelUI.createProgressbar()
 
 License
 =======

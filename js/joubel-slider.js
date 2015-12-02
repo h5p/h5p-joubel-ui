@@ -12,7 +12,7 @@ H5P.JoubelSlider = (function ($) {
     var self = this;
 
     this.$slider = $('<div>', {
-      'class': 'h5p-slider'
+      'class': 'h5p-joubel-ui-slider'
     });
     this.$slides = [];
     this.currentIndex = 0;
@@ -22,7 +22,7 @@ H5P.JoubelSlider = (function ($) {
   JoubelSlider.prototype.constructor = JoubelSlider;
 
   JoubelSlider.prototype.addSlide = function ($content) {
-    $content.addClass('h5p-slide').css({
+    $content.addClass('h5p-joubel-ui-slide').css({
       'left': (this.numSlides*100) + '%'
     });
     this.$slider.append($content);

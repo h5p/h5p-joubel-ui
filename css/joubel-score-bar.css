@@ -89,11 +89,13 @@
   display:none;
 }
 .h5p-joubelui-score-bar-default-star::before {
+  font-family: 'H5PFontAwesome4';
   content: '\f005';
   color: #ddd;
 }
 /* Full score - full star */
 .h5p-joubelui-score-bar-full-score-star::before {
+  font-family: 'H5PFontAwesome4';
   display:none;
   content: '\f005';
   color: #ffc400;
@@ -157,6 +159,7 @@
 }
 /* Full score - half star */
 .h5p-joubelui-score-bar-full-score-star::after {
+  font-family: 'H5PFontAwesome4';
   content: '\f089';
   color: transparent;
   -webkit-transition: color .8s ease-in-out;
@@ -174,4 +177,6 @@
   position: absolute;
   top: -0.05em;
   left: 0.4em;
+  height: 100%;
+  line-height: 2;
 }
