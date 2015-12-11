@@ -39,7 +39,6 @@
   -o-transition: width .4s ease-in-out;
   transition: width .4s ease-in-out;
   -webkit-backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
 }
 .h5p-joubelui-score-bar-end {
   display: inline-block;
@@ -58,7 +57,6 @@
   -o-transition: transform .4s ease-in-out;
   transition: transform .4s ease-in-out;
   -webkit-backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
 }
 .h5p-joubelui-score-bar-default-star,
 .h5p-joubelui-score-bar-full-score-star {
@@ -79,7 +77,6 @@
   -webkit-transform: scale(0.01);
   transform: scale(0.01);
   -webkit-backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
 }
 .full-score .h5p-joubelui-score-bar-full-score-star.animate-background {
   -webkit-transform: scale(1);
@@ -104,7 +101,6 @@
   -moz-transition: transform .4s ease-in-out;
   -o-transition: transform .4s ease-in-out;
   transition: transform .4s ease-in-out;
-  -webkit-transform-style: preserve-3d;
 }
 .h5p-joubelui-score-bar-full-score-star.show-star::before {
   display: inline-block;
@@ -166,7 +162,6 @@
   -moz-transition: color .8s ease-in-out;
   -o-transition: color .8s ease-in-out;
   transition: color .8s ease-in-out;
-  -webkit-transform-style: preserve-3d;
 }
 .h5p-joubelui-score-bar-full-score-star.animate-star-blink::after {
   color: #ffd600;
