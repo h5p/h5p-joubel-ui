@@ -4,7 +4,7 @@
   "description": "UI utility library ",
   "majorVersion": 1,
   "minorVersion": 2,
-  "patchVersion": 0,
+  "patchVersion": 3,
   "runnable": 0,
   "coreApi": {
     "majorVersion": 1,
@@ -41,6 +41,9 @@
       "path": "js/joubel-score-bar.js"
     },
     {
+      "path": "js/joubel-progressbar.js"
+    },
+    {
       "path": "js/joubel-ui.js"
     }
   ],
@@ -70,6 +73,9 @@
       "path": "css/joubel-score-bar.css"
     },
     {
+      "path": "css/joubel-progressbar.css"
+    },
+    {
       "path": "css/joubel-ui.css"
     }
   ],
@@ -81,6 +87,11 @@
     },
     {
       "machineName": "H5P.Transition",
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    {
+      "machineName": "Drop",
       "majorVersion": 1,
       "minorVersion": 0
     }

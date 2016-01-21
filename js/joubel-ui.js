@@ -105,6 +105,16 @@ H5P.JoubelUI = (function ($) {
   };
 
   /**
+   * Create Progressbar
+   * @method H5P.JoubelUI.createProgressbar
+   * @param  {number=}       numSteps The total numer of steps
+   * @return {H5P.JoubelProgressbar}
+   */
+  JoubelUI.createProgressbar = function (numSteps) {
+    return new H5P.JoubelProgressbar(numSteps);
+  };
+
+  /**
    * Create standard Joubel button
    *
    * @method H5P.JoubelUI.createButton

@@ -151,6 +151,15 @@ H5P.JoubelScoreBar = (function ($) {
       }, 300);
     };
 
+    /**
+     * Removes all classes
+     * @method reset
+     */
+    self.reset = function () {
+      self.$fullScoreStar.removeClass('animate-star animate-star-blink show-star animate-background');
+      self.$scoreBar.removeClass('full-score');
+    }
+
     createHtml();
   }
 
