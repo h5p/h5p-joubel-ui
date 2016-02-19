@@ -30,6 +30,11 @@
   outline: none;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+
+  display: inline-block;
+  text-align: center;
+  text-shadow: none;
+  vertical-align: baseline;
 }
 .h5p-joubelui-button:first-child {
   margin: 0 0.5em 1em 0;
@@ -59,6 +64,12 @@
 .h5p-joubelui-button:hover,
 .h5p-joubelui-button:focus {
   background: #1356a3;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: initial;
+  -moz-transition: initial;
+  -o-transition: initial;
+  transition: initial;
 }
 .h5p-joubelui-button:active {
   position: relative;
