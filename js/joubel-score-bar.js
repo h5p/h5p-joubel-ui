@@ -9,8 +9,9 @@ H5P.JoubelScoreBar = (function ($) {
    * Creates a score bar
    * @class H5P.JoubelScoreBar
    * @param {number=} maxScore  Maximum score
+   * @param {string} [label] Makes it easier for readspeakers to identify the scorebar
    */
-  function JoubelScoreBar(maxScore) {
+  function JoubelScoreBar(maxScore, label) {
     var self = this;
 
     self.maxScore = maxScore;
@@ -46,11 +47,13 @@ H5P.JoubelScoreBar = (function ($) {
         'class': 'h5p-joubelui-score-bar',
         'role': 'progressbar',
         'tabindex': 0,
-        'aria-label': 'Score.',
         'aria-valuenow': 0,
         'aria-valuemin': 0,
         'aria-valuemax': self.maxScore
       });
+      if (label) {
+        self.$scoreBar.attr('aria-label', label + '.');
+      }
 
       // The progress bar wrapper
       self.$progressWrapper = $('<div>', {
