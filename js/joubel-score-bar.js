@@ -46,7 +46,6 @@ H5P.JoubelScoreBar = (function ($) {
       self.$scoreBar = $('<div>', {
         'class': 'h5p-joubelui-score-bar',
         'role': 'progressbar',
-        'tabindex': 0,
         'aria-valuenow': 0,
         'aria-valuemin': 0,
         'aria-valuemax': self.maxScore
