@@ -34,6 +34,7 @@
   display: inline-block;
   text-align: center;
   text-shadow: none;
+  text-decoration: none;
   vertical-align: baseline;
 }
 .h5p-joubelui-button:first-child {
