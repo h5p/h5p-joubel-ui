@@ -51,11 +51,14 @@ H5P.JoubelSlider = (function ($) {
     self.trigger('move');
 
     var $previousSlide = self.$slides[this.currentIndex];
+    this.hideTabs($previousSlide[0]);
     H5P.Transition.onTransitionEnd(this.$slider, function () {
       $previousSlide.removeClass('current');
       self.trigger('moved');
     });
-    this.$slides[index].addClass('current');
+    var $nextSlide = this.$slides[index];
+    $nextSlide.addClass('current');
+    this.showTabs($nextSlide[0]);
 
     var translateX = 'translateX(' + (-index*100) + '%)';
     this.$slider.css({
@@ -90,6 +93,28 @@ H5P.JoubelSlider = (function ($) {
 
   JoubelSlider.prototype.last = function () {
     this.move(this.numSlides-1);
+  };
+
+  /**
+   * Takes all tabable elements on this slide out of the tab order.
+   * @param {Object} slide The old slide.
+   */
+  JoubelSlider.prototype.hideTabs = function(slide) {
+    var nodes = slide.querySelectorAll('[tabindex]');
+    for (var i = 0, node; node = nodes[i]; i++) {
+      node.setAttribute('tabindex', '-1');
+    }
+  };
+
+  /**
+   * Inserts all tabable elements on this slide into the tab order.
+   * @param {Object} slide The new slide.
+   */
+  JoubelSlider.prototype.showTabs = function(slide) {
+    var nodes = slide.querySelectorAll('[tabindex]');
+    for (var i = 0, node; node = nodes[i]; i++) {
+      node.setAttribute('tabindex', '0');
+    }
   };
 
   return JoubelSlider;
