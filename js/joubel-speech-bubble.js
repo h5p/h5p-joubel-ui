@@ -33,23 +33,6 @@ H5P.JoubelSpeechBubble = (function ($) {
       remove();
     };
 
-    var fadeOutSpeechBubble = function ($speechBubble) {
-      if (!$speechBubble) {
-        return;
-      }
-      
-      // Stop removing bubble
-      clearTimeout(removeSpeechBubbleTimeout);
-
-      $speechBubble.removeClass('show');
-      setTimeout(function () {
-        if ($speechBubble) {
-          $speechBubble.remove();
-          $speechBubble = undefined;
-        }
-      }, 500);
-    };
-
     if ($currentSpeechBubble !== undefined) {
       remove();
     }
@@ -126,7 +109,7 @@ H5P.JoubelSpeechBubble = (function ($) {
   /**
    * Static function for removing the speechbubble
    */
-  var remove = function() {
+  function remove() {
     H5P.$body.off('click.speechBubble');
     $currentContainer.parents('.h5p-dialog').off('click.speechBubble');
     if (iDevice) {
@@ -145,8 +128,27 @@ H5P.JoubelSpeechBubble = (function ($) {
     }
     // Don't return false here. If the user e.g. clicks a button when the bubble is visible,
     // we want the bubble to disapear AND the button to receive the event
-  };
+  }
 
+  /**
+   * Remove the speech bubble with a fade
+   *
+   * @param {jQuery} $speechBubble Speech bubble element
+   */
+  function fadeOutSpeechBubble($speechBubble) {
+    if (!$speechBubble) {return;}
+
+    // Stop removing bubble
+    clearTimeout(removeSpeechBubbleTimeout);
+
+    $speechBubble.removeClass('show');
+    setTimeout(function () {
+      if ($speechBubble) {
+        $speechBubble.remove();
+        $speechBubble = undefined;
+      }
+    }, 500);
+  }
 
   return JoubelSpeechBubble;
 })(H5P.jQuery);
