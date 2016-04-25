@@ -48,42 +48,41 @@ H5P.JoubelSpeechBubble = (function ($) {
     fadeOutSpeechBubble($currentSpeechBubble);
 
     // Create bubble
-    $currentSpeechBubble = $('<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' + text + '</div></div></div>').appendTo($h5pContainer);
+    $currentSpeechBubble = $(
+      '<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-tail"></div>' +
+      '<div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-inner-tail"></div>' +
+      '<div class="joubel-speech-bubble-text">' + text + '</div></div></div>'
+    ).appendTo($h5pContainer);
+
+    var $speechBubbleTail = $('.joubel-speech-bubble-tail');
+    var $speechBubbleInnerTail = $('.joubel-speech-bubble-inner-tail');
 
     // Show speech bubble with transition
     setTimeout(function () {
       $currentSpeechBubble.addClass('show');
     }, 0);
 
-    // Setting width to 90% of parent
-    var width = $h5pContainer.width()*0.9;
-
-    // If width is more than max width, use max width
-    width = width > maxWidth ? maxWidth : width;
-    var left = $container.offset().left - width + $container.outerWidth() - $h5pContainer.offset().left - ($container.width()/2) + 20;
-
-    // If width makes element go outside of body, make it smaller.
-    // TODO - This is not ideal, e.g if the $container is far to the left.
-    // Improvement: support left- and right-"aligned" bubbles
-    if (left < 0) {
-      // 3px is hard coded here just to get some margin
-      // to the left side
-      width += left-3;
-      left = 3;
-    }
-
+    var direction = getGrowthDirection($h5pContainer, $container);
+    var tipWidth = $h5pContainer.width() * 0.9; // Var needs to be renamed to make sense
+    var bubbleWidth = tipWidth > maxWidth ? maxWidth : tipWidth;
+    var bubblePosition = getBubblePosition(bubbleWidth, $h5pContainer, $container);
+    var tailPosition = getTailPosition(bubbleWidth, bubblePosition, $container);
     // Need to set font-size, since element is appended to body.
     // Using same font-size as parent. In that way it will grow accordingly
     // when resizing
     var fontSize = 16;//parseFloat($parent.css('font-size'));
 
-    // Set max-width:
-    $currentSpeechBubble.css({
-      width: width + 'px',
-      top: ($container.offset().top + $container.outerHeight() - $h5pContainer.offset().top) + 'px',
-      left: left + 'px',
-      fontSize: fontSize + 'px'
-    });
+    // Set width and position of speech bubble
+    $currentSpeechBubble.css(bubbleCSS(
+      direction,
+      bubbleWidth,
+      bubblePosition,
+      fontSize
+    ));
+
+    var preparedTailCSS = tailCSS(direction, tailPosition);
+    $speechBubbleTail.css(preparedTailCSS);
+    $speechBubbleInnerTail.css(preparedTailCSS);
 
     // Handle click to close
     H5P.$body.on('click.speechBubble', remove);
@@ -148,6 +147,137 @@ H5P.JoubelSpeechBubble = (function ($) {
         $speechBubble = undefined;
       }
     }, 500);
+  }
+
+  /**
+   * Calculate which direction the speech bubble should grow
+   *
+   * @param {jQuery} $h5pContainer H5P container element
+   * @param {jQuery} $container Tip container element
+   * @return {string} Return growth direction
+   */
+  function getGrowthDirection($h5pContainer, $container) {
+    if (($h5pContainer.height() / 2) > $container.offset().top) {
+      return 'bottom';
+    }
+    else {
+      return 'top';
+    }
+  }
+
+  /**
+   * Calculate position for speech bubble
+   *
+   * @param {number} bubbleWidth The width of the speech bubble
+   * @param {jQuery} $h5pContainer H5P container element
+   * @param {jQuery} $container Tip container element
+   * @return {object} Return position for the speech bubble
+   */
+  function getBubblePosition(bubbleWidth, $h5pContainer, $container) {
+    var bubblePosition = {};
+    var tipOffset = {
+      top: $container.offset().top,
+      left: $container.offset().left
+    };
+
+    var tailOffset = 9;
+    var widthOffset = bubbleWidth / 2;
+    var h5pContainerWidth = $h5pContainer.width();
+
+    // Calculate top position
+    bubblePosition.top = tipOffset.top + $container.outerHeight() - $h5pContainer.offset().top;
+
+    // Calculate bottom position
+    bubblePosition.bottom = $h5pContainer.height() - tipOffset.top + tailOffset;
+
+    // Calculate left position
+    if (tipOffset.left < widthOffset) {
+      bubblePosition.left = 3;
+    }
+    else if ((tipOffset.left + widthOffset) > h5pContainerWidth) {
+      bubblePosition.left = h5pContainerWidth - bubbleWidth - 3;
+    }
+    else {
+      bubblePosition.left = tipOffset.left - widthOffset + ($container.width() / 2);
+    }
+
+    return bubblePosition;
+  }
+
+  /**
+   * Calculate position for speech bubble tail
+   *
+   * @param {number} bubbleWidth The width of the speech bubble
+   * @param {object} bubblePosition Speech bubble position
+   * @param {jQuery} $container Tip container element
+   * @return {object} Return position for the tail
+   */
+  function getTailPosition(bubbleWidth, bubblePosition, $container) {
+    var tailPosition = {};
+    // Magic numbers. Tuned by hand so that the tail fits visually within
+    // the bounds of the speech bubble.
+    var leftBoundary = 8;
+    var rightBoundary = bubbleWidth - 26;
+
+    tailPosition.left = $container.offset().left - bubblePosition.left + 9;
+
+    if (tailPosition.left < leftBoundary) {tailPosition.left = leftBoundary;}
+    if (tailPosition.left > rightBoundary) {tailPosition.left = rightBoundary;}
+
+    tailPosition.top = 8;
+    tailPosition.bottom = 8;
+
+    return tailPosition;
+  }
+
+  /**
+   * Return bubble CSS for the desired growth direction
+   *
+   * @param {string} direction The direction the speech bubble will grow
+   * @param {number} width The width of the speech bubble
+   * @param {object} position Speech bubble position
+   * @param {number} fontSize The size of the bubbles font
+   * @return {object} Return CSS
+   */
+  function bubbleCSS(direction, width, position, fontSize) {
+    if (direction === 'top') {
+      return {
+        width: width + 'px',
+        bottom: position.bottom + 'px',
+        left: position.left + 'px',
+        fontSize: fontSize + 'px'
+      };
+    }
+    else {
+      return {
+        width: width + 'px',
+        top: position.top + 'px',
+        left: position.left + 'px',
+        fontSize: fontSize + 'px'
+      };
+    }
+  }
+
+  /**
+   * Return tail CSS for the desired growth direction
+   *
+   * @param {string} direction The direction the speech bubble will grow
+   * @param {object} position Tail position
+   * @return {object} Return CSS
+   */
+  function tailCSS(direction, position) {
+    if (direction === 'top') {
+      return {
+        bottom: -8 + 'px',
+        left: position.left + 'px'
+      };
+    }
+    else {
+      return {
+        top: -8 + 'px',
+        left: position.left + 'px'
+      };
+    }
   }
 
   return JoubelSpeechBubble;
