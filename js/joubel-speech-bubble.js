@@ -47,15 +47,17 @@ H5P.JoubelSpeechBubble = (function ($) {
     // Make sure we fade out old speech bubble
     fadeOutSpeechBubble($currentSpeechBubble);
 
-    // Create bubble
-    $currentSpeechBubble = $(
-      '<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-tail"></div>' +
-      '<div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-inner-tail"></div>' +
-      '<div class="joubel-speech-bubble-text">' + text + '</div></div></div>'
-    ).appendTo($h5pContainer);
+    var $tail = $('<div class="joubel-speech-bubble-tail"></div>');
+    var $innerTail = $('<div class="joubel-speech-bubble-inner-tail"></div>');
+    var $innerBubble = $(
+      '<div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' +
+      text +
+      '</div></div>'
+    ).prepend($innerTail);
 
-    var $speechBubbleTail = $('.joubel-speech-bubble-tail');
-    var $speechBubbleInnerTail = $('.joubel-speech-bubble-inner-tail');
+    $currentSpeechBubble = $('<div class="joubel-speech-bubble">')
+      .append([$tail, $innerBubble])
+      .appendTo($h5pContainer);
 
     // Show speech bubble with transition
     setTimeout(function () {
@@ -81,8 +83,8 @@ H5P.JoubelSpeechBubble = (function ($) {
     ));
 
     var preparedTailCSS = tailCSS(direction, tailPosition);
-    $speechBubbleTail.css(preparedTailCSS);
-    $speechBubbleInnerTail.css(preparedTailCSS);
+    $tail.css(preparedTailCSS);
+    $innerTail.css(preparedTailCSS);
 
     // Handle click to close
     H5P.$body.on('click.speechBubble', remove);
