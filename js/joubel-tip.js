@@ -24,8 +24,7 @@ H5P.JoubelTip = (function ($) {
       'class': 'joubel-tip-container' + (params.showSpeechBubble ? '' : ' be-quiet'),
       title: parsedTitle,
       click: function () {
-
-        if (speechBubble !== undefined && !speechBubble.isHidden()) {
+        if (speechBubble !== undefined && speechBubble.isCurrent($tip)) {
           speechBubble.remove();
           speechBubble = undefined;
         }

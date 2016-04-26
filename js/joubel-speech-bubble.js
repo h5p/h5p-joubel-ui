@@ -25,8 +25,9 @@ H5P.JoubelSpeechBubble = (function ($) {
     maxWidth = maxWidth || DEFAULT_MAX_WIDTH;
     $currentContainer = $container;
 
-    this.isHidden = function () {
-      return ($currentSpeechBubble === undefined);
+    this.isCurrent = function ($tip) {
+      if ($tip === $currentContainer) {return true;}
+      else {return false;}
     };
 
     this.remove = function () {
@@ -87,11 +88,11 @@ H5P.JoubelSpeechBubble = (function ($) {
     $innerTail.css(preparedTailCSS);
 
     // Handle click to close
-    H5P.$body.on('click.speechBubble', remove);
+    H5P.$body.on('click.speechBubble', handleOutsideClick);
 
     // Handle clicks when inside IV which blocks bubbling.
     $container.parents('.h5p-dialog')
-      .on('click.speechBubble', remove);
+      .on('click.speechBubble', handleOutsideClick);
 
     if (iDevice) {
       H5P.$body.css('cursor', 'pointer');
@@ -149,6 +150,15 @@ H5P.JoubelSpeechBubble = (function ($) {
         $speechBubble = undefined;
       }
     }, 500);
+  }
+
+  /**
+   * Remove the speech bubble and container reference
+   */
+  function handleOutsideClick () {
+    remove();
+    // There is no current container when a container isn't clicked
+    $currentContainer = undefined;
   }
 
   /**
