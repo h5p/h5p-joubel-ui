@@ -36,8 +36,8 @@
 .joubel-speech-bubble-tail {
   position: absolute;
   /* Setting these in pixels is intentional. We use it when calculating placement of bubble */
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   background: #fbfbfb;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);

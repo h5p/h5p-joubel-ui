@@ -228,16 +228,16 @@ H5P.JoubelSpeechBubble = (function ($) {
     var tailPosition = {};
     // Magic numbers. Tuned by hand so that the tail fits visually within
     // the bounds of the speech bubble.
-    var leftBoundary = 8;
-    var rightBoundary = bubbleWidth - 26;
+    var leftBoundary = 9;
+    var rightBoundary = bubbleWidth - 20;
 
     tailPosition.left = $container.offset().left - bubblePosition.left + 9;
 
     if (tailPosition.left < leftBoundary) {tailPosition.left = leftBoundary;}
     if (tailPosition.left > rightBoundary) {tailPosition.left = rightBoundary;}
 
-    tailPosition.top = 8;
-    tailPosition.bottom = 8;
+    tailPosition.top = -6;
+    tailPosition.bottom = -6;
 
     return tailPosition;
   }
@@ -280,13 +280,13 @@ H5P.JoubelSpeechBubble = (function ($) {
   function tailCSS(direction, position) {
     if (direction === 'top') {
       return {
-        bottom: -8 + 'px',
+        bottom: position.bottom + 'px',
         left: position.left + 'px'
       };
     }
     else {
       return {
-        top: -8 + 'px',
+        top: position.top + 'px',
         left: position.left + 'px'
       };
     }
