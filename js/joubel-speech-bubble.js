@@ -7,6 +7,7 @@ H5P.JoubelSpeechBubble = (function ($) {
 
   var $currentSpeechBubble;
   var $currentContainer;
+  var removeSpeechBubbleTimeout;
 
   var DEFAULT_MAX_WIDTH = 400;
 
@@ -32,6 +33,23 @@ H5P.JoubelSpeechBubble = (function ($) {
       remove();
     };
 
+    var fadeOutSpeechBubble = function ($speechBubble) {
+      if (!$speechBubble) {
+        return;
+      }
+      
+      // Stop removing bubble
+      clearTimeout(removeSpeechBubbleTimeout);
+
+      $speechBubble.removeClass('show');
+      setTimeout(function () {
+        if ($speechBubble) {
+          $speechBubble.remove();
+          $speechBubble = undefined;
+        }
+      }, 500);
+    };
+
     if ($currentSpeechBubble !== undefined) {
       remove();
     }
@@ -42,6 +60,9 @@ H5P.JoubelSpeechBubble = (function ($) {
     if (!$h5pContainer.length) {
       $h5pContainer = $container.closest('.h5p-container');
     }
+
+    // Make sure we fade out old speech bubble
+    fadeOutSpeechBubble($currentSpeechBubble);
 
     // Create bubble
     $currentSpeechBubble = $('<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' + text + '</div></div></div>').appendTo($h5pContainer);
@@ -114,7 +135,10 @@ H5P.JoubelSpeechBubble = (function ($) {
     if ($currentSpeechBubble !== undefined) {
       // Apply transition, then remove speech bubble
       $currentSpeechBubble.removeClass('show');
-      setTimeout(function () {
+
+      // Make sure we remove any old timeout before reassignment
+      clearTimeout(removeSpeechBubbleTimeout);
+      removeSpeechBubbleTimeout = setTimeout(function () {
         $currentSpeechBubble.remove();
         $currentSpeechBubble = undefined;
       }, 500);
