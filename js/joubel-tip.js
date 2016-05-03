@@ -12,7 +12,8 @@ H5P.JoubelTip = (function ($) {
     var speechBubble;
 
     params = $.extend({
-      showSpeechBubble: true
+      showSpeechBubble: true,
+      helpIcon: false
     }, params);
 
     var parsedTitle = text;
@@ -21,7 +22,7 @@ H5P.JoubelTip = (function ($) {
     }
 
     var $tip = $('<div/>', {
-      'class': 'joubel-tip-container' + (params.showSpeechBubble ? '' : ' be-quiet'),
+      class: 'joubel-tip-container' + (params.showSpeechBubble ? '' : ' be-quiet'),
       title: parsedTitle,
       click: function () {
         if (speechBubble !== undefined && speechBubble.isCurrent($tip)) {
@@ -34,7 +35,7 @@ H5P.JoubelTip = (function ($) {
         return false;
       }
     }).append($('<div/>', {
-      'class': 'joubel-tip-icon'
+      'class': 'joubel-tip-icon' + (params.helpIcon ? ' help-icon': '')
     }));
     return $tip;
   }

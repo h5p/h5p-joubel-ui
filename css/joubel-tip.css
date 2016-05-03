@@ -28,6 +28,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.joubel-tip-icon.help-icon:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f059";
+}
 .joubel-tip-icon:hover {
   color: #333;
 }
