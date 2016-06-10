@@ -37,7 +37,7 @@ H5P.JoubelSpeechBubble = (function ($) {
       if (!$speechBubble) {
         return;
       }
-      
+
       // Stop removing bubble
       clearTimeout(removeSpeechBubbleTimeout);
 
@@ -65,7 +65,13 @@ H5P.JoubelSpeechBubble = (function ($) {
     fadeOutSpeechBubble($currentSpeechBubble);
 
     // Create bubble
-    $currentSpeechBubble = $('<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' + text + '</div></div></div>').appendTo($h5pContainer);
+    $currentSpeechBubble = $(
+      '<div class="joubel-speech-bubble" aria-live="assertive">' +
+        '<div class="joubel-speech-bubble-inner">' +
+          '<div class="joubel-speech-bubble-text">' + text + '</div>' +
+        '</div>' +
+      '</div>'
+    ).appendTo($h5pContainer);
 
     // Show speech bubble with transition
     setTimeout(function () {
