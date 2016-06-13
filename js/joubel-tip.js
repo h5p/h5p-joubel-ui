@@ -15,7 +15,7 @@ H5P.JoubelTip = (function ($) {
     if ($.parseHTML($.trim(text)).length) {
       parsedTitle = $.parseHTML($.trim(text))[0].textContent;
     }
-    
+
     params = $.extend({
       showSpeechBubble: true,
       tipLabel: parsedTitle
@@ -42,7 +42,10 @@ H5P.JoubelTip = (function ($) {
       title: params.tipLabel,
       role: 'button',
       tabIndex: 0,
-      click: toggleTip,
+      click: function () {
+        toggleTip();
+        return false;
+      },
       keydown: function (e) {
         // Space
         if (e.which === 32) {
