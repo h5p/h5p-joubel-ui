@@ -86,11 +86,10 @@ H5P.JoubelUI = (function ($) {
   /**
    * Create Slider
    * @method H5P.JoubelUI.createSlider
-   * @param  {H5P.jQuery}     $container The dom container
-   * @param  {Object}         params     Parameters
+   * @param  {Object} [params] Parameters
    * @return {H5P.JoubelSlider}
    */
-  JoubelUI.createSlider = function ($container, params) {
+  JoubelUI.createSlider = function (params) {
     return new H5P.JoubelSlider(params);
   };
 

@@ -5,15 +5,16 @@ H5P.JoubelSlider = (function ($) {
   /**
    * Creates a new Slider
    *
-   * @param {object} params Additional parameters
+   * @param {object} [params] Additional parameters
    */
   function JoubelSlider(params) {
     H5P.EventDispatcher.call(this);
     var self = this;
 
-    this.$slider = $('<div>', {
+    this.$slider = $('<div>', $.extend({
       'class': 'h5p-joubel-ui-slider'
-    });
+    }, params));
+
     this.$slides = [];
     this.currentIndex = 0;
     this.numSlides = 0;
