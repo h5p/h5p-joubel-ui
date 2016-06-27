@@ -108,10 +108,15 @@ H5P.JoubelUI = (function ($) {
    * Create Progressbar
    * @method H5P.JoubelUI.createProgressbar
    * @param  {number=}       numSteps The total numer of steps
+   * @param {Object} [options] Additional options
+   * @param {boolean} [options.disableAria] Disable readspeaker assistance
+   * @param {string} [options.progressText] A progress text for describing
+   *  current progress out of total progress for readspeakers.
+   *  e.g. "Slide :num of :total"
    * @return {H5P.JoubelProgressbar}
    */
-  JoubelUI.createProgressbar = function (numSteps) {
-    return new H5P.JoubelProgressbar(numSteps);
+  JoubelUI.createProgressbar = function (numSteps, options) {
+    return new H5P.JoubelProgressbar(numSteps, options);
   };
 
   /**

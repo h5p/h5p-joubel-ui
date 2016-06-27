@@ -7,9 +7,9 @@ H5P.JoubelProgressbar = (function ($) {
    * @method JoubelProgressbar
    * @constructor
    * @param  {number}          steps Number of steps
-   * @param {Object} options Additional options
-   * @param {boolean} options.disableAria Disable readspeaker assistance
-   * @param {string} options.progressText A progress text for describing
+   * @param {Object} [options] Additional options
+   * @param {boolean} [options.disableAria] Disable readspeaker assistance
+   * @param {string} [options.progressText] A progress text for describing
    *  current progress out of total progress for readspeakers.
    *  e.g. "Slide :num of :total"
    */
