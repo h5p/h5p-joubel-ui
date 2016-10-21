@@ -96,11 +96,10 @@ H5P.JoubelProgressbar = (function ($) {
       return;
     }
 
-    // Create aria div, it does not need to be 'shown'
     if (!this.$currentStatus) {
       this.$currentStatus = $('<div>', {
-        'aria-live': 'assertive',
-        'style': 'font-size: 0'}).appendTo(this.$progressbar);
+        'aria-live': 'assertive'
+      }).appendTo(this.$progressbar);
     }
     var interpolatedProgressText = self.options.progressText
       .replace(':num', self.currentStep)
