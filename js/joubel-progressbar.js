@@ -98,6 +98,7 @@ H5P.JoubelProgressbar = (function ($) {
 
     if (!this.$currentStatus) {
       this.$currentStatus = $('<div>', {
+        'class': 'h5p-joubelui-progressbar-slide-status-text',
         'aria-live': 'assertive'
       }).appendTo(this.$progressbar);
     }
