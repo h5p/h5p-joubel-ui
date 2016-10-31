@@ -10,6 +10,13 @@
   -moz-box-shadow: 0px -1px 3px 0px rgba(1,72,118,0.75);
   box-shadow: 0px -1px 3px 0px rgba(1,72,118,0.75);
 }
+
+.h5p-joubelui-progressbar-slide-status-text {
+  font-size: 0;
+  width: 0;
+  height: 0;
+}
+
 .h5p-joubelui-progressbar-background {
   position: absolute;
   left: 0;
