@@ -7,9 +7,18 @@ H5P.JoubelProgressbar = (function ($) {
    * @method JoubelProgressbar
    * @constructor
    * @param  {number}          steps Number of steps
+   * @param {Object} [options] Additional options
+   * @param {boolean} [options.disableAria] Disable readspeaker assistance
+   * @param {string} [options.progressText] A progress text for describing
+   *  current progress out of total progress for readspeakers.
+   *  e.g. "Slide :num of :total"
    */
-  function JoubelProgressbar(steps) {
+  function JoubelProgressbar(steps, options) {
+    H5P.EventDispatcher.call(this);
     var self = this;
+    this.options = $.extend({
+      progressText: 'Slide :num of :total'
+    }, options);
     this.currentStep = 0;
     this.steps = steps;
 
@@ -38,6 +47,9 @@ H5P.JoubelProgressbar = (function ($) {
       self.toggleTooltip(true);
     });
   }
+
+  JoubelProgressbar.prototype = Object.create(H5P.EventDispatcher.prototype);
+  JoubelProgressbar.prototype.constructor = JoubelProgressbar;
 
   /**
    * Display tooltip
@@ -76,7 +88,25 @@ H5P.JoubelProgressbar = (function ($) {
         $drop.css({marginLeft: (parentWidth - (left + dropWidth)) + 'px'});
       }
     });
-  }
+  };
+
+  JoubelProgressbar.prototype.updateAria = function () {
+    var self = this;
+    if (this.options.disableAria) {
+      return;
+    }
+
+    if (!this.$currentStatus) {
+      this.$currentStatus = $('<div>', {
+        'class': 'h5p-joubelui-progressbar-slide-status-text',
+        'aria-live': 'assertive'
+      }).appendTo(this.$progressbar);
+    }
+    var interpolatedProgressText = self.options.progressText
+      .replace(':num', self.currentStep)
+      .replace(':total', self.steps);
+    this.$currentStatus.html(interpolatedProgressText);
+  };
 
   /**
    * Hides tooltip
@@ -88,12 +118,12 @@ H5P.JoubelProgressbar = (function ($) {
       this.tooltip.destroy();
       this.tooltip = undefined;
     }
-  }
+  };
 
   /**
    * Toggles tooltip-visibility
    * @method toggleTooltip
-   * @param  {boolean}      closeOnly Don't show, only close if open
+   * @param  {boolean} [closeOnly] Don't show, only close if open
    */
   JoubelProgressbar.prototype.toggleTooltip = function (closeOnly) {
     if (this.tooltip === undefined && !closeOnly) {
@@ -127,6 +157,8 @@ H5P.JoubelProgressbar = (function ($) {
     this.$background.css({
       width: ((this.currentStep/this.steps)*100) + '%'
     });
+
+    this.updateAria();
   };
 
   /**

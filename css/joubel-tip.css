@@ -4,6 +4,9 @@
   display: inline-block;
   font-weight: normal;
 }
+.joubel-tip-container:focus {
+  outline: auto;
+}
 .joubel-tip-icon {
   text-align: center;
   font-size: 1.5em;

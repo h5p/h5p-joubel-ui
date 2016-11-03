@@ -34,6 +34,23 @@ H5P.JoubelSpeechBubble = (function ($) {
       remove();
     };
 
+    var fadeOutSpeechBubble = function ($speechBubble) {
+      if (!$speechBubble) {
+        return;
+      }
+
+      // Stop removing bubble
+      clearTimeout(removeSpeechBubbleTimeout);
+
+      $speechBubble.removeClass('show');
+      setTimeout(function () {
+        if ($speechBubble) {
+          $speechBubble.remove();
+          $speechBubble = undefined;
+        }
+      }, 500);
+    };
+
     if ($currentSpeechBubble !== undefined) {
       remove();
     }
@@ -48,16 +65,18 @@ H5P.JoubelSpeechBubble = (function ($) {
     // Make sure we fade out old speech bubble
     fadeOutSpeechBubble($currentSpeechBubble);
 
+    // Create bubble
     var $tail = $('<div class="joubel-speech-bubble-tail"></div>');
     var $innerTail = $('<div class="joubel-speech-bubble-inner-tail"></div>');
     var $innerBubble = $(
-      '<div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' +
-      text +
-      '</div></div>'
+      '<div class="joubel-speech-bubble-inner">' +
+        '<div class="joubel-speech-bubble-text">' + text + '</div>' +
+      '</div>'
     ).prepend($innerTail);
 
-    $currentSpeechBubble = $('<div class="joubel-speech-bubble">')
-      .append([$tail, $innerBubble])
+    $currentSpeechBubble = $(
+      '<div class="joubel-speech-bubble" aria-live="assertive">'
+    ).append([$tail, $innerBubble])
       .appendTo($h5pContainer);
 
     // Show speech bubble with transition
@@ -88,11 +107,11 @@ H5P.JoubelSpeechBubble = (function ($) {
     $innerTail.css(preparedTailCSS);
 
     // Handle click to close
-    H5P.$body.on('click.speechBubble', handleOutsideClick);
+    H5P.$body.on('mousedown.speechBubble', handleOutsideClick);
 
     // Handle clicks when inside IV which blocks bubbling.
     $container.parents('.h5p-dialog')
-      .on('click.speechBubble', handleOutsideClick);
+      .on('mousedown.speechBubble', handleOutsideClick);
 
     if (iDevice) {
       H5P.$body.css('cursor', 'pointer');
@@ -111,9 +130,9 @@ H5P.JoubelSpeechBubble = (function ($) {
   /**
    * Static function for removing the speechbubble
    */
-  function remove() {
-    H5P.$body.off('click.speechBubble');
-    $currentContainer.parents('.h5p-dialog').off('click.speechBubble');
+  var remove = function() {
+    H5P.$body.off('mousedown.speechBubble');
+    $currentContainer.parents('.h5p-dialog').off('mousedown.speechBubble');
     if (iDevice) {
       H5P.$body.css('cursor', '');
     }

@@ -31,6 +31,7 @@
   text-align: left;
   position: relative;
   word-wrap: break-word; /* Long words have to break */
+  z-index: 1;
 }
 .joubel-speech-bubble-inner-tail,
 .joubel-speech-bubble-tail {
@@ -44,6 +45,7 @@
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+  z-index: -1;
 }
 .joubel-speech-bubble-tail {
   box-shadow: 0 0 0.5em #2c2c2c;
