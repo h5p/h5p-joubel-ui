@@ -26,8 +26,7 @@ H5P.JoubelSpeechBubble = (function ($) {
     $currentContainer = $container;
 
     this.isCurrent = function ($tip) {
-      if ($tip === $currentContainer) {return true;}
-      else {return false;}
+      return $tip === $currentContainer;
     };
 
     this.remove = function () {

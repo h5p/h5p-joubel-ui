@@ -1,7 +1,6 @@
 var H5P = H5P || {};
 
 H5P.JoubelTip = (function ($) {
-  var sticky = false;
 
   /**
    * Creates a new tip
@@ -29,20 +28,6 @@ H5P.JoubelTip = (function ($) {
       role: 'button',
       tabindex: 0,
       click: function () {
-        // Disable hover and make tip stick for help tip
-        if (params.helpIcon) {
-          if (sticky) {
-            sticky = false;
-            return false;
-          }
-          else {
-            sticky = true;
-            return false;
-          }
-        }
-
-        // Unstick the help tip if other tips are clicked
-        sticky = false;
         toggleSpeechBubble();
 
         return false;
@@ -56,9 +41,7 @@ H5P.JoubelTip = (function ($) {
         else {
           toggleSpeechBubble(true);
         }
-      },
-      mouseenter: mouseHandler,
-      mouseleave: mouseHandler
+      }
     }).append($('<div/>', {
       'class': 'joubel-tip-icon' + (params.helpIcon ? ' help-icon': '')
     }));
@@ -66,7 +49,7 @@ H5P.JoubelTip = (function ($) {
     /**
      * Add or remove a speech bubble
      * @private
-     * @param {boolean} [close] Forces tip to close or not show
+     * @param {boolean} [close] Forces tip close
      * @return {boolean}
      */
     function toggleSpeechBubble(close) {
@@ -76,20 +59,6 @@ H5P.JoubelTip = (function ($) {
       }
       else if (!close && params.showSpeechBubble) {
         speechBubble = H5P.JoubelSpeechBubble($tip, text);
-      }
-
-      return false;
-    }
-
-    /**
-     * Toggle a speech bubble on hover
-     *
-     * @private
-     */
-    function mouseHandler() {
-      // Only help tips should have a hover effect
-      if (params.helpIcon && sticky !== true) {
-        toggleSpeechBubble();
       }
     }
 
