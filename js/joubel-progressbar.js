@@ -62,7 +62,7 @@ H5P.JoubelProgressbar = (function ($) {
       return;
     }
 
-    var parentWidth = self.$progressbar.width();
+    var parentWidth = self.$progressbar.offset().left + self.$progressbar.width();
 
     this.tooltip = new H5P.Drop({
       target: this.$background.get(0),
