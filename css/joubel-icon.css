@@ -1,0 +1,209 @@
+/*
+  IcoMoon generated CSS
+*/
+@font-face {
+  font-family: 'joubel';
+  src: url('../fonts/joubel.eot?1tz8am');
+  src: url('../fonts/joubel.eot?1tz8am#iefix') format('embedded-opentype'),
+  url('../fonts/joubel.ttf?1tz8am') format('truetype'),
+  url('../fonts/joubel.woff?1tz8am') format('woff'),
+  url('../fonts/joubel.svg?1tz8am#joubel') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="joubel-icon-"], [class*=" joubel-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'joubel' !important;
+  speak: none;
+  font-size: 1.5em; 
+  line-height: 1.5em;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  word-wrap: normal;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.joubel-icon-comment-hover .path1:before {
+  content: "\e900";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-comment-hover .path2:before {
+  content: "\e901";
+  margin-left: -1.0654296875em;
+  color: rgb(188, 92, 163);
+}
+.joubel-icon-comment-hover .path3:before {
+  content: "\e902";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+.joubel-icon-comment-normal .path1:before {
+  content: "\e903";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-comment-normal .path2:before {
+  content: "\e90e";
+  margin-left: -1.0654296875em;
+  color: rgb(206, 114, 193);
+}
+.joubel-icon-comment-normal .path3:before {
+  content: "\e90f";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+.joubel-icon-comment-pressed .path1:before {
+  content: "\e904";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-comment-pressed .path2:before {
+  content: "\e905";
+  margin-left: -1.0654296875em;
+  color: rgb(206, 114, 193);
+}
+.joubel-icon-comment-pressed .path3:before {
+  content: "\e906";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+.joubel-icon-examples:before {
+  content: "\e907";
+}
+.joubel-icon-tip-hover .path1:before {
+  content: "\e908";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-tip-hover .path2:before {
+  content: "\e910";
+  margin-left: -1.0654296875em;
+  color: rgb(72, 155, 213);
+}
+.joubel-icon-tip-hover .path3:before {
+  content: "\e911";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+.joubel-icon-tip-normal .path1:before {
+  content: "\e888";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-tip-normal .path2:before {
+  content: "\e889";
+  margin-left: -1.0654296875em;
+  color: rgb(53, 128, 195);
+}
+.joubel-icon-tip-normal .path3:before {
+  content: "\e909";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+.joubel-icon-tip-pressed .path1:before {
+  content: "\e90b";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-tip-pressed .path2:before {
+  content: "\e90c";
+  margin-left: -1.0654296875em;
+  color: rgb(72, 155, 213);
+}
+.joubel-icon-tip-pressed .path3:before {
+  content: "\e90a";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+.joubel-icon-tutorial:before {
+  content: "\e90d";
+}
+
+/*
+  Custom override CSS
+*/
+.joubel-icon-tip-hover.help-icon:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f059";
+}
+.joubel-icon-tip-normal.help-icon:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f059";
+}
+.joubel-icon-tip-pressed.help-icon:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f059";
+}
+
+/* Hide icon layers if using font awesome */
+.joubel-icon-tip-normal.help-icon > span {
+  display: none;
+}
+.joubel-icon-tip-normal.help-icon > span {
+  display: none;
+}
+.joubel-icon-tip-normal.help-icon > span {
+  display: none;
+}
+
+/* Custom hover and active effects (Do this if not using javascript to change class on hover or active) */
+
+/* Joubel icon tip */
+.joubel-icon-tip-normal:hover .path1:before {
+  content: "\e908";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-tip-normal:hover .path2:before {
+  content: "\e910";
+  margin-left: -1.0654296875em;
+  color: rgb(72, 155, 213);
+}
+.joubel-icon-tip-normal:hover .path3:before {
+  content: "\e911";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+.joubel-icon-tip-normal:active .path1:before {
+  content: "\e90b";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-tip-normal:active .path2:before {
+  content: "\e90c";
+  margin-left: -1.0654296875em;
+  color: rgb(72, 155, 213);
+}
+.joubel-icon-tip-normal:active .path3:before {
+  content: "\e90a";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+
+/* Joubel icon comment */
+.joubel-icon-comment-normal:hover .path1:before {
+  content: "\e900";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-comment-normal:hover .path2:before {
+  content: "\e901";
+  margin-left: -1.0654296875em;
+  color: rgb(188, 92, 163);}
+.joubel-icon-comment-normal:hover .path3:before {
+  content: "\e902";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
+.joubel-icon-comment-normal:active .path1:before {
+  content: "\e904";
+  color: rgb(221, 221, 221);
+}
+.joubel-icon-comment-normal:active .path2:before {
+  content: "\e905";
+  margin-left: -1.0654296875em;
+  color: rgb(206, 114, 193);
+}
+.joubel-icon-comment-normal:active .path3:before {
+  content: "\e906";
+  margin-left: -1.0654296875em;
+  color: rgb(255, 255, 255);
+}
