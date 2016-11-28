@@ -23,6 +23,7 @@
   font-variant: normal;
   text-transform: none;
   word-wrap: normal;
+  cursor: pointer;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
