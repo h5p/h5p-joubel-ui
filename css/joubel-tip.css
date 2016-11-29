@@ -7,7 +7,7 @@
 .joubel-tip-container:focus {
   outline: 0;
   box-shadow: 0px 0px 5px 2px rgba(140,185,240,1);
-  border: solid 1px rgba(140,185,240,1);
+  outline: rgba(140,185,240,1) solid 1px;
 }
 .joubel-tip-icon {
   text-align: center;
