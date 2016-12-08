@@ -64,15 +64,6 @@ H5P.JoubelSpeechBubble = (function ($) {
     // Make sure we fade out old speech bubble
     fadeOutSpeechBubble($currentSpeechBubble);
 
-    // Create bubble
-    /*var $tail = $('<div class="joubel-speech-bubble-tail"></div>');
-    var $innerTail = $('<div class="joubel-speech-bubble-inner-tail"></div>');
-    var $innerBubble = $(
-      '<div class="joubel-speech-bubble-inner">' +
-        '<div class="joubel-speech-bubble-text">' + text + '</div>' +
-      '</div>'
-    ).prepend($innerTail);*/
-
     $currentSpeechBubble = $('<div class="joubel-speech-bubble"><div class="joubel-speech-bubble-inner"><div class="joubel-speech-bubble-text">' + text + '</div></div></div>').appendTo($h5pContainer);
 
     // Show speech bubble with transition
@@ -85,33 +76,33 @@ H5P.JoubelSpeechBubble = (function ($) {
  
     // If width is more than max width, use max width
     width = width > maxWidth ? maxWidth : width;
-    var left = $container.offset().left - width + $container.outerWidth() - $h5pContainer.offset().left - ($container.width()/2) + 20;
 
-    // If width makes element go outside of body, make it smaller.
-    // TODO - This is not ideal, e.g if the $container is far to the left.
-    // Improvement: support left- and right-"aligned" bubbles
-    if (left < 0) {
-      // 3px is hard coded here just to get some margin
-      // to the left side
-      width += left-3;
-      left = 3;
+    // Position speech bubble to the left as default
+    var speechBubbleOffset = $container.offset().left - $h5pContainer.offset().left - width + $container.outerWidth() + 6
+
+    // If not enough room for speech bubble to the left, position to the right
+    if (speechBubbleOffset < 0) {
+      speechBubbleOffset = $container.offset().left - $h5pContainer.offset().left - 9;
+      $currentSpeechBubble.addClass('direction-right');
+    }
+    else {
+      $currentSpeechBubble.addClass('direction-left');
     }
 
     // Need to set font-size, since element is appended to body.
     // Using same font-size as parent. In that way it will grow accordingly
     // when resizing
-    var fontSize = 16;//parseFloat($parent.css('font-size'));
+    var fontSize = 16;
 
-    // Set max-width:
     $currentSpeechBubble.css({
       width: width + 'px',
       top: ($container.offset().top + $container.outerHeight() - $h5pContainer.offset().top) + 'px',
-      left: left + 'px',
+      left: speechBubbleOffset,
       fontSize: fontSize + 'px'
     });
 
     // Handle click to close
-    H5P.$body.on('mousedown.speechBubble', remove);
+    H5P.$body.on('mousedown.speechBubble', handleOutsideClick);
 
     // Handle clicks when inside IV which blocks bubbling.
     $container.parents('.h5p-dialog')
@@ -174,5 +165,15 @@ H5P.JoubelSpeechBubble = (function ($) {
       }
     }, 500);
   }
+
+  /**
+   * Remove the speech bubble and container reference
+   */
+  function handleOutsideClick () {
+    remove();
+    // There is no current container when a container isn't clicked
+    $currentContainer = undefined;
+  }
+
   return JoubelSpeechBubble;
 })(H5P.jQuery);
