@@ -71,23 +71,31 @@ H5P.JoubelSpeechBubble = (function ($) {
       $currentSpeechBubble.addClass('show');
     }, 0);
 
-    // Setting width to 90% of parent
-    var width = $h5pContainer.width()*0.9;
- 
     // If width is more than max width, use max width
-    width = width > maxWidth ? maxWidth : width;
+    var width = $h5pContainer.width() > maxWidth ? maxWidth : $h5pContainer.width();
 
-    // Position speech bubble to the left as default
-    var speechBubbleOffset = $container.offset().left - $h5pContainer.offset().left - width + $container.outerWidth() + 6
+    $container.offsetleft = $container.offset().left - $h5pContainer.offset().left;
+    $container.offsetright = $h5pContainer.width() - ($container.offset().left + $container.width() - $h5pContainer.offset().left);
 
-    // If not enough room for speech bubble to the left, position to the right
-    if (speechBubbleOffset < 0) {
-      speechBubbleOffset = $container.offset().left - $h5pContainer.offset().left - 9;
-      $currentSpeechBubble.addClass('direction-right');
+    // Position the way with most free space
+    if ($container.offsetleft > $container.offsetright) {
+      $currentSpeechBubble.direction = 'left';
+      if (width > $container.offsetleft) {
+        width = $container.offsetleft;
+      }
+      $container.offsetright += ($container.width() / 2) - 18;
+      $currentSpeechBubble.css('right', $container.offsetright);
     }
     else {
-      $currentSpeechBubble.addClass('direction-left');
+      $currentSpeechBubble.direction = 'right';
+      if (width > $container.offsetright) {
+        width = $container.offsetright;
+      }
+      $container.offsetleft += ($container.width() / 2) - 18;
+      $currentSpeechBubble.css('left', $container.offsetleft);
     }
+
+    $currentSpeechBubble.addClass('direction-' + $currentSpeechBubble.direction);
 
     // Need to set font-size, since element is appended to body.
     // Using same font-size as parent. In that way it will grow accordingly
@@ -97,7 +105,6 @@ H5P.JoubelSpeechBubble = (function ($) {
     $currentSpeechBubble.css({
       width: width + 'px',
       top: ($container.offset().top + $container.outerHeight() - $h5pContainer.offset().top) + 'px',
-      left: speechBubbleOffset,
       fontSize: fontSize + 'px'
     });
 
