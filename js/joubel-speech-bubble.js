@@ -84,25 +84,25 @@ H5P.JoubelSpeechBubble = (function ($) {
     // If width is more than max width, use max width
     var width = $h5pContainer.width() > maxWidth ? maxWidth : $h5pContainer.width();
 
-    $container.offsetleft = $container.offset().left - $h5pContainer.offset().left;
-    $container.offsetright = $h5pContainer.width() - ($container.offset().left + $container.width() - $h5pContainer.offset().left);
+    var containerOffsetLeft = $container.offset().left - $h5pContainer.offset().left;
+    var containerOffsetRight = $h5pContainer.width() - ($container.offset().left + $container.width() - $h5pContainer.offset().left);
 
     // Position the way with most free space
-    if ($container.offsetleft > $container.offsetright) {
+    if (containerOffsetLeft > containerOffsetRight) {
       $currentSpeechBubble.direction = 'left';
-      if (width > $container.offsetleft) {
-        width = $container.offsetleft;
+      if (width > containerOffsetLeft) {
+        width = containerOffsetLeft;
       }
-      $container.offsetright += ($container.width() / 2) - 18;
-      $currentSpeechBubble.css('right', $container.offsetright);
+      containerOffsetRight += ($container.width() / 2) - 18;
+      $currentSpeechBubble.css('right', containerOffsetRight);
     }
     else {
       $currentSpeechBubble.direction = 'right';
-      if (width > $container.offsetright) {
-        width = $container.offsetright;
+      if (width > containerOffsetRight) {
+        width = containerOffsetRight;
       }
-      $container.offsetleft += ($container.width() / 2) - 18;
-      $currentSpeechBubble.css('left', $container.offsetleft);
+      containerOffsetLeft += ($container.width() / 2) - 18;
+      $currentSpeechBubble.css('left', containerOffsetLeft);
     }
 
     $currentSpeechBubble.addClass('direction-' + $currentSpeechBubble.direction);
