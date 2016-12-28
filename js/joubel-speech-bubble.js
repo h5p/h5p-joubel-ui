@@ -54,6 +54,10 @@ H5P.JoubelSpeechBubble = (function ($) {
       remove();
     }
 
+    $(window).resize(function() {
+      remove();
+    });
+
     var $h5pContainer = $container.closest('.h5p-frame');
 
     // Check closest h5p frame first, then check for container in case there is no frame.
