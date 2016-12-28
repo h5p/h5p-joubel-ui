@@ -25,6 +25,12 @@ H5P.JoubelSpeechBubble = (function ($) {
     maxWidth = maxWidth || DEFAULT_MAX_WIDTH;
     $currentContainer = $container;
 
+    $currentContainer.on('mousedown.speechBubble', function() {
+      remove();
+    });
+
+    $(window).resize(handleOutsideClick);
+
     this.isCurrent = function ($tip) {
       return $tip === $currentContainer;
     };
@@ -53,10 +59,6 @@ H5P.JoubelSpeechBubble = (function ($) {
     if ($currentSpeechBubble !== undefined) {
       remove();
     }
-
-    $(window).resize(function() {
-      remove();
-    });
 
     var $h5pContainer = $container.closest('.h5p-frame');
 
@@ -148,7 +150,9 @@ H5P.JoubelSpeechBubble = (function ($) {
    */
   var remove = function() {
     H5P.$body.off('mousedown.speechBubble');
-    $currentContainer.parents('.h5p-dialog').off('mousedown.speechBubble');
+    if ($currentContainer !== undefined) {
+      $currentContainer.parents('.h5p-dialog').off('mousedown.speechBubble');
+    }
     if (iDevice) {
       H5P.$body.css('cursor', '');
     }
