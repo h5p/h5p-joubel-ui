@@ -150,33 +150,35 @@
 /* Custom hover and active effects (Do this if not using javascript to change class on hover or active) */
 
 /* Joubel icon tip */
-.joubel-icon-tip-normal:hover .path1:before {
-  content: "\e908";
-  color: rgb(221, 221, 221);
-}
-.joubel-icon-tip-normal:hover .path2:before {
-  content: "\e910";
-  margin-left: -1.0654296875em;
-  color: rgb(72, 155, 213);
-}
-.joubel-icon-tip-normal:hover .path3:before {
-  content: "\e911";
-  margin-left: -1.0654296875em;
-  color: rgb(255, 255, 255);
-}
-.joubel-icon-tip-normal:active .path1:before {
-  content: "\e90b";
-  color: rgb(221, 221, 221);
-}
-.joubel-icon-tip-normal:active .path2:before {
-  content: "\e90c";
-  margin-left: -1.0654296875em;
-  color: rgb(72, 155, 213);
-}
-.joubel-icon-tip-normal:active .path3:before {
-  content: "\e90a";
-  margin-left: -1.0654296875em;
-  color: rgb(255, 255, 255);
+.joubel-tip-container:not(.be-quiet) {
+  .joubel-icon-tip-normal:hover .path1:before {
+    content: "\e908";
+    color: rgb(221, 221, 221);
+  }
+  .joubel-icon-tip-normal:hover .path2:before {
+    content: "\e910";
+    margin-left: -1.0654296875em;
+    color: rgb(72, 155, 213);
+  }
+  .joubel-icon-tip-normal:hover .path3:before {
+    content: "\e911";
+    margin-left: -1.0654296875em;
+    color: rgb(255, 255, 255);
+  }
+  .joubel-icon-tip-normal:active .path1:before {
+    content: "\e90b";
+    color: rgb(221, 221, 221);
+  }
+  .joubel-icon-tip-normal:active .path2:before {
+    content: "\e90c";
+    margin-left: -1.0654296875em;
+    color: rgb(72, 155, 213);
+  }
+  .joubel-icon-tip-normal:active .path3:before {
+    content: "\e90a";
+    margin-left: -1.0654296875em;
+    color: rgb(255, 255, 255);
+  }
 }
 
 /* Joubel icon comment */

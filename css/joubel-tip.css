@@ -7,6 +7,10 @@
 .joubel-tip-container:focus {
   outline: auto;
 }
+
+.joubel-tip-container.be-quiet:focus {
+  outline: none;
+}
 .joubel-tip-icon {
   text-align: center;
   font-size: 1.5em;
