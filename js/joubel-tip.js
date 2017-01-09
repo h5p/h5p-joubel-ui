@@ -42,9 +42,15 @@ H5P.JoubelTip = (function ($) {
           toggleSpeechBubble(true);
         }
       }
-    }).append($('<div/>', {
-      'class': 'joubel-tip-icon' + (params.helpIcon ? ' help-icon': '')
-    }));
+    }).append($('<span/>', {
+      'class': 'joubel-icon-tip-normal' + (params.helpIcon ? ' help-icon': '')
+    }).append($('<span/>', {
+      'class': 'path1'
+    })).append($('<span/>', {
+      'class': 'path2'
+    })).append($('<span/>', {
+      'class': 'path3'
+    })));
 
     /**
      * Add or remove a speech bubble
