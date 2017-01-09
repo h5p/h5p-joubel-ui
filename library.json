@@ -77,9 +77,6 @@
     },
     {
       "path": "css/joubel-ui.css"
-    },
-    {
-      "path": "css/joubel-icon.css"
     }
   ],
   "preloadedDependencies": [
