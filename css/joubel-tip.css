@@ -19,6 +19,7 @@
   transition: transform 0.2s;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  pointer-events: none;
 }
 .be-quiet .joubel-tip-icon {
   cursor: auto;
