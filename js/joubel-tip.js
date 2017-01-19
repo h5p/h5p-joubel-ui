@@ -11,54 +11,57 @@ H5P.JoubelTip = (function ($) {
    */
   function JoubelTip(text, params) {
     var speechBubble;
+
+    params = $.extend({
+      showSpeechBubble: true,
+      helpIcon: false
+    }, params);
+
     var parsedTitle = text;
     if ($.parseHTML($.trim(text)).length) {
       parsedTitle = $.parseHTML($.trim(text))[0].textContent;
     }
 
-    params = $.extend({
-      showSpeechBubble: true,
-      tipLabel: parsedTitle
-    }, params);
+    var $tip = $('<div/>', {
+      class: 'joubel-tip-container' + (params.showSpeechBubble ? '' : ' be-quiet'),
+      title: parsedTitle,
+      role: 'button',
+      tabindex: 0,
+      click: function () {
+        toggleSpeechBubble();
+
+        return false;
+      },
+      keydown: function (e) {
+        // Space
+        if (e.which === 32) {
+          toggleSpeechBubble();
+          e.preventDefault();
+        }
+        else {
+          toggleSpeechBubble(true);
+        }
+      }
+    }).append($('<div/>', {
+      'class': 'joubel-tip-icon' + (params.helpIcon ? ' help-icon': '')
+    }));
 
     /**
-     * Toggle tip visibility
-     * @param {boolean} [close] Forces tip to close or not show
+     * Add or remove a speech bubble
+     * @private
+     * @param {boolean} [close] Forces tip close
      * @return {boolean}
      */
-    function toggleTip(close) {
-      if (speechBubble !== undefined && !speechBubble.isHidden()) {
+    function toggleSpeechBubble(close) {
+      if (speechBubble !== undefined && speechBubble.isCurrent($tip)) {
         speechBubble.remove();
         speechBubble = undefined;
       }
       else if (!close && params.showSpeechBubble) {
         speechBubble = H5P.JoubelSpeechBubble($tip, text);
       }
-      return false;
     }
 
-    var $tip = $('<div/>', {
-      'class': 'joubel-tip-container' + (params.showSpeechBubble ? '' : ' be-quiet'),
-      title: params.tipLabel,
-      role: 'button',
-      tabIndex: 0,
-      click: function () {
-        toggleTip();
-        return false;
-      },
-      keydown: function (e) {
-        // Space
-        if (e.which === 32) {
-          toggleTip();
-          e.preventDefault();
-        }
-        else {
-          toggleTip(true);
-        }
-      }
-    }).append($('<div/>', {
-      'class': 'joubel-tip-icon'
-    }));
     return $tip;
   }
 

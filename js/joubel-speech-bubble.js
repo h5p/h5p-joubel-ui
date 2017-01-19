@@ -25,8 +25,8 @@ H5P.JoubelSpeechBubble = (function ($) {
     maxWidth = maxWidth || DEFAULT_MAX_WIDTH;
     $currentContainer = $container;
 
-    this.isHidden = function () {
-      return ($currentSpeechBubble === undefined);
+    this.isCurrent = function ($tip) {
+      return $tip === $currentContainer;
     };
 
     this.remove = function () {
@@ -65,57 +65,56 @@ H5P.JoubelSpeechBubble = (function ($) {
     fadeOutSpeechBubble($currentSpeechBubble);
 
     // Create bubble
-    $currentSpeechBubble = $(
-      '<div class="joubel-speech-bubble" aria-live="assertive">' +
-        '<div class="joubel-speech-bubble-inner">' +
-          '<div class="joubel-speech-bubble-text">' + text + '</div>' +
-        '</div>' +
+    var $tail = $('<div class="joubel-speech-bubble-tail"></div>');
+    var $innerTail = $('<div class="joubel-speech-bubble-inner-tail"></div>');
+    var $innerBubble = $(
+      '<div class="joubel-speech-bubble-inner">' +
+        '<div class="joubel-speech-bubble-text">' + text + '</div>' +
       '</div>'
-    ).appendTo($h5pContainer);
+    ).prepend($innerTail);
+
+    $currentSpeechBubble = $(
+      '<div class="joubel-speech-bubble" aria-live="assertive">'
+    ).append([$tail, $innerBubble])
+      .appendTo($h5pContainer);
 
     // Show speech bubble with transition
     setTimeout(function () {
       $currentSpeechBubble.addClass('show');
     }, 0);
 
-    // Setting width to 90% of parent
-    var width = $h5pContainer.width()*0.9;
+    // Calculate offset between the button and the h5p frame
+    var offset = getOffsetBetween($h5pContainer, $container);
 
-    // If width is more than max width, use max width
-    width = width > maxWidth ? maxWidth : width;
-    var left = $container.offset().left - width + $container.outerWidth() - $h5pContainer.offset().left - ($container.width()/2) + 20;
+    var direction = (offset.bottom > offset.top ? 'bottom' : 'top');
+    var tipWidth = offset.outerWidth * 0.9; // Var needs to be renamed to make sense
+    var bubbleWidth = tipWidth > maxWidth ? maxWidth : tipWidth;
 
-    // If width makes element go outside of body, make it smaller.
-    // TODO - This is not ideal, e.g if the $container is far to the left.
-    // Improvement: support left- and right-"aligned" bubbles
-    if (left < 0) {
-      // 3px is hard coded here just to get some margin
-      // to the left side
-      width += left-3;
-      left = 3;
-    }
-
+    var bubblePosition = getBubblePosition(bubbleWidth, offset);
+    var tailPosition = getTailPosition(bubbleWidth, bubblePosition, offset);
     // Need to set font-size, since element is appended to body.
     // Using same font-size as parent. In that way it will grow accordingly
     // when resizing
     var fontSize = 16;//parseFloat($parent.css('font-size'));
 
-    // Set max-width:
-    $currentSpeechBubble.css({
-      width: width + 'px',
-      top: ($container.offset().top + $container.outerHeight() - $h5pContainer.offset().top) + 'px',
-      left: left + 'px',
-      fontSize: fontSize + 'px'
-    });
+    // Set width and position of speech bubble
+    $currentSpeechBubble.css(bubbleCSS(
+      direction,
+      bubbleWidth,
+      bubblePosition,
+      fontSize
+    ));
+
+    var preparedTailCSS = tailCSS(direction, tailPosition);
+    $tail.css(preparedTailCSS);
+    $innerTail.css(preparedTailCSS);
 
     // Handle click to close
-    H5P.$body.on('mousedown.speechBubble', function () {
-      remove();
-    });
+    H5P.$body.on('mousedown.speechBubble', handleOutsideClick);
 
     // Handle clicks when inside IV which blocks bubbling.
     $container.parents('.h5p-dialog')
-      .on('mousedown.speechBubble', remove);
+      .on('mousedown.speechBubble', handleOutsideClick);
 
     if (iDevice) {
       H5P.$body.css('cursor', 'pointer');
@@ -155,6 +154,177 @@ H5P.JoubelSpeechBubble = (function ($) {
     // we want the bubble to disapear AND the button to receive the event
   };
 
+  /**
+   * Remove the speech bubble with a fade
+   *
+   * @param {jQuery} $speechBubble Speech bubble element
+   */
+  function fadeOutSpeechBubble($speechBubble) {
+    if (!$speechBubble) {return;}
+
+    // Stop removing bubble
+    clearTimeout(removeSpeechBubbleTimeout);
+
+    $speechBubble.removeClass('show');
+    setTimeout(function () {
+      if ($speechBubble) {
+        $speechBubble.remove();
+        $speechBubble = undefined;
+      }
+    }, 500);
+  }
+
+  /**
+   * Remove the speech bubble and container reference
+   */
+  function handleOutsideClick (event) {
+    if (event.target === $currentContainer[0]) {
+      return; // Button clicks are not outside clicks
+    }
+
+    remove();
+    // There is no current container when a container isn't clicked
+    $currentContainer = undefined;
+  }
+
+  /**
+   * Calculate position for speech bubble
+   *
+   * @param {number} bubbleWidth The width of the speech bubble
+   * @param {object} offset
+   * @return {object} Return position for the speech bubble
+   */
+  function getBubblePosition(bubbleWidth, offset) {
+    var bubblePosition = {};
+
+    var tailOffset = 9;
+    var widthOffset = bubbleWidth / 2;
+
+    // Calculate top position
+    bubblePosition.top = offset.top + offset.innerHeight;
+
+    // Calculate bottom position
+    bubblePosition.bottom = offset.bottom + offset.innerHeight + tailOffset;
+
+    // Calculate left position
+    if (offset.left < widthOffset) {
+      bubblePosition.left = 3;
+    }
+    else if ((offset.left + widthOffset) > offset.outerWidth) {
+      bubblePosition.left = offset.outerWidth - bubbleWidth - 3;
+    }
+    else {
+      bubblePosition.left = offset.left - widthOffset + (offset.innerWidth / 2);
+    }
+
+    return bubblePosition;
+  }
+
+  /**
+   * Calculate position for speech bubble tail
+   *
+   * @param {number} bubbleWidth The width of the speech bubble
+   * @param {object} bubblePosition Speech bubble position
+   * @param {object} offset
+   * @return {object} Return position for the tail
+   */
+  function getTailPosition(bubbleWidth, bubblePosition, offset) {
+    var tailPosition = {};
+    // Magic numbers. Tuned by hand so that the tail fits visually within
+    // the bounds of the speech bubble.
+    var leftBoundary = 9;
+    var rightBoundary = bubbleWidth - 20;
+
+    tailPosition.left = offset.left - bubblePosition.left + 9;
+
+    if (tailPosition.left < leftBoundary) {
+      tailPosition.left = leftBoundary;
+    }
+    if (tailPosition.left > rightBoundary) {
+      tailPosition.left = rightBoundary;
+    }
+
+    tailPosition.top = -6;
+    tailPosition.bottom = -6;
+
+    return tailPosition;
+  }
+
+  /**
+   * Return bubble CSS for the desired growth direction
+   *
+   * @param {string} direction The direction the speech bubble will grow
+   * @param {number} width The width of the speech bubble
+   * @param {object} position Speech bubble position
+   * @param {number} fontSize The size of the bubbles font
+   * @return {object} Return CSS
+   */
+  function bubbleCSS(direction, width, position, fontSize) {
+    if (direction === 'top') {
+      return {
+        width: width + 'px',
+        bottom: position.bottom + 'px',
+        left: position.left + 'px',
+        fontSize: fontSize + 'px'
+      };
+    }
+    else {
+      return {
+        width: width + 'px',
+        top: position.top + 'px',
+        left: position.left + 'px',
+        fontSize: fontSize + 'px'
+      };
+    }
+  }
+
+  /**
+   * Return tail CSS for the desired growth direction
+   *
+   * @param {string} direction The direction the speech bubble will grow
+   * @param {object} position Tail position
+   * @return {object} Return CSS
+   */
+  function tailCSS(direction, position) {
+    if (direction === 'top') {
+      return {
+        bottom: position.bottom + 'px',
+        left: position.left + 'px'
+      };
+    }
+    else {
+      return {
+        top: position.top + 'px',
+        left: position.left + 'px'
+      };
+    }
+  }
+
+  /**
+   * Calculates the offset between an element inside a container and the
+   * container. Only works if all the edges of the inner element is inside the
+   * outer element.
+   * Width/height of the elements is included as a convenience.
+   *
+   * @param {H5P.jQuery} $outer
+   * @param {H5P.jQuery} $inner
+   * @return {object} Position offset
+   */
+  function getOffsetBetween($outer, $inner) {
+    var outer = $outer[0].getBoundingClientRect();
+    var inner = $inner[0].getBoundingClientRect();
+
+    return {
+      top: inner.top - outer.top,
+      right: outer.right - inner.right,
+      bottom: outer.bottom - inner.bottom,
+      left: inner.left - outer.left,
+      innerWidth: inner.width,
+      innerHeight: inner.height,
+      outerWidth: outer.width,
+      outerHeight: outer.height
+    };
+  }
 
   return JoubelSpeechBubble;
 })(H5P.jQuery);
