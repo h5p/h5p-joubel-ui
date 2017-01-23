@@ -28,17 +28,15 @@
   padding: 0.2em 0.5em;
   text-align: left;
   position: relative;
-  word-wrap: break-word;
+  word-wrap: break-word; /* Long words have to break */
   z-index: 1;
 }
-.joubel-speech-bubble-inner:before,
-.joubel-speech-bubble:before {
-  content: "";
+.joubel-speech-bubble-inner-tail,
+.joubel-speech-bubble-tail {
   position: absolute;
   /* Setting these in pixels is intentional. We use it when calculating placement of bubble */
-  top: -6.5px;
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   background: #fbfbfb;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -47,14 +45,6 @@
   transform: rotate(45deg);
   z-index: -1;
 }
-.joubel-speech-bubble.direction-right:before,
-.joubel-speech-bubble.direction-right > .joubel-speech-bubble-inner:before {
-  left: 10px;
-}
-.joubel-speech-bubble.direction-left:before,
-.joubel-speech-bubble.direction-left > .joubel-speech-bubble-inner:before {
-  right: 10px;
-}
-.joubel-speech-bubble:before {
+.joubel-speech-bubble-tail {
   box-shadow: 0 0 0.5em #2c2c2c;
 }
