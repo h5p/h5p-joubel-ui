@@ -91,7 +91,7 @@ H5P.JoubelSpeechBubble = (function ($) {
     var bubbleWidth = tipWidth > maxWidth ? maxWidth : tipWidth;
 
     var bubblePosition = getBubblePosition(bubbleWidth, offset);
-    var tailPosition = getTailPosition(bubbleWidth, bubblePosition, offset, $container);
+    var tailPosition = getTailPosition(bubbleWidth, bubblePosition, offset, $container.width());
     // Need to set font-size, since element is appended to body.
     // Using same font-size as parent. In that way it will grow accordingly
     // when resizing
@@ -226,16 +226,17 @@ H5P.JoubelSpeechBubble = (function ($) {
    * @param {number} bubbleWidth The width of the speech bubble
    * @param {object} bubblePosition Speech bubble position
    * @param {object} offset
+   * @param {number} iconWidth The width of the tip icon
    * @return {object} Return position for the tail
    */
-  function getTailPosition(bubbleWidth, bubblePosition, offset, icon) {
+  function getTailPosition(bubbleWidth, bubblePosition, offset, iconWidth) {
     var tailPosition = {};
     // Magic numbers. Tuned by hand so that the tail fits visually within
     // the bounds of the speech bubble.
     var leftBoundary = 9;
     var rightBoundary = bubbleWidth - 20;
 
-    tailPosition.left = offset.left - bubblePosition.left + (icon.width() / 2) - 6;
+    tailPosition.left = offset.left - bubblePosition.left + (iconWidth / 2) - 6;
     if (tailPosition.left < leftBoundary) {
       tailPosition.left = leftBoundary;
     }
