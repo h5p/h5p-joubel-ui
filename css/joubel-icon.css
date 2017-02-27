@@ -23,7 +23,7 @@
 }
 .joubel-icon-comment-normal .path2:before {
   content: "\e908";
-  margin-left: -1.0654296875em;
+  margin-left: -1em;
   color: rgb(206, 114, 193);
 }
 .joubel-icon-comment-normal .path3:before {
@@ -36,6 +36,14 @@
 }
 .joubel-icon-comment-normal:active .path2:before {
   color: rgb(206, 114, 193);
+  position: relative;
+  top: 0.05em;
+  left: 0.05em;
+}
+.joubel-icon-comment-normal:active .path3:before {
+  position: relative;
+  top: 0.05em;
+  left: 0.05em;
 }
 
 /* Tip icon */
@@ -45,7 +53,7 @@
 }
 .joubel-icon-tip-normal .path2:before {
   content: "\e908";
-  margin-left: -1.065em;
+  margin-left: -1em;
   color: rgb(53, 128, 195);
 }
 .joubel-icon-tip-normal .path3:before {
@@ -58,6 +66,14 @@
 }
 .joubel-icon-tip-normal:active .path2:before {
   color: rgb(72, 155, 213);
+  position: relative;
+  top: 0.05em;
+  left: 0.05em;
+}
+.joubel-icon-tip-normal:active .path3:before {
+  position: relative;
+  top: 0.05em;
+  left: 0.05em;
 }
 
 /* Custom override CSS */
