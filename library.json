@@ -11,7 +11,7 @@
     "minorVersion": 3
   },
   "machineName": "H5P.JoubelUI",
-  "author": "Joubel AS",
+  "author": "Joubel",
   "preloadedJs": [
     {
       "path": "js/joubel-help-dialog.js"
