@@ -45,9 +45,9 @@ H5P.JoubelTip = (function ($) {
     });
 
     var tipIconHtml = '<span class="joubel-icon-tip-normal ' + (params.helpIcon ? ' help-icon': '') + '">' +
-                        '<span class="h5p-icon-layer-1"></span>' +
-                        '<span class="h5p-icon-layer-2"></span>' +
-                        '<span class="h5p-icon-layer-3"></span>' +
+                        '<span class="h5p-icon-shadow"></span>' +
+                        '<span class="h5p-icon-speech-bubble"></span>' +
+                        '<span class="h5p-icon-info"></span>' +
                       '</span>';
 
     $tip.append(tipIconHtml);

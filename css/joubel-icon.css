@@ -17,60 +17,60 @@
 }
 
 /* Comment icon */
-.joubel-icon-comment-normal .h5p-icon-layer-1:before {
+.joubel-icon-comment-normal .h5p-icon-shadow:before {
   content: "\e90a";
   color: rgb(221, 221, 221);
 }
-.joubel-icon-comment-normal .h5p-icon-layer-2:before {
+.joubel-icon-comment-normal .h5p-icon-speech-bubble:before {
   content: "\e908";
   margin-left: -1em;
   color: rgb(206, 114, 193);
 }
-.joubel-icon-comment-normal .h5p-icon-layer-3:before {
+.joubel-icon-comment-normal .h5p-icon-question:before {
   content: "\e906";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.joubel-icon-comment-normal:hover .h5p-icon-layer-2:before {
+.joubel-icon-comment-normal:hover .h5p-icon-speech-bubble:before {
   color: rgb(188, 92, 163);
 }
-.joubel-icon-comment-normal:active .h5p-icon-layer-2:before {
+.joubel-icon-comment-normal:active .h5p-icon-speech-bubble:before {
   color: rgb(206, 114, 193);
   position: relative;
   top: 0.05em;
   left: 0.05em;
 }
-.joubel-icon-comment-normal:active .h5p-icon-layer-3:before {
+.joubel-icon-comment-normal:active .h5p-icon-question:before {
   position: relative;
   top: 0.05em;
   left: 0.05em;
 }
 
 /* Tip icon */
-.joubel-icon-tip-normal .h5p-icon-layer-1:before {
+.joubel-icon-tip-normal .h5p-icon-shadow:before {
   content: "\e90a";
   color: rgb(221, 221, 221);
 }
-.joubel-icon-tip-normal .h5p-icon-layer-2:before {
+.joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
   content: "\e908";
   margin-left: -1em;
   color: rgb(53, 128, 195);
 }
-.joubel-icon-tip-normal .h5p-icon-layer-3:before {
+.joubel-icon-tip-normal .h5p-icon-info:before {
   content: "\e905";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.joubel-icon-tip-normal:hover .h5p-icon-layer-2:before {
+.joubel-icon-tip-normal:hover .h5p-icon-speech-bubble:before {
   color: rgb(72, 155, 213);
 }
-.joubel-icon-tip-normal:active .h5p-icon-layer-2:before {
+.joubel-icon-tip-normal:active .h5p-icon-speech-bubble:before {
   color: rgb(72, 155, 213);
   position: relative;
   top: 0.05em;
   left: 0.05em;
 }
-.joubel-icon-tip-normal:active .h5p-icon-layer-3:before {
+.joubel-icon-tip-normal:active .h5p-icon-info:before {
   position: relative;
   top: 0.05em;
   left: 0.05em;
