@@ -18,8 +18,9 @@ H5P.JoubelTip = (function ($) {
     }, params);
 
     var parsedTitle = text;
-    if ($.parseHTML($.trim(text)).length) {
-      parsedTitle = $.parseHTML($.trim(text))[0].textContent;
+    var elements = $.parseHTML($.trim(text));
+    if (elements !== null) {
+      parsedTitle = elements[0].textContent;
     }
 
     var $tip = $('<div/>', {
