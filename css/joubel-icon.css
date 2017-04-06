@@ -76,6 +76,73 @@
   left: 0.05em;
 }
 
+/* Edit icon */
+.joubel-icon-edit .h5p-icon-circle:before {
+  content: "\e90d";
+  color: #1d74c8;
+  font-size: 1.5em;
+}
+.joubel-icon-edit .h5p-icon-pencil:before {
+  content: "\e90c";
+  color: #1d74c8;
+  font-size: 0.8em;
+  text-align: center;
+  position: relative;
+  margin-left: -1.42em;
+  top: -0.35em;
+}
+.joubel-icon-edit:hover .h5p-icon-circle:before {
+  content: "\e90e";
+  color: #1d74c8;
+}
+.joubel-icon-edit:hover .h5p-icon-pencil:before {
+  color: #ffffff;
+}
+
+/* Approve icon */
+.joubel-icon-approve .h5p-icon-circle:before {
+  content: "\e90d";
+  color: #3ea35f;
+  font-size: 1.5em;
+}
+.joubel-icon-approve .h5p-icon-check:before {
+  content: "\e601";
+  color: #3ea35f;
+  font-size: 0.8em;
+  text-align: center;
+  position: relative;
+  margin-left: -1.42em;
+  top: -0.45em;
+}
+.joubel-icon-approve:hover .h5p-icon-circle:before {
+  content: "\e90e";
+}
+.joubel-icon-approve:hover .h5p-icon-check:before {
+  color: #ffffff;
+}
+
+/* Cancel icon */
+.joubel-icon-cancel .h5p-icon-circle:before {
+  content: "\e90d";
+  color: #de3354;
+  font-size: 1.5em;
+}
+.joubel-icon-cancel .h5p-icon-cross:before {
+  content: "\e600";
+  color: #de3354;
+  font-size: 0.8em;
+  text-align: center;
+  position: relative;
+  margin-left: -1.42em;
+  top: -0.45em;
+}
+.joubel-icon-cancel:hover .h5p-icon-circle:before {
+  content: "\e90e";
+}
+.joubel-icon-cancel:hover .h5p-icon-cross:before {
+  color: #ffffff;
+}
+
 /* Custom override CSS */
 .joubel-icon-tip-normal.help-icon:before {
   font-family: 'H5PFontAwesome4';
