@@ -3,6 +3,7 @@
 }
 .h5p-joubelui-score-bar {
   display: inline-block;
+  overflow: auto;
   position: relative;
   height: 1.8em;
   width: 7.6em;
@@ -42,6 +43,7 @@
 }
 .h5p-joubelui-score-bar-end {
   display: inline-block;
+  overflow: hidden;
   height: 1.8em;
   width: 1.8em;
   position: absolute;
