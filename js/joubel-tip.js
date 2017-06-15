@@ -46,7 +46,7 @@ H5P.JoubelTip = (function ($) {
         event.preventDefault();
       },
       keydown: function (event) {
-        if (event.which === 32) { // Space key
+        if (event.which === 32 || event.which === 13) { // Space & enter key
           // Toggle show/hide popup
           toggleSpeechBubble();
           event.stopPropagation();
