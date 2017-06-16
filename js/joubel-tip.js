@@ -12,6 +12,7 @@ H5P.JoubelTip = (function ($) {
    * @param {string} [behaviour.tipLabel] Set to use a custom label for the tip button (you want this for good A11Y)
    * @param {boolean} [behaviour.helpIcon] Set to 'true' to Add help-icon classname to Tip button (changes the icon)
    * @param {boolean} [behaviour.showSpeechBubble] Set to 'false' to disable functionality (you may this in the editor)
+   * @param {boolean} [behaviour.tabcontrol] Set to 'true' if you plan on controlling the tabindex in the parent (tabindex="-1")
    * @return {H5P.jQuery|undefined} Tip button jQuery element or 'undefined' if invalid tip
    */
   function JoubelTip(tipHtml, behaviour) {
@@ -29,7 +30,8 @@ H5P.JoubelTip = (function ($) {
     behaviour = $.extend({
       tipLabel: tipText,
       helpIcon: false,
-      showSpeechBubble: true
+      showSpeechBubble: true,
+      tabcontrol: false
     }, behaviour);
 
     // Create Tip button
@@ -39,7 +41,7 @@ H5P.JoubelTip = (function ($) {
       'aria-label': behaviour.tipLabel,
       'aria-expanded': false,
       role: 'button',
-      tabindex: 0,
+      tabindex: (behaviour.tabcontrol ? -1 : 0),
       click: function (event) {
         // Toggle show/hide popup
         toggleSpeechBubble();
