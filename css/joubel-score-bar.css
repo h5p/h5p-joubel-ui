@@ -43,7 +43,7 @@
 }
 .h5p-joubelui-score-bar-end {
   display: inline-block;
-  overflow: hidden;
+  overflow: visible;
   height: 1.8em;
   width: 1.8em;
   position: absolute;
