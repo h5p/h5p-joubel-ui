@@ -6,6 +6,21 @@ var H5P = H5P || {};
 H5P.JoubelScoreBar = (function ($) {
 
   /**
+   * @const {string}
+   */
+  var STAR_MARKUP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.77 53.87" aria-hidden="true">' +
+      '<defs>' +
+        '<style>.star-white-shadow {fill: #fff;} .star-path-border {fill: none;stroke: #ddd;stroke-miterlimit: 10;stroke-width: 3px;} .star-path-fill {fill: #ddd;}</style>' +
+      '</defs>' +
+      '<title>star</title>' +
+      '<path class="star-white-shadow" d="M35.08,43.41V9.16H20.91v0L9.51,10.85,9,10.93C2.8,12.18,0,17,0,21.25a11.22,11.22,0,0,0,3,7.48l8.73,8.53-1.07,6.16Z"/>' +
+      '<g>' +
+        '<path class="star-path-border" d="M61.36,22.8,49.72,34.11l2.78,16a2.6,2.6,0,0,1,.05.64c0,.85-.37,1.6-1.33,1.6A2.74,2.74,0,0,1,49.94,52L35.58,44.41,21.22,52a2.93,2.93,0,0,1-1.28.37c-.91,0-1.33-.75-1.33-1.6,0-.21.05-.43.05-.64l2.78-16L9.8,22.8A2.57,2.57,0,0,1,9,21.25c0-1,1-1.33,1.81-1.49l16.07-2.35L34.09,2.83c.27-.59.85-1.33,1.55-1.33s1.28.69,1.55,1.33l7.21,14.57,16.07,2.35c.75.11,1.81.53,1.81,1.49A3.07,3.07,0,0,1,61.36,22.8Z"/>' +
+        '<path class="star-path-fill" d="M61.36,22.8,49.72,34.11l2.78,16a2.6,2.6,0,0,1,.05.64c0,.85-.37,1.6-1.33,1.6A2.74,2.74,0,0,1,49.94,52L35.58,44.41,21.22,52a2.93,2.93,0,0,1-1.28.37c-.91,0-1.33-.75-1.33-1.6,0-.21.05-.43.05-.64l2.78-16L9.8,22.8A2.57,2.57,0,0,1,9,21.25c0-1,1-1.33,1.81-1.49l16.07-2.35L34.09,2.83c.27-.59.85-1.33,1.55-1.33s1.28.69,1.55,1.33l7.21,14.57,16.07,2.35c.75.11,1.81.53,1.81,1.49A3.07,3.07,0,0,1,61.36,22.8Z"/>' +
+      '</g>' +
+    '</svg>';
+
+  /**
    * Creates a score bar
    * @class H5P.JoubelScoreBar
    * @param {number=} maxScore  Maximum score
@@ -54,29 +69,54 @@ H5P.JoubelScoreBar = (function ($) {
         self.$scoreBar.attr('aria-label', label + '.');
       }
 
+      var $visuals = $('<div>', {
+        'class': 'h5p-joubelui-score-bar-visuals',
+        appendTo: self.$scoreBar
+      });
+
       // The progress bar wrapper
       self.$progressWrapper = $('<div>', {
-        'class': 'h5p-joubelui-score-bar-progress-wrapper'
-      }).appendTo(self.$scoreBar);
+        'class': 'h5p-joubelui-score-bar-progress-wrapper',
+        appendTo: $visuals
+      });
 
       self.$progress = $('<div>', {
-        'class': 'h5p-joubelui-score-bar-progress'
-      }).appendTo(self.$progressWrapper);
+        'class': 'h5p-joubelui-score-bar-progress',
+        appendTo: self.$progressWrapper
+      });
 
       // The star
-      self.$endWrapper = $('<div>', {
-        'class': 'h5p-joubelui-score-bar-end'
-      }).appendTo(self.$scoreBar);
+      var $starWrapper = $('<div>', {
+        'class': 'h5p-joubelui-score-bar-star',
+        html: STAR_MARKUP
+      }).appendTo($visuals);
 
-      // The default star
-      self.$defaultStar = $('<span>', {
-        'class': 'h5p-joubelui-score-bar-default-star'
-      }).appendTo(self.$endWrapper);
+      // The score container
+      var $numerics = $('<div>', {
+        'class': 'h5p-joubelui-score-numeric',
+        appendTo: self.$scoreBar
+      });
 
-      // The full score star
-      self.$fullScoreStar = $('<span>', {
-        'class': 'h5p-joubelui-score-bar-full-score-star'
-      }).appendTo(self.$endWrapper);
+      // The current score
+      self.$scoreCounter = $('<span>', {
+        'class': 'h5p-joubelui-score-number h5p-joubelui-score-number-counter',
+        text: 0,
+        appendTo: $numerics
+      });
+
+      // The separator
+      $('<span>', {
+        'class': 'h5p-joubelui-score-number-separator',
+        text: '/',
+        appendTo: $numerics
+      });
+
+      // Max score
+      self.$maxScore = $('<span>', {
+        'class': 'h5p-joubelui-score-number h5p-joubelui-score-max',
+        text: self.maxScore,
+        appendTo: $numerics
+      });
     };
 
     /**
@@ -122,40 +162,18 @@ H5P.JoubelScoreBar = (function ($) {
     self.updateVisuals = function () {
       var fullscore = hasFullScore();
       self.$scoreBar.attr('aria-valuenow', self.score);
+      self.$scoreCounter.text(self.score);
 
       setTimeout(function () {
-        self.$progress.addClass('animate');
+        // Start the progressbar animation
         self.$progress.css({
-          width: (fullscore ? '102' : (self.maxScore - 1 !== 0 ? (self.score * 100 / (self.maxScore - 1)) : 0)) + '%'
+          width: ((self.score / self.maxScore) * 100) + '%'
         });
-        H5P.Transition.sequence([
-          {
-            $element: self.$progress,
-            timeout: 600,
-            end: function () {
-              self.$progress.removeClass('animate');
-              self.$scoreBar.toggleClass('full-score', fullscore);
-              if (fullscore) {
-                self.$fullScoreStar.addClass('animate-background');
-              }
-            },
-            break: !fullscore
-          },
-          {
-            $element: self.$fullScoreStar,
-            timeout: 400,
-            end: function () {
-              self.$fullScoreStar.addClass('animate-star show-star');
-            }
-          },
-          {
-            $element: self.$fullScoreStar,
-            end: function () {
-              self.$fullScoreStar.removeClass('animate-star');
-              self.$fullScoreStar.addClass('animate-star-blink');
-            }
-          }
-        ]);
+
+        H5P.Transition.onTransitionEnd(self.$progress, function () {
+          // If fullscore - start the star animation
+          self.$scoreBar.toggleClass('h5p-joubelui-score-bar-full-score', self.score === self.maxScore);
+        }, 600);
       }, 300);
     };
 
@@ -164,7 +182,6 @@ H5P.JoubelScoreBar = (function ($) {
      * @method reset
      */
     self.reset = function () {
-      self.$fullScoreStar.removeClass('animate-star animate-star-blink show-star animate-background');
       self.$scoreBar.removeClass('full-score');
     };
 
