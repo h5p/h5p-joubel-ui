@@ -26,7 +26,7 @@ H5P.JoubelScoreBar = (function ($) {
    * @param {number=} maxScore  Maximum score
    * @param {string} [label] Makes it easier for readspeakers to identify the scorebar
    */
-  function JoubelScoreBar(maxScore, label) {
+  function JoubelScoreBar(maxScore, label, helpText) {
     var self = this;
 
     self.maxScore = maxScore;
@@ -117,6 +117,10 @@ H5P.JoubelScoreBar = (function ($) {
         text: self.maxScore,
         appendTo: $numerics
       });
+
+      if (helpText) {
+        H5P.JoubelUI.createTip(helpText, {helpIcon: true}).appendTo(self.$scoreBar);
+      }
     };
 
     /**
@@ -182,7 +186,7 @@ H5P.JoubelScoreBar = (function ($) {
      * @method reset
      */
     self.reset = function () {
-      self.$scoreBar.removeClass('full-score');
+      self.$scoreBar.removeClass('h5p-joubelui-score-bar-full-score');
     };
 
     createHtml();

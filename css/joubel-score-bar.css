@@ -9,6 +9,8 @@
   border-radius: 1.5em;
   padding: 0.625em;
   border: 1px solid #dcdcdc;
+  box-sizing: border-box;
+  position: relative;
 }
 .h5p-joubelui-score-bar-visuals {
   flex: 1;
@@ -50,7 +52,7 @@
   top: -0.4em;
   overflow: visible;
 }
-.full-score .h5p-joubelui-score-bar-star {
+.h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star {
   animation: pound 0.8s 1;
 }
 @keyframes pound {
@@ -79,19 +81,27 @@
 }
 /* The numeric part on the end (score / maxScore) */
 .h5p-joubelui-score-numeric {
-  margin: -0.625em 0.4em -0.625em 0.625em;
-  line-height: 2.05em;
-}
-
-.h5p-joubelui-score-number {
+  margin: 0em 0.625em 0em 0.625em;
   font-size: 1.333em;
-  font-weight: bold;
+  line-height: 0.7;
+}
+.h5p-joubelui-score-number {
   color: #333;
 }
 .h5p-joubelui-score-number-separator {
-  font-size: 1.1em;
   color: #999;
-  padding: 0 .1em;
-  position: relative;
-  top: -0.1em;
+  padding: 0 0.1em;
+}
+.h5p-joubelui-score-bar .joubel-tip-container {
+  position: absolute;
+  top: 0.1em;
+  right: 0.3em;
+  font-size: 1em;
+  line-height: 1;
+  color: #1a73d9;
+  margin-right: 0.2em;
+}
+.h5p-joubelui-score-bar .joubel-tip-container > .help-icon {
+  font-size: 1em;
+  line-height: 1;
 }
