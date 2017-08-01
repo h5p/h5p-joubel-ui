@@ -1,8 +1,8 @@
 .h5p-joubelui-score-bar {
-  display: flex;
-  display: -webkit-flexbox;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+  display: inline-flex;
+  display: -webkit-inline-flexbox;
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
   width: 19.917em;
   max-width: 100%;
   background: #fff;
@@ -53,7 +53,8 @@
   overflow: visible;
 }
 .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star {
-  animation: pound 0.8s 1;
+  -webkit-animation: pound 0.8s 1;
+          animation: pound 0.8s 1;
 }
 @keyframes pound {
   from {
@@ -70,6 +71,23 @@
   }
   to {
     transform: scale(1);
+  }
+}
+@-webkit-keyframes pound {
+  from {
+    -webkit-transform: scale(0);
+  }
+  20% {
+    -webkit-transform: scale(1.4);
+  }
+  60% {
+    -webkit-transform: scale(0.8);
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+  }
+  to {
+    -webkit-transform: scale(1);
   }
 }
 /* Changing the SVG fill and border on full score */
