@@ -26,7 +26,7 @@ H5P.JoubelSpeechBubble = (function ($) {
     $currentContainer = $container;
 
     this.isCurrent = function ($tip) {
-      return $tip === $currentContainer;
+      return $tip.is($currentContainer);
     };
 
     this.remove = function () {
@@ -177,7 +177,7 @@ H5P.JoubelSpeechBubble = (function ($) {
   /**
    * Remove the speech bubble and container reference
    */
-  function handleOutsideClick (event) {
+  function handleOutsideClick(event) {
     if (event.target === $currentContainer[0]) {
       return; // Button clicks are not outside clicks
     }

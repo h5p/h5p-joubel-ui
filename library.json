@@ -77,6 +77,9 @@
     },
     {
       "path": "css/joubel-ui.css"
+    },
+    {
+      "path": "css/joubel-icon.css"
     }
   ],
   "preloadedDependencies": [
@@ -92,6 +95,11 @@
     },
     {
       "machineName": "Drop",
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    {
+      "machineName": "H5P.FontIcons",
       "majorVersion": 1,
       "minorVersion": 0
     }

@@ -35,7 +35,7 @@ H5P.JoubelProgressbar = (function ($) {
         mouseleave: function () {
           setTimeout(function () {
             self.hideTooltip();
-          }, 1500)
+          }, 1500);
         }
       }
     });
