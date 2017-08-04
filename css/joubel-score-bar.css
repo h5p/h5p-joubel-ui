@@ -8,7 +8,7 @@
   background: #fff;
   border-radius: 1.5em;
   padding: 0.625em;
-  border: 1px solid #dcdcdc;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
   position: relative;
 }
@@ -90,18 +90,49 @@
     -webkit-transform: scale(1);
   }
 }
-/* Changing the SVG fill and border on full score */
-.h5p-joubelui-score-bar-full-score .star-path-border {
-  stroke: #ab741a;
+/* Styling the star */
+.h5p-joubelui-score-bar-star svg {
+  overflow: visible;
 }
-.h5p-joubelui-score-bar-full-score .star-path-fill {
+.h5p-joubelui-score-bar-star-shadow {
+  fill: #fff;
+}
+.h5p-joubelui-score-bar-star-border {
+  fill: none;
+  stroke: #ddd;
+  stroke-miterlimit: 10;
+  stroke-width: 3px;
+}
+.h5p-joubelui-score-bar-star-fill {
+  fill: #ddd;
+}
+.h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-border {
+  stroke: #ab741a;
+  stroke-width: 6;
+}
+.h5p-joubelui-score-bar-star-fill-full-score {
+  visibility: hidden;
   fill: #ffc80b;
 }
+.h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill {
+  /* This  will be a fallback for browsers not supporting the filter,
+     i.e. Safari */
+  fill: #ffc80b;
+}
+.h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill-full-score {
+  visibility: visible;
+}
+
 /* The numeric part on the end (score / maxScore) */
 .h5p-joubelui-score-numeric {
-  margin: 0em 0.625em 0em 0.625em;
+  margin: 0em 0.4em;
   font-size: 1.333em;
   line-height: 0.7;
+  font-weight: bold;
+}
+.h5p-score-bar-has-help .h5p-joubelui-score-numeric {
+  /* Need more space when icon is displayed */
+  margin-right: 0.625em;
 }
 .h5p-joubelui-score-number {
   color: #333;

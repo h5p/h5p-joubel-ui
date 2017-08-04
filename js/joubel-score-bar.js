@@ -5,20 +5,9 @@ var H5P = H5P || {};
  */
 H5P.JoubelScoreBar = (function ($) {
 
-  /**
-   * @const {string}
-   */
-  var STAR_MARKUP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.77 53.87" aria-hidden="true">' +
-      '<defs>' +
-        '<style>.star-white-shadow {fill: #fff;} .star-path-border {fill: none;stroke: #ddd;stroke-miterlimit: 10;stroke-width: 3px;} .star-path-fill {fill: #ddd;}</style>' +
-      '</defs>' +
-      '<title>star</title>' +
-      '<path class="star-white-shadow" d="M35.08,43.41V9.16H20.91v0L9.51,10.85,9,10.93C2.8,12.18,0,17,0,21.25a11.22,11.22,0,0,0,3,7.48l8.73,8.53-1.07,6.16Z"/>' +
-      '<g>' +
-        '<path class="star-path-border" d="M61.36,22.8,49.72,34.11l2.78,16a2.6,2.6,0,0,1,.05.64c0,.85-.37,1.6-1.33,1.6A2.74,2.74,0,0,1,49.94,52L35.58,44.41,21.22,52a2.93,2.93,0,0,1-1.28.37c-.91,0-1.33-.75-1.33-1.6,0-.21.05-.43.05-.64l2.78-16L9.8,22.8A2.57,2.57,0,0,1,9,21.25c0-1,1-1.33,1.81-1.49l16.07-2.35L34.09,2.83c.27-.59.85-1.33,1.55-1.33s1.28.69,1.55,1.33l7.21,14.57,16.07,2.35c.75.11,1.81.53,1.81,1.49A3.07,3.07,0,0,1,61.36,22.8Z"/>' +
-        '<path class="star-path-fill" d="M61.36,22.8,49.72,34.11l2.78,16a2.6,2.6,0,0,1,.05.64c0,.85-.37,1.6-1.33,1.6A2.74,2.74,0,0,1,49.94,52L35.58,44.41,21.22,52a2.93,2.93,0,0,1-1.28.37c-.91,0-1.33-.75-1.33-1.6,0-.21.05-.43.05-.64l2.78-16L9.8,22.8A2.57,2.57,0,0,1,9,21.25c0-1,1-1.33,1.81-1.49l16.07-2.35L34.09,2.83c.27-.59.85-1.33,1.55-1.33s1.28.69,1.55,1.33l7.21,14.57,16.07,2.35c.75.11,1.81.53,1.81,1.49A3.07,3.07,0,0,1,61.36,22.8Z"/>' +
-      '</g>' +
-    '</svg>';
+  /* Need to use an id for the star SVG since that is the only way to reference
+     SVG filters  */
+  var idCounter = 0;
 
   /**
    * Creates a score bar
@@ -31,6 +20,34 @@ H5P.JoubelScoreBar = (function ($) {
 
     self.maxScore = maxScore;
     self.score = 0;
+    idCounter++;
+
+    /**
+     * @const {string}
+     */
+    self.STAR_MARKUP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.77 53.87" aria-hidden="true">' +
+        '<title>star</title>' +
+        '<filter id="h5p-joubelui-score-bar-star-inner-shadow-' + idCounter + '" x0="-50%" y0="-50%" width="200%" height="200%">' +
+          '<feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"></feGaussianBlur>' +
+          '<feOffset dy="2" dx="4"></feOffset>' +
+          '<feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"></feComposite>' +
+          '<feFlood flood-color="#ffe95c" flood-opacity="1"></feFlood>' +
+          '<feComposite in2="shadowDiff" operator="in"></feComposite>' +
+          '<feComposite in2="SourceGraphic" operator="over" result="firstfilter"></feComposite>' +
+          '<feGaussianBlur in="firstfilter" stdDeviation="3" result="blur2"></feGaussianBlur>' +
+          '<feOffset dy="-2" dx="-4"></feOffset>' +
+          '<feComposite in2="firstfilter" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"></feComposite>' +
+          '<feFlood flood-color="#ffe95c" flood-opacity="1"></feFlood>' +
+          '<feComposite in2="shadowDiff" operator="in"></feComposite>' +
+          '<feComposite in2="firstfilter" operator="over"></feComposite>' +
+        '</filter>' +
+        '<path class="h5p-joubelui-score-bar-star-shadow" d="M35.08,43.41V9.16H20.91v0L9.51,10.85,9,10.93C2.8,12.18,0,17,0,21.25a11.22,11.22,0,0,0,3,7.48l8.73,8.53-1.07,6.16Z"/>' +
+        '<g>' +
+          '<path class="h5p-joubelui-score-bar-star-border" d="M61.36,22.8,49.72,34.11l2.78,16a2.6,2.6,0,0,1,.05.64c0,.85-.37,1.6-1.33,1.6A2.74,2.74,0,0,1,49.94,52L35.58,44.41,21.22,52a2.93,2.93,0,0,1-1.28.37c-.91,0-1.33-.75-1.33-1.6,0-.21.05-.43.05-.64l2.78-16L9.8,22.8A2.57,2.57,0,0,1,9,21.25c0-1,1-1.33,1.81-1.49l16.07-2.35L34.09,2.83c.27-.59.85-1.33,1.55-1.33s1.28.69,1.55,1.33l7.21,14.57,16.07,2.35c.75.11,1.81.53,1.81,1.49A3.07,3.07,0,0,1,61.36,22.8Z"/>' +
+          '<path class="h5p-joubelui-score-bar-star-fill" d="M61.36,22.8,49.72,34.11l2.78,16a2.6,2.6,0,0,1,.05.64c0,.85-.37,1.6-1.33,1.6A2.74,2.74,0,0,1,49.94,52L35.58,44.41,21.22,52a2.93,2.93,0,0,1-1.28.37c-.91,0-1.33-.75-1.33-1.6,0-.21.05-.43.05-.64l2.78-16L9.8,22.8A2.57,2.57,0,0,1,9,21.25c0-1,1-1.33,1.81-1.49l16.07-2.35L34.09,2.83c.27-.59.85-1.33,1.55-1.33s1.28.69,1.55,1.33l7.21,14.57,16.07,2.35c.75.11,1.81.53,1.81,1.49A3.07,3.07,0,0,1,61.36,22.8Z"/>' +
+          '<path filter="url(#h5p-joubelui-score-bar-star-inner-shadow-' + idCounter + ')" class="h5p-joubelui-score-bar-star-fill-full-score" d="M61.36,22.8,49.72,34.11l2.78,16a2.6,2.6,0,0,1,.05.64c0,.85-.37,1.6-1.33,1.6A2.74,2.74,0,0,1,49.94,52L35.58,44.41,21.22,52a2.93,2.93,0,0,1-1.28.37c-.91,0-1.33-.75-1.33-1.6,0-.21.05-.43.05-.64l2.78-16L9.8,22.8A2.57,2.57,0,0,1,9,21.25c0-1,1-1.33,1.81-1.49l16.07-2.35L34.09,2.83c.27-.59.85-1.33,1.55-1.33s1.28.69,1.55,1.33l7.21,14.57,16.07,2.35c.75.11,1.81.53,1.81,1.49A3.07,3.07,0,0,1,61.36,22.8Z"/>' +
+        '</g>' +
+      '</svg>';
 
     /**
      * @method hasFullScore
@@ -88,7 +105,7 @@ H5P.JoubelScoreBar = (function ($) {
       // The star
       var $starWrapper = $('<div>', {
         'class': 'h5p-joubelui-score-bar-star',
-        html: STAR_MARKUP
+        html: self.STAR_MARKUP
       }).appendTo($visuals);
 
       // The score container
@@ -120,6 +137,7 @@ H5P.JoubelScoreBar = (function ($) {
 
       if (helpText) {
         H5P.JoubelUI.createTip(helpText, {helpIcon: true}).appendTo(self.$scoreBar);
+        self.$scoreBar.addClass('h5p-score-bar-has-help');
       }
     };
 
