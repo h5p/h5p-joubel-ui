@@ -87,9 +87,8 @@
   color: #1d74c8;
   font-size: 0.8em;
   text-align: center;
-  position: relative;
+  position: absolute;
   margin-left: -1.42em;
-  top: -0.35em;
 }
 .joubel-icon-edit:hover .h5p-icon-circle:before {
   content: "\e90e";
@@ -110,9 +109,8 @@
   color: #3ea35f;
   font-size: 0.8em;
   text-align: center;
-  position: relative;
+  position: absolute;
   margin-left: -1.42em;
-  top: -0.45em;
 }
 .joubel-icon-approve:hover .h5p-icon-circle:before {
   content: "\e90e";
@@ -132,9 +130,8 @@
   color: #de3354;
   font-size: 0.8em;
   text-align: center;
-  position: relative;
+  position: absolute;
   margin-left: -1.42em;
-  top: -0.45em;
 }
 .joubel-icon-cancel:hover .h5p-icon-circle:before {
   content: "\e90e";
