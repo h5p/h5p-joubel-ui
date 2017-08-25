@@ -52,7 +52,7 @@
   top: -0.4em;
   overflow: visible;
 }
-.h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star {
+.h5p-joubelui-score-bar-full-score.h5p-joubelui-score-bar-animation-active .h5p-joubelui-score-bar-star {
   -webkit-animation: pound 0.8s 1;
           animation: pound 0.8s 1;
 }

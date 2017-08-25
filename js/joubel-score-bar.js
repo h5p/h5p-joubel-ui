@@ -193,8 +193,16 @@ H5P.JoubelScoreBar = (function ($) {
         });
 
         H5P.Transition.onTransitionEnd(self.$progress, function () {
-          // If fullscore - start the star animation
-          self.$scoreBar.toggleClass('h5p-joubelui-score-bar-full-score', self.score === self.maxScore);
+          // If fullscore fill the star and start the animation
+          if (self.score === self.maxScore) {
+            self.$scoreBar.addClass('h5p-joubelui-score-bar-full-score');
+            self.$scoreBar.addClass('h5p-joubelui-score-bar-animation-active');
+
+            // Only allow the star animation to run once
+            self.$scoreBar.one("animationend", function() {
+              self.$scoreBar.removeClass("h5p-joubelui-score-bar-animation-active")
+            });
+          }
         }, 600);
       }, 300);
     };
