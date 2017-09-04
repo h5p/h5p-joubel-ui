@@ -145,5 +145,37 @@ H5P.JoubelUI = (function ($) {
     return $('<' + type + '/>', params);
   };
 
+  /**
+   * Fix for iframe scoll bug in IOS. When focusing an element that doesn't have
+   * focus support by default the iframe will scroll the parent frame so that
+   * the focused element is out of view. This varies dependening on the elements
+   * of the parent frame.
+   */
+  if (H5P.isFramed && !H5P.hasiOSiframeScrollFix &&
+      /iPad|iPhone|iPod/.test(navigator.userAgent)) {
+
+    // Keep track of original focus function
+    var focus = HTMLElement.prototype.focus;
+
+    // Override the original focus
+    HTMLElement.prototype.focus = function () {
+      // Only focus the element if it supports it natively
+      if ( (this instanceof HTMLAnchorElement ||
+            this instanceof HTMLInputElement ||
+            this instanceof HTMLSelectElement ||
+            this instanceof HTMLTextAreaElement ||
+            this instanceof HTMLButtonElement ||
+            this instanceof HTMLIFrameElement ||
+            this instanceof HTMLAreaElement) && // HTMLAreaElement isn't supported by Safari yet.
+          !this.getAttribute('role')) { // Focus breaks if a different role has been set
+          // In theory this.isContentEditable should be able to recieve focus,
+          // but it didn't work when tested.
+
+        // Trigger the original focus with the proper context
+        focus.call(this);
+      }
+    };
+  }
+
   return JoubelUI;
 })(H5P.jQuery);
