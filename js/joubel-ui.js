@@ -153,6 +153,7 @@ H5P.JoubelUI = (function ($) {
    */
   if (H5P.isFramed && !H5P.hasiOSiframeScrollFix &&
       /iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    H5P.hasiOSiframeScrollFix = true;
 
     // Keep track of original focus function
     var focus = HTMLElement.prototype.focus;
