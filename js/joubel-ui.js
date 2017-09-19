@@ -100,8 +100,8 @@ H5P.JoubelUI = (function ($) {
    * @param {string} [label] Makes it easier for readspeakers to identify the scorebar
    * @return {H5P.JoubelScoreBar}
    */
-  JoubelUI.createScoreBar = function (maxScore, label, helpText) {
-    return new H5P.JoubelScoreBar(maxScore, label, helpText);
+  JoubelUI.createScoreBar = function (maxScore, label, helpText, scoreExplanationButtonLabel) {
+    return new H5P.JoubelScoreBar(maxScore, label, helpText, scoreExplanationButtonLabel);
   };
 
   /**
