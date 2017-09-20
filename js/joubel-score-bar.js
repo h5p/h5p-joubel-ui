@@ -50,15 +50,6 @@ H5P.JoubelScoreBar = (function ($) {
       '</svg>';
 
     /**
-     * @method hasFullScore
-     * @private
-     * @return {Boolean} true if full score, else false
-     */
-    var hasFullScore = function () {
-      return self.score === self.maxScore;
-    };
-
-    /**
      * @function appendTo
      * @memberOf H5P.JoubelScoreBar#
      * @param {H5P.jQuery}  $wrapper  Dom container
@@ -107,7 +98,7 @@ H5P.JoubelScoreBar = (function ($) {
       });
 
       // The star
-      var $starWrapper = $('<div>', {
+      $('<div>', {
         'class': 'h5p-joubelui-score-bar-star',
         html: self.STAR_MARKUP
       }).appendTo($visuals);
@@ -190,7 +181,6 @@ H5P.JoubelScoreBar = (function ($) {
      * @method updateVisuals
      */
     self.updateVisuals = function () {
-      var fullscore = hasFullScore();
       self.$progress.html(self.createLabel(self.score));
       self.$scoreCounter.text(self.score);
 

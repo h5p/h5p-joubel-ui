@@ -1,5 +1,5 @@
 H5P.JoubelTip = (function ($) {
-  $conv = $('<div/>');
+  var $conv = $('<div/>');
 
   /**
    * Creates a new tip element.
