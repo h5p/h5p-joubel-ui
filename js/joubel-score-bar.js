@@ -15,7 +15,7 @@ H5P.JoubelScoreBar = (function ($) {
    * @param {number=} maxScore  Maximum score
    * @param {string} [label] Makes it easier for readspeakers to identify the scorebar
    */
-  function JoubelScoreBar(maxScore, label, helpText) {
+  function JoubelScoreBar(maxScore, label, helpText, scoreExplanationButtonLabel) {
     var self = this;
 
     self.maxScore = maxScore;
@@ -25,7 +25,7 @@ H5P.JoubelScoreBar = (function ($) {
     /**
      * @const {string}
      */
-    self.STAR_MARKUP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.77 53.87" aria-hidden="true">' +
+    self.STAR_MARKUP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.77 53.87" aria-hidden="true" focusable="false">' +
         '<title>star</title>' +
         '<filter id="h5p-joubelui-score-bar-star-inner-shadow-' + idCounter + '" x0="-50%" y0="-50%" width="200%" height="200%">' +
           '<feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"></feGaussianBlur>' +
@@ -68,6 +68,16 @@ H5P.JoubelScoreBar = (function ($) {
     };
 
     /**
+     * Create the text representation of the scorebar .
+     *
+     * @private
+     * @return {string}
+     */
+    self.createLabel = function (score) {
+      return label.replace(':num', score).replace(':total', self.maxScore);
+    };
+
+    /**
      * Creates the html for this widget
      *
      * @method createHtml
@@ -77,14 +87,7 @@ H5P.JoubelScoreBar = (function ($) {
       // Container div
       self.$scoreBar = $('<div>', {
         'class': 'h5p-joubelui-score-bar',
-        'role': 'progressbar',
-        'aria-valuenow': 0,
-        'aria-valuemin': 0,
-        'aria-valuemax': self.maxScore
       });
-      if (label) {
-        self.$scoreBar.attr('aria-label', label + '.');
-      }
 
       var $visuals = $('<div>', {
         'class': 'h5p-joubelui-score-bar-visuals',
@@ -99,6 +102,7 @@ H5P.JoubelScoreBar = (function ($) {
 
       self.$progress = $('<div>', {
         'class': 'h5p-joubelui-score-bar-progress',
+        'html': self.createLabel(self.score),
         appendTo: self.$progressWrapper
       });
 
@@ -111,7 +115,8 @@ H5P.JoubelScoreBar = (function ($) {
       // The score container
       var $numerics = $('<div>', {
         'class': 'h5p-joubelui-score-numeric',
-        appendTo: self.$scoreBar
+        appendTo: self.$scoreBar,
+        'aria-hidden': true
       });
 
       // The current score
@@ -136,7 +141,10 @@ H5P.JoubelScoreBar = (function ($) {
       });
 
       if (helpText) {
-        H5P.JoubelUI.createTip(helpText, {helpIcon: true}).appendTo(self.$scoreBar);
+        H5P.JoubelUI.createTip(helpText, {
+          tipLabel: scoreExplanationButtonLabel,
+          helpIcon: true
+        }).appendTo(self.$scoreBar);
         self.$scoreBar.addClass('h5p-score-bar-has-help');
       }
     };
@@ -183,7 +191,7 @@ H5P.JoubelScoreBar = (function ($) {
      */
     self.updateVisuals = function () {
       var fullscore = hasFullScore();
-      self.$scoreBar.attr('aria-valuenow', self.score);
+      self.$progress.html(self.createLabel(self.score));
       self.$scoreCounter.text(self.score);
 
       setTimeout(function () {
@@ -199,7 +207,7 @@ H5P.JoubelScoreBar = (function ($) {
 
           // Only allow the star animation to run once
           self.$scoreBar.one("animationend", function() {
-            self.$scoreBar.removeClass("h5p-joubelui-score-bar-animation-active")
+            self.$scoreBar.removeClass("h5p-joubelui-score-bar-animation-active");
           });
         }, 600);
       }, 300);
