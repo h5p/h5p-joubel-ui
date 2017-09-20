@@ -45,10 +45,11 @@ H5P.JoubelUI = (function ($) {
    * @method H5P.JoubelUI.createHelpTextDialog
    * @param  {string}             header  The textual header
    * @param  {string}             message The textual message
+   * @param  {string}             closeButtonTitle The title for the close button
    * @return {H5P.JoubelHelpTextDialog}
    */
-  JoubelUI.createHelpTextDialog = function (header, message) {
-    return new H5P.JoubelHelpTextDialog(header, message);
+  JoubelUI.createHelpTextDialog = function (header, message, closeButtonTitle) {
+    return new H5P.JoubelHelpTextDialog(header, message, closeButtonTitle);
   };
 
   /**
@@ -143,6 +144,27 @@ H5P.JoubelUI = (function ($) {
       params.class = 'h5p-joubelui-button';
     }
     return $('<' + type + '/>', params);
+  };
+
+  /**
+   * Make a non-button element behave as a button. I.e handle enter and space
+   * keydowns as click
+   *
+   * @method H5P.JoubelUI.handleButtonClick
+   * @param  {H5P.jQuery} $element The "button" element
+   * @param  {Function} callback
+   */
+  JoubelUI.handleButtonClick = function ($element, callback) {
+    $element.click(callback);
+    if ($element.prop('tagName') !== 'BUTTON') {
+      $element.keypress(function (event) {
+        // 32 - space, 13 - enter
+        if ([32, 13].indexOf(event.which) !== -1) {
+          event.preventDefault();
+          callback();
+        }
+      });
+    }
   };
 
   /**
