@@ -155,16 +155,17 @@ H5P.JoubelUI = (function ($) {
    * @param  {Function} callback
    */
   JoubelUI.handleButtonClick = function ($element, callback) {
-    $element.click(callback);
-    if ($element.prop('tagName') !== 'BUTTON') {
-      $element.keypress(function (event) {
-        // 32 - space, 13 - enter
-        if ([32, 13].indexOf(event.which) !== -1) {
-          event.preventDefault();
-          callback();
-        }
-      });
-    }
+
+    $element.click(function () {
+      callback.call($(this));
+    });
+    $element.keypress(function (event) {
+      // 32 - space, 13 - enter
+      if ([32, 13].indexOf(event.which) !== -1) {
+        event.preventDefault();
+        callback.call($(this));
+      }
+    });
   };
 
   /**
