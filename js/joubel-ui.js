@@ -159,7 +159,7 @@ H5P.JoubelUI = (function ($) {
     $element.click(function () {
       callback.call($(this));
     });
-    $element.keypress(function (event) {
+    $element.keydown(function (event) {
       // 32 - space, 13 - enter
       if ([32, 13].indexOf(event.which) !== -1) {
         event.preventDefault();
