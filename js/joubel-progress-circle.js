@@ -64,7 +64,7 @@ H5P.JoubelProgressCircle = (function ($) {
 
     //Progress text/number
     $('<span/>', {
-      'text': number,
+      'text': number + '%',
       'class': "joubel-progress-circle-percentage"
     }).appendTo($backgroundCircle);
 

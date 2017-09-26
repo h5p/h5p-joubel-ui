@@ -7,10 +7,6 @@
   font-size: 1em;
 }
 
-.joubel-progress-circle-percentage:after{
-  content:'%';
-}
-
 .joubel-progress-circle-circle{
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
