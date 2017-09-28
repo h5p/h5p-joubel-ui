@@ -147,28 +147,6 @@ H5P.JoubelUI = (function ($) {
   };
 
   /**
-   * Make a non-button element behave as a button. I.e handle enter and space
-   * keydowns as click
-   *
-   * @method H5P.JoubelUI.handleButtonClick
-   * @param  {H5P.jQuery} $element The "button" element
-   * @param  {Function} callback
-   */
-  JoubelUI.handleButtonClick = function ($element, callback) {
-
-    $element.click(function (event) {
-      callback.call($(this), event);
-    });
-    $element.keydown(function (event) {
-      // 32 - space, 13 - enter
-      if ([32, 13].indexOf(event.which) !== -1) {
-        event.preventDefault();
-        callback.call($(this), event);
-      }
-    });
-  };
-
-  /**
    * Fix for iframe scoll bug in IOS. When focusing an element that doesn't have
    * focus support by default the iframe will scroll the parent frame so that
    * the focused element is out of view. This varies dependening on the elements
