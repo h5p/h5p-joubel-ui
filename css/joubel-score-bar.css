@@ -28,6 +28,9 @@
   background: #ddd;
 }
 .h5p-joubelui-score-bar-progress {
+  overflow: hidden;
+  white-space: nowrap;
+  color: transparent;
   position: absolute;
   left: 0;
   top: 0;

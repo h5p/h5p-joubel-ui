@@ -153,27 +153,7 @@ H5P.JoubelSpeechBubble = (function ($) {
     // Don't return false here. If the user e.g. clicks a button when the bubble is visible,
     // we want the bubble to disapear AND the button to receive the event
   };
-
-  /**
-   * Remove the speech bubble with a fade
-   *
-   * @param {jQuery} $speechBubble Speech bubble element
-   */
-  function fadeOutSpeechBubble($speechBubble) {
-    if (!$speechBubble) {return;}
-
-    // Stop removing bubble
-    clearTimeout(removeSpeechBubbleTimeout);
-
-    $speechBubble.removeClass('show');
-    setTimeout(function () {
-      if ($speechBubble) {
-        $speechBubble.remove();
-        $speechBubble = undefined;
-      }
-    }, 500);
-  }
-
+  
   /**
    * Remove the speech bubble and container reference
    */

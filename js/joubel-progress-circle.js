@@ -14,7 +14,7 @@ H5P.JoubelProgressCircle = (function ($) {
    * @param {string} backgroundColor Color behind the progress meter
    */
   function ProgressCircle(number, progressColor, fillColor, backgroundColor) {
-    progressColor = progressColor || '#096bcb';
+    progressColor = progressColor || '#1a73d9';
     fillColor = fillColor || '#f0f0f0';
     backgroundColor = backgroundColor || '#ffffff';
     var progressColorRGB = this.hexToRgb(progressColor);
@@ -43,9 +43,9 @@ H5P.JoubelProgressCircle = (function ($) {
     // We can not use rgba, since they will stack on top of each other.
     // Instead we create the equivalent of the rgba color
     // and applies this to the activeborder and background color.
-    var progressColorString = 'rgb(' + parseInt(this.rgbFromAlpha(progressColorRGB.r, decimalNumber), 10) +
-      ',' + parseInt(this.rgbFromAlpha(progressColorRGB.g, decimalNumber), 10) +
-      ',' + parseInt(this.rgbFromAlpha(progressColorRGB.b, decimalNumber), 10) + ')';
+    var progressColorString = 'rgb(' + parseInt(progressColorRGB.r, 10) +
+      ',' + parseInt(progressColorRGB.g, 10) +
+      ',' + parseInt(progressColorRGB.b, 10) + ')';
 
     // Circle wrapper
     var $wrapper = $('<div/>', {
@@ -64,7 +64,7 @@ H5P.JoubelProgressCircle = (function ($) {
 
     //Progress text/number
     $('<span/>', {
-      'text': number,
+      'text': number + '%',
       'class': "joubel-progress-circle-percentage"
     }).appendTo($backgroundCircle);
 
@@ -124,7 +124,7 @@ H5P.JoubelProgressCircle = (function ($) {
 
       // Static sizes
       var fontSizeMultiplum = 3.75;
-      var progressCircleWidthPx = parseInt((fontSize / 4.5), 10) % 2 === 0 ? parseInt((fontSize / 4.5), 10) : parseInt((fontSize / 4.5), 10) + 1;
+      var progressCircleWidthPx = parseInt((fontSize / 4.5), 10) % 2 === 0 ? parseInt((fontSize / 4.5), 10) + 4 : parseInt((fontSize / 4.5), 10) + 5;
       var progressCircleOffset = progressCircleWidthPx / 2;
 
       var width = fontSize * fontSizeMultiplum;
@@ -155,16 +155,6 @@ H5P.JoubelProgressCircle = (function ($) {
       g: parseInt(result[2], 16),
       b: parseInt(result[3], 16)
     } : null;
-  };
-
-  /**
-   * Convert rgb and opacity to new rgb
-   * @param {number} colorValue
-   * @param {float} opacity
-   * @returns {number} blended colorValue
-   */
-  ProgressCircle.prototype.rgbFromAlpha = function (colorValue, opacity) {
-    return (opacity * colorValue) + (1 - opacity) * 255;
   };
 
   return ProgressCircle;

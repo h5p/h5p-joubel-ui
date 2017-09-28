@@ -45,10 +45,11 @@ H5P.JoubelUI = (function ($) {
    * @method H5P.JoubelUI.createHelpTextDialog
    * @param  {string}             header  The textual header
    * @param  {string}             message The textual message
+   * @param  {string}             closeButtonTitle The title for the close button
    * @return {H5P.JoubelHelpTextDialog}
    */
-  JoubelUI.createHelpTextDialog = function (header, message) {
-    return new H5P.JoubelHelpTextDialog(header, message);
+  JoubelUI.createHelpTextDialog = function (header, message, closeButtonTitle) {
+    return new H5P.JoubelHelpTextDialog(header, message, closeButtonTitle);
   };
 
   /**
@@ -100,8 +101,8 @@ H5P.JoubelUI = (function ($) {
    * @param {string} [label] Makes it easier for readspeakers to identify the scorebar
    * @return {H5P.JoubelScoreBar}
    */
-  JoubelUI.createScoreBar = function (maxScore, label, helpText) {
-    return new H5P.JoubelScoreBar(maxScore, label, helpText);
+  JoubelUI.createScoreBar = function (maxScore, label, helpText, scoreExplanationButtonLabel) {
+    return new H5P.JoubelScoreBar(maxScore, label, helpText, scoreExplanationButtonLabel);
   };
 
   /**

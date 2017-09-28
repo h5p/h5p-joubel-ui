@@ -13,13 +13,11 @@ H5P.SimpleRoundedButton = (function ($) {
       'role': 'button',
       'tabindex': '0'
     }).keydown(function (e) {
-      var keyPressed = e.which;
-      // 32 - space
-      if (keyPressed === 32) {
+      // 32 - space, 13 - enter
+      if ([32, 13].indexOf(e.which) !== -1) {
         $(this).click();
         e.preventDefault();
       }
-      $(this).focus();
     });
 
     $('<span>', {
