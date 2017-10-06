@@ -51,17 +51,25 @@ H5P.JoubelHelpTextDialog = (function ($) {
       'html': message
     }).appendTo($helpTextDialogContainer);
 
+    var handleClose = function () {
+      $helpTextDialogBox.remove();
+      self.trigger('closed');
+    };
+
     var $closeButton = $('<div>', {
       'class': 'joubel-help-text-remove',
       'role': 'button',
       'title': closeButtonTitle,
-      'tabindex': 0
+      'tabindex': 0,
+      'click': handleClose,
+      'keydown': function (event) {
+        // 32 - space, 13 - enter
+        if ([32, 13].indexOf(event.which) !== -1) {
+          event.preventDefault();
+          handleClose();
+        }
+      }
     }).appendTo($helpTextDialogContainer);
-
-    H5P.JoubelUI.handleButtonClick($closeButton, function () {
-      $helpTextDialogBox.remove();
-      self.trigger('closed');
-    });
 
     /**
      * Get the DOM element
