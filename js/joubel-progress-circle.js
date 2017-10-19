@@ -29,7 +29,6 @@ H5P.JoubelProgressCircle = (function ($) {
         throw 'is not a number';
       }
     } catch (e) {
-      console.log('Progress circle input' + e);
       number = 'err';
     }
 
@@ -37,8 +36,6 @@ H5P.JoubelProgressCircle = (function ($) {
     if (number > 100) {
       number = 100;
     }
-
-    var decimalNumber = number / 100;
 
     // We can not use rgba, since they will stack on top of each other.
     // Instead we create the equivalent of the rgba color

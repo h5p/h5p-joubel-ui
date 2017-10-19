@@ -66,7 +66,7 @@ H5P.JoubelScoreBar = (function ($) {
      * @private
      * @return {string}
      */
-    self.createLabel = function (score) {
+    var createLabel = function (score) {
       if (!label) {
         return '';
       }
@@ -99,7 +99,7 @@ H5P.JoubelScoreBar = (function ($) {
 
       self.$progress = $('<div>', {
         'class': 'h5p-joubelui-score-bar-progress',
-        'html': self.createLabel(self.score),
+        'html': createLabel(self.score),
         appendTo: self.$progressWrapper
       });
 
@@ -187,7 +187,7 @@ H5P.JoubelScoreBar = (function ($) {
      * @method updateVisuals
      */
     self.updateVisuals = function () {
-      self.$progress.html(self.createLabel(self.score));
+      self.$progress.html(createLabel(self.score));
       self.$scoreCounter.text(self.score);
 
       setTimeout(function () {

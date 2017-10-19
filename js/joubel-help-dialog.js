@@ -48,7 +48,9 @@ H5P.JoubelHelpTextDialog = (function ($) {
     $('<div>', {
       'class': 'joubel-help-text-body',
       'id': helpTextId,
-      'html': message
+      'html': message,
+      'role': 'document',
+      'tabindex': 0
     }).appendTo($helpTextDialogContainer);
 
     var handleClose = function () {
@@ -60,7 +62,7 @@ H5P.JoubelHelpTextDialog = (function ($) {
       'class': 'joubel-help-text-remove',
       'role': 'button',
       'title': closeButtonTitle,
-      'tabindex': 0,
+      'tabindex': 1,
       'click': handleClose,
       'keydown': function (event) {
         // 32 - space, 13 - enter
