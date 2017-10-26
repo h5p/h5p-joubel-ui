@@ -9,7 +9,6 @@ H5P.JoubelSlider = (function ($) {
    */
   function JoubelSlider(params) {
     H5P.EventDispatcher.call(this);
-    var self = this;
 
     this.$slider = $('<div>', $.extend({
       'class': 'h5p-joubel-ui-slider'
