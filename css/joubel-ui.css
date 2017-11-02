@@ -91,6 +91,6 @@
 }
 
 /* Remove outline for all elements having tabIndex="-1"*/
-[tabIndex="-1"] {
+.h5p-content [tabIndex="-1"] {
   outline: none;
 }
