@@ -89,3 +89,8 @@
 .h5p-question-check-answer:before {
   content: "\F058";
 }
+
+/* Remove outline for all elements having tabIndex="-1"*/
+.h5p-content [tabIndex="-1"] {
+  outline: none;
+}
