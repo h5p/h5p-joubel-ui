@@ -83,6 +83,34 @@ H5P.JoubelSpeechBubble = (function ($) {
       $currentSpeechBubble.addClass('show');
     }, 0);
 
+    position($currentSpeechBubble, $tail, $innerTail, $h5pContainer, $container, maxWidth);
+
+    // Handle click to close
+    H5P.$body.on('mousedown.speechBubble', handleOutsideClick);
+
+    $(window).resize(() => {
+      position($currentSpeechBubble, $tail, $innerTail, $h5pContainer, $container, maxWidth);
+    });
+
+    // Handle clicks when inside IV which blocks bubbling.
+    $container.parents('.h5p-dialog')
+      .on('mousedown.speechBubble', handleOutsideClick);
+
+    if (iDevice) {
+      H5P.$body.css('cursor', 'pointer');
+    }
+
+    return this;
+  }
+
+  // Remove speechbubble if it belongs to a dom element that is about to be hidden
+  H5P.externalDispatcher.on('domHidden', function (event) {
+    if ($currentSpeechBubble !== undefined && event.data.$dom.find($currentContainer).length !== 0) {
+      remove();
+    }
+  });
+
+  var position = function($currentSpeechBubble, $tail, $innerTail, $h5pContainer, $container, maxWidth) {
     // Calculate offset between the button and the h5p frame
     var offset = getOffsetBetween($h5pContainer, $container);
 
@@ -108,33 +136,14 @@ H5P.JoubelSpeechBubble = (function ($) {
     var preparedTailCSS = tailCSS(direction, tailPosition);
     $tail.css(preparedTailCSS);
     $innerTail.css(preparedTailCSS);
-
-    // Handle click to close
-    H5P.$body.on('mousedown.speechBubble', handleOutsideClick);
-
-    // Handle clicks when inside IV which blocks bubbling.
-    $container.parents('.h5p-dialog')
-      .on('mousedown.speechBubble', handleOutsideClick);
-
-    if (iDevice) {
-      H5P.$body.css('cursor', 'pointer');
-    }
-
-    return this;
   }
-
-  // Remove speechbubble if it belongs to a dom element that is about to be hidden
-  H5P.externalDispatcher.on('domHidden', function (event) {
-    if ($currentSpeechBubble !== undefined && event.data.$dom.find($currentContainer).length !== 0) {
-      remove();
-    }
-  });
 
   /**
    * Static function for removing the speechbubble
    */
   var remove = function() {
     H5P.$body.off('mousedown.speechBubble');
+    $(window).off('resize');
     $currentContainer.parents('.h5p-dialog').off('mousedown.speechBubble');
     if (iDevice) {
       H5P.$body.css('cursor', '');
