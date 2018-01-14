@@ -110,7 +110,16 @@ H5P.JoubelSpeechBubble = (function ($) {
     }
   });
 
-  var position = function($currentSpeechBubble, $tail, $innerTail, $h5pContainer, $container, maxWidth) {
+  /**
+   * Repositions the speechbubble according to the position of the container
+   * @param {object} $currentSpeechbubble the speech bubble that should be positioned
+   * @param {object} $tail the tail (the triangle that points to the referenced container)
+   * @param {object} $innerTail the inner tail (the triangle that points to the referenced container)
+   * @param {object} $h5pContainer the container of the whole h5p content type
+   * @param {object} $container the container to which the speech bubble should point 
+   * @param {number} maxWidth the maximum width of the speech bubble
+   */
+  function position($currentSpeechBubble, $tail, $innerTail, $h5pContainer, $container, maxWidth) {
     // Calculate offset between the button and the h5p frame
     var offset = getOffsetBetween($h5pContainer, $container);
 
@@ -254,7 +263,8 @@ H5P.JoubelSpeechBubble = (function ($) {
         width: width + 'px',
         bottom: position.bottom + 'px',
         left: position.left + 'px',
-        fontSize: fontSize + 'px'
+        fontSize: fontSize + 'px',
+        top: ''
       };
     }
     else {
@@ -262,7 +272,8 @@ H5P.JoubelSpeechBubble = (function ($) {
         width: width + 'px',
         top: position.top + 'px',
         left: position.left + 'px',
-        fontSize: fontSize + 'px'
+        fontSize: fontSize + 'px',
+        bottom: ''
       };
     }
   }
@@ -278,20 +289,22 @@ H5P.JoubelSpeechBubble = (function ($) {
     if (direction === 'top') {
       return {
         bottom: position.bottom + 'px',
-        left: position.left + 'px'
+        left: position.left + 'px',
+        top: ''
       };
     }
     else {
       return {
         top: position.top + 'px',
-        left: position.left + 'px'
+        left: position.left + 'px',
+        bottom: ''
       };
     }
   }
 
   /**
    * Calculates the offset between an element inside a container and the
-   * container. Only works if all the edges of the inner element is inside the
+   * container. Only works if all the edges of the inner element are inside the
    * outer element.
    * Width/height of the elements is included as a convenience.
    *
