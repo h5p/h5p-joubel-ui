@@ -189,6 +189,7 @@ H5P.JoubelScoreBar = (function ($) {
     self.updateVisuals = function () {
       self.$progress.html(createLabel(self.score));
       self.$scoreCounter.text(self.score);
+      self.$maxScore.text(self.maxScore);
 
       setTimeout(function () {
         // Start the progressbar animation
