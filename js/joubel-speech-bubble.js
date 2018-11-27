@@ -6,8 +6,11 @@ var H5P = H5P || {};
 H5P.JoubelSpeechBubble = (function ($) {
 
   var $currentSpeechBubble;
-  var $currentContainer;
+  var $currentContainer;  
+  var $tail;
+  var $innerTail;
   var removeSpeechBubbleTimeout;
+  var currentMaxWidth;
 
   var DEFAULT_MAX_WIDTH = 400;
 
@@ -23,6 +26,7 @@ H5P.JoubelSpeechBubble = (function ($) {
    */
   function JoubelSpeechBubble($container, text, maxWidth) {
     maxWidth = maxWidth || DEFAULT_MAX_WIDTH;
+    currentMaxWidth = maxWidth;
     $currentContainer = $container;
 
     this.isCurrent = function ($tip) {
@@ -54,22 +58,17 @@ H5P.JoubelSpeechBubble = (function ($) {
       remove();
     }
 
-    var $h5pContainer = $container.closest('.h5p-frame');
-
-    // Check closest h5p frame first, then check for container in case there is no frame.
-    if (!$h5pContainer.length) {
-      $h5pContainer = $container.closest('.h5p-container');
-    }
+    var $h5pContainer = getH5PContainer($container);
 
     // Make sure we fade out old speech bubble
     fadeOutSpeechBubble($currentSpeechBubble);
 
     // Create bubble
-    var $tail = $('<div class="joubel-speech-bubble-tail"></div>');
-    var $innerTail = $('<div class="joubel-speech-bubble-inner-tail"></div>');
+    $tail = $('<div class="joubel-speech-bubble-tail"></div>');
+    $innerTail = $('<div class="joubel-speech-bubble-inner-tail"></div>');
     var $innerBubble = $(
       '<div class="joubel-speech-bubble-inner">' +
-        '<div class="joubel-speech-bubble-text">' + text + '</div>' +
+      '<div class="joubel-speech-bubble-text">' + text + '</div>' +
       '</div>'
     ).prepend($innerTail);
 
@@ -82,6 +81,68 @@ H5P.JoubelSpeechBubble = (function ($) {
     setTimeout(function () {
       $currentSpeechBubble.addClass('show');
     }, 0);
+
+    position($currentSpeechBubble, $currentContainer, maxWidth, $tail, $innerTail);
+
+    // Handle click to close
+    H5P.$body.on('mousedown.speechBubble', handleOutsideClick);
+
+    // Handle window resizing
+    H5P.$window.on('resize', '', handleResize);
+
+    // Handle clicks when inside IV which blocks bubbling.
+    $container.parents('.h5p-dialog')
+      .on('mousedown.speechBubble', handleOutsideClick);
+
+    if (iDevice) {
+      H5P.$body.css('cursor', 'pointer');
+    }
+
+    return this;
+  }
+
+  // Remove speechbubble if it belongs to a dom element that is about to be hidden
+  H5P.externalDispatcher.on('domHidden', function (event) {
+    if ($currentSpeechBubble !== undefined && event.data.$dom.find($currentContainer).length !== 0) {
+      remove();
+    }
+  });
+
+  /**
+   * Returns the closest h5p container for the given DOM element.
+   * 
+   * @param {object} $container jquery element
+   * @return {object} the h5p container (jquery element)
+   */
+  function getH5PContainer($container) {
+    var $h5pContainer = $container.closest('.h5p-frame');
+
+    // Check closest h5p frame first, then check for container in case there is no frame.
+    if (!$h5pContainer.length) {
+      $h5pContainer = $container.closest('.h5p-container');
+    }
+
+    return $h5pContainer;
+  }
+
+  /**
+   * Event handler that is called when the window is resized.
+   */
+  function handleResize() {
+    position($currentSpeechBubble, $currentContainer, currentMaxWidth, $tail, $innerTail);
+  }
+
+  /**
+   * Repositions the speech bubble according to the position of the container.
+   * 
+   * @param {object} $currentSpeechbubble the speech bubble that should be positioned   
+   * @param {object} $container the container to which the speech bubble should point 
+   * @param {number} maxWidth the maximum width of the speech bubble
+   * @param {object} $tail the tail (the triangle that points to the referenced container)
+   * @param {object} $innerTail the inner tail (the triangle that points to the referenced container)
+   */
+  function position($currentSpeechBubble, $container, maxWidth, $tail, $innerTail) {
+    var $h5pContainer = getH5PContainer($container);
 
     // Calculate offset between the button and the h5p frame
     var offset = getOffsetBetween($h5pContainer, $container);
@@ -108,33 +169,14 @@ H5P.JoubelSpeechBubble = (function ($) {
     var preparedTailCSS = tailCSS(direction, tailPosition);
     $tail.css(preparedTailCSS);
     $innerTail.css(preparedTailCSS);
-
-    // Handle click to close
-    H5P.$body.on('mousedown.speechBubble', handleOutsideClick);
-
-    // Handle clicks when inside IV which blocks bubbling.
-    $container.parents('.h5p-dialog')
-      .on('mousedown.speechBubble', handleOutsideClick);
-
-    if (iDevice) {
-      H5P.$body.css('cursor', 'pointer');
-    }
-
-    return this;
   }
-
-  // Remove speechbubble if it belongs to a dom element that is about to be hidden
-  H5P.externalDispatcher.on('domHidden', function (event) {
-    if ($currentSpeechBubble !== undefined && event.data.$dom.find($currentContainer).length !== 0) {
-      remove();
-    }
-  });
 
   /**
    * Static function for removing the speechbubble
    */
-  var remove = function() {
+  var remove = function () {
     H5P.$body.off('mousedown.speechBubble');
+    H5P.$window.off('resize', '', handleResize);
     $currentContainer.parents('.h5p-dialog').off('mousedown.speechBubble');
     if (iDevice) {
       H5P.$body.css('cursor', '');
@@ -153,7 +195,7 @@ H5P.JoubelSpeechBubble = (function ($) {
     // Don't return false here. If the user e.g. clicks a button when the bubble is visible,
     // we want the bubble to disapear AND the button to receive the event
   };
-  
+
   /**
    * Remove the speech bubble and container reference
    */
@@ -245,7 +287,8 @@ H5P.JoubelSpeechBubble = (function ($) {
         width: width + 'px',
         bottom: position.bottom + 'px',
         left: position.left + 'px',
-        fontSize: fontSize + 'px'
+        fontSize: fontSize + 'px',
+        top: ''
       };
     }
     else {
@@ -253,7 +296,8 @@ H5P.JoubelSpeechBubble = (function ($) {
         width: width + 'px',
         top: position.top + 'px',
         left: position.left + 'px',
-        fontSize: fontSize + 'px'
+        fontSize: fontSize + 'px',
+        bottom: ''
       };
     }
   }
@@ -269,20 +313,22 @@ H5P.JoubelSpeechBubble = (function ($) {
     if (direction === 'top') {
       return {
         bottom: position.bottom + 'px',
-        left: position.left + 'px'
+        left: position.left + 'px',
+        top: ''
       };
     }
     else {
       return {
         top: position.top + 'px',
-        left: position.left + 'px'
+        left: position.left + 'px',
+        bottom: ''
       };
     }
   }
 
   /**
    * Calculates the offset between an element inside a container and the
-   * container. Only works if all the edges of the inner element is inside the
+   * container. Only works if all the edges of the inner element are inside the
    * outer element.
    * Width/height of the elements is included as a convenience.
    *
