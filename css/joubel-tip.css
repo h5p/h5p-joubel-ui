@@ -14,9 +14,7 @@
 }
 .using-mouse .joubel-tip-container:focus {
   box-shadow: none;
-  outline: none;
 }
-
 .joubel-tip-container.be-quiet:focus {
   outline: none;
 }
