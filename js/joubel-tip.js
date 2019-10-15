@@ -68,6 +68,12 @@ H5P.JoubelTip = (function ($) {
       // IMPORTANT: All of the markup elements must have 'pointer-events: none;'
     });
 
+    const $tipAnnouncer = $('<div>', {
+      'class': 'hidden-but-read',
+      'aria-live': 'polite',
+      appendTo: $tipButton,
+    });
+
     /**
      * Tip button interaction handler.
      * Toggle show or hide the speech bubble popup when interacting with the
@@ -83,11 +89,13 @@ H5P.JoubelTip = (function ($) {
         speechBubble = undefined;
 
         $tipButton.attr('aria-expanded', false);
+        $tipAnnouncer.html('');
       }
       else if (force !== false && behaviour.showSpeechBubble) {
         // Create and show new popup
         speechBubble = H5P.JoubelSpeechBubble($tipButton, tipHtml);
         $tipButton.attr('aria-expanded', true);
+        $tipAnnouncer.html(tipHtml);
       }
     };
 
