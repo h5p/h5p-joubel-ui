@@ -122,11 +122,6 @@ H5P.JoubelSpeechBubble = (function ($) {
       $h5pContainer = $container.closest('.h5p-container');
     }
 
-    // In case user is viewing this in preview screen the container will be different
-    if (!$h5pContainer.length) {
-      $h5pContainer = $container.closest('.preview-wrapper');
-    }
-
     return $h5pContainer;
   }
 
