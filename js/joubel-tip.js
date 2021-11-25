@@ -37,7 +37,6 @@ H5P.JoubelTip = (function ($) {
     // Create Tip button
     var $tipButton = $('<div/>', {
       class: 'joubel-tip-container' + (behaviour.showSpeechBubble ? '' : ' be-quiet'),
-      title: behaviour.tipLabel,
       'aria-label': behaviour.tipLabel,
       'aria-expanded': false,
       role: 'button',
