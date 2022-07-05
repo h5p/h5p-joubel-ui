@@ -38,8 +38,8 @@
   width: 0;
   border-top-left-radius: .5em;
   border-bottom-left-radius: .5em;
-  background: #48b57e; /* For browsers not supporting linear-gradient */
-  background: linear-gradient(to right, #52ca8d, #48b57e);
+  background: #27975E; /* For browsers not supporting linear-gradient */
+  background: linear-gradient(to right, #52ca8d, #27975E);
   -webkit-transition: width 0.4s ease-in-out;
   -moz-transition: width 0.4s ease-in-out;
   -o-transition: width 0.4s ease-in-out;
