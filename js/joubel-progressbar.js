@@ -28,14 +28,6 @@ H5P.JoubelProgressbar = (function ($) {
         click: function () {
           self.toggleTooltip();
           return false;
-        },
-        mouseenter: function () {
-          self.showTooltip();
-        },
-        mouseleave: function () {
-          setTimeout(function () {
-            self.hideTooltip();
-          }, 1500);
         }
       }
     });
