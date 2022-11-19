@@ -60,6 +60,9 @@
   -o-transition: initial;
   transition: initial;
 }
+.h5p-joubelui-button:focus-visible {
+  outline: 2px solid black;
+}
 .h5p-joubelui-button:active {
   position: relative;
   background: #104888;

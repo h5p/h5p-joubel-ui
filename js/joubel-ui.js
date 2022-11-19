@@ -143,7 +143,9 @@ H5P.JoubelUI = (function ($) {
     else {
       params.class = 'h5p-joubelui-button';
     }
-    return $('<' + type + '/>', params);
+    const $button = $('<' + type + '/>', params);
+    H5P.Tooltip($button.get(0));
+    return $button;
   };
 
   /**
