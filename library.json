@@ -1,10 +1,11 @@
+
 {
   "title": "Joubel UI",
   "contentType": "Utility",
   "description": "UI utility library",
   "majorVersion": 1,
   "minorVersion": 3,
-  "patchVersion": 16,
+  "patchVersion": 17,
   "runnable": 0,
   "coreApi": {
     "majorVersion": 1,
