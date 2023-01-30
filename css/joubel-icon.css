@@ -61,16 +61,16 @@
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.joubel-icon-tip-normal:hover .h5p-icon-speech-bubble:before {
+.joubel-tip-container:hover .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
   color: rgb(19, 86, 163);
 }
-.joubel-icon-tip-normal:active .h5p-icon-speech-bubble:before {
+.joubel-tip-container:active .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
   color: rgb(16, 72, 136);
   position: relative;
   top: 0.05em;
   left: 0.05em;
 }
-.joubel-icon-tip-normal:active .h5p-icon-info:before {
+.joubel-tip-container:active .joubel-icon-tip-normal .h5p-icon-info:before {
   position: relative;
   top: 0.05em;
   left: 0.05em;
