@@ -54,23 +54,23 @@
 .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
   content: "\e908";
   margin-left: -1em;
-  color: rgb(53, 128, 195);
+  color: rgb(26, 115, 217);
 }
 .joubel-icon-tip-normal .h5p-icon-info:before {
   content: "\e905";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.joubel-icon-tip-normal:hover .h5p-icon-speech-bubble:before {
-  color: rgb(72, 155, 213);
+.joubel-tip-container:hover .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
+  color: rgb(19, 86, 163);
 }
-.joubel-icon-tip-normal:active .h5p-icon-speech-bubble:before {
-  color: rgb(72, 155, 213);
+.joubel-tip-container:active .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
+  color: rgb(16, 72, 136);
   position: relative;
   top: 0.05em;
   left: 0.05em;
 }
-.joubel-icon-tip-normal:active .h5p-icon-info:before {
+.joubel-tip-container:active .joubel-icon-tip-normal .h5p-icon-info:before {
   position: relative;
   top: 0.05em;
   left: 0.05em;
