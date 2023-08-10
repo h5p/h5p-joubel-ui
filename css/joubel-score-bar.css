@@ -45,6 +45,7 @@
   -o-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
   -webkit-backface-visibility: hidden;
+  user-select: none;
 }
 /* The star */
 .h5p-joubelui-score-bar-star {
