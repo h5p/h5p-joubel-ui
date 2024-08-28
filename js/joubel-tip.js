@@ -13,6 +13,7 @@ H5P.JoubelTip = (function ($) {
    * @param {boolean} [behaviour.helpIcon] Set to 'true' to Add help-icon classname to Tip button (changes the icon)
    * @param {boolean} [behaviour.showSpeechBubble] Set to 'false' to disable functionality (you may this in the editor)
    * @param {boolean} [behaviour.tabcontrol] Set to 'true' if you plan on controlling the tabindex in the parent (tabindex="-1")
+   * @param {boolean} [behaviour.useDesign] Use the new design
    * @return {H5P.jQuery|undefined} Tip button jQuery element or 'undefined' if invalid tip
    */
   function JoubelTip(tipHtml, behaviour) {
@@ -59,7 +60,10 @@ H5P.JoubelTip = (function ($) {
         }
       },
       // Add markup to render icon
-      html: '<span class="joubel-icon-tip-normal ' + (behaviour.helpIcon ? ' help-icon': '') + '">' +
+      html: '<span class="joubel-icon-tip-normal ' +
+              (behaviour.helpIcon ? ' help-icon': '') +
+              (behaviour.useDesign ? ' h5p-theme': '') +
+            '">' +
               '<span class="h5p-icon-shadow"></span>' +
               '<span class="h5p-icon-speech-bubble"></span>' +
               '<span class="h5p-icon-info"></span>' +
