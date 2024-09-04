@@ -73,9 +73,12 @@ H5P.JoubelSpeechBubble = (function ($) {
     ).prepend($innerTail);
 
     $currentSpeechBubble = $(
-      '<div class="joubel-speech-bubble" aria-live="assertive">'
+      '<div class="joubel-speech-bubble ' +
+        (($container.closest('.h5p-theme').length) ? 'h5p-theme"' : '"') +
+        '" aria-live="assertive"' +
+      '>'
     ).append([$tail, $innerBubble])
-      .appendTo($h5pContainer);
+     .appendTo($h5pContainer);
 
     // Show speech bubble with transition
     setTimeout(function () {
