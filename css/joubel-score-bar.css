@@ -178,3 +178,9 @@
   font-size: 1em;
   line-height: 1;
 }
+
+/* H5P THEME */
+
+.h5p-theme .h5p-joubelui-score-bar-star filter feFlood {
+  flood-color: var(--main-cta-base);
+}
