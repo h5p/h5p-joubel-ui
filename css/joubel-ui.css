@@ -77,13 +77,17 @@
   font-family: 'H5PFontAwesome4';
   padding-right: 0.5em;
 }
+.h5p-theme .h5p-joubelui-button:before {
+  font-family: 'h5p-theme';
+  padding-right: 0.5em;
+}
 
 .h5p-question-try-again:before {
   content: "\F01E";
 }
 
 .h5p-question-show-solution:before {
-  content: "\F06E";
+  content: "\e90a";
 }
 
 .h5p-question-check-answer:before {
@@ -95,3 +99,22 @@
   outline: none;
 }
 
+.h5p-theme .h5p-joubelui-button{
+  font-size: unset;
+    line-height: unset;
+    margin:  unset;
+    padding:  unset;
+    border-radius:  unset;
+    background: unset;
+    color:  unset;
+    cursor:  unset;
+    border:  unset;
+    box-shadow:  unset;
+    -webkit-transform:  unset;
+    transform:  unset;
+    display:  unset;
+    text-align: unset;
+    text-shadow:  unset;
+    text-decoration:  unset;
+    vertical-align:  unset;
+}

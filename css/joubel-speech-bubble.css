@@ -22,14 +22,16 @@
   opacity: 1;
 }
 .joubel-speech-bubble-inner {
-  background: #fbfbfb;
+  background: var(--ui-base);
+  border: solid 1px var(--stroke-1);
   box-shadow: 0 0 0.5em #2c2c2c;
   border-radius: 0.5em;
-  padding: 0.2em 0.5em;
+  padding: 0.4rem 0.6rem;
   text-align: left;
   position: relative;
   word-wrap: break-word; /* Long words have to break */
   z-index: 1;
+  font-family: var(--font-name);
 }
 .joubel-speech-bubble-inner-tail,
 .joubel-speech-bubble-tail {
