@@ -184,3 +184,9 @@
 .h5p-theme .h5p-joubelui-score-bar-star filter feFlood {
   flood-color: var(--main-cta-base);
 }
+.h5p-theme .h5p-joubelui-score-bar{
+  background-color: var(--ui-base);
+}
+.h5p-theme .h5p-joubelui-score-number{
+  color: var(--text-primary);
+}

@@ -83,6 +83,9 @@
 }
 
 .h5p-question-show-solution:before {
+  content: "\F06E";
+}
+.h5p-theme .h5p-question-show-solution:before {
   content: "\e90a";
 }
 

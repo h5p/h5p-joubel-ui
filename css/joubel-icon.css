@@ -2,8 +2,8 @@
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'H5PFontIcons' !important;
   speak: none;
-  font-size: 1.5em; 
-  line-height: 1.5em;
+  font-size: var(--font-size-xxl); 
+  line-height: var(--font-size-xxl);
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -149,4 +149,8 @@
 /* Hide icon layers if using font awesome */
 .joubel-icon-tip-normal.help-icon > span {
   display: none;
+}
+
+.h5p-theme .joubel-icon-tip-normal .h5p-icon-shadow:before {
+  color: var(--alternative-darker);
 }
