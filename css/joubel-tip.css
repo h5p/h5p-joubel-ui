@@ -58,6 +58,9 @@
 
 /* H5P Theme */
 
+.h5p-theme .joubel-tip-container .hidden-but-read  {
+ color: var(--text-primary);
+}
 .h5p-theme .joubel-tip-container {
   margin-left: 0.25rem;
 }
