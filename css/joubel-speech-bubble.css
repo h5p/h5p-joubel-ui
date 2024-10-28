@@ -25,7 +25,7 @@
   background: var(--ui-base);
   border: solid 1px var(--stroke-1);
   box-shadow: 0 0 0.5em #2c2c2c;
-  border-radius: 0.5em;
+  border-radius: var(--border-radius-medium);
   padding: 0.4rem 0.6rem;
   text-align: left;
   position: relative;
@@ -49,4 +49,9 @@
 }
 .joubel-speech-bubble-tail {
   box-shadow: 0 0 0.5em #2c2c2c;
+}
+
+.h5p-theme .joubel-speech-bubble-inner-tail,
+.h5p-theme .joubel-speech-bubble-tail { 
+  background-color: var(--ui-base);
 }

@@ -62,10 +62,10 @@
   color: rgb(255, 255, 255);
 }
 .joubel-tip-container:hover .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
-  color: rgb(19, 86, 163);
+  color: var(--main-cta-light);
 }
 .joubel-tip-container:active .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
-  color: rgb(16, 72, 136);
+  color: var(--main-cta-dark);
   position: relative;
   top: 0.05em;
   left: 0.05em;
@@ -151,6 +151,23 @@
   display: none;
 }
 
+/* H5P theme */
+
 .h5p-theme .joubel-icon-tip-normal .h5p-icon-shadow:before {
   color: var(--alternative-darker);
 }
+
+.h5p-theme .joubel-speech-bubble-inner {
+  background: var(--ui-base);
+  border: solid 1px var(--stroke-1);
+  border-radius: var(--border-radius-small);
+  font-family: var(--font-name);
+  color: var(--text-primary);
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.08);
+}
+
+.h5p-theme .joubel-speech-bubble-tail {
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.08);
+  background-color: var(--ui-base);
+}
+
