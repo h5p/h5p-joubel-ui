@@ -48,7 +48,7 @@
 }
 
 .h5p-theme .h5p-joubelui-score-bar-progress {
-  background: var(--main-cta-base); /* For browsers not supporting linear-gradient */
+  background: var(--h5p-theme-main-cta-base); /* For browsers not supporting linear-gradient */
 
 
 }
@@ -125,7 +125,7 @@
   fill: #ffc80b;
 }
 .h5p-theme .h5p-joubelui-score-bar-star-fill-full-score {
-  fill: var(--main-cta-base) !important;
+  fill: var(--h5p-theme-main-cta-base) !important;
 }
 
 .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill {
@@ -136,11 +136,11 @@
 .h5p-theme .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill {
   /* This  will be a fallback for browsers not supporting the filter,
      i.e. Safari */
-  fill: var(--main-cta-base) !important;
+  fill: var(--h5p-theme-main-cta-base) !important;
 }
 
 .h5p-theme .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-border{
-  stroke: var(--main-cta-base) !important;
+  stroke: var(--h5p-theme-main-cta-base) !important;
 }
 
 .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill-full-score {
@@ -182,11 +182,11 @@
 /* H5P THEME */
 
 .h5p-theme .h5p-joubelui-score-bar-star filter feFlood {
-  flood-color: var(--main-cta-base);
+  flood-color: var(--h5p-theme-main-cta-base);
 }
 .h5p-theme .h5p-joubelui-score-bar{
-  background-color: var(--ui-base);
+  background-color: var(--h5p-theme-ui-base);
 }
 .h5p-theme .h5p-joubelui-score-number{
-  color: var(--text-primary);
+  color: var(--h5p-theme-text-primary);
 }
