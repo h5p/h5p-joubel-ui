@@ -26,3 +26,11 @@
   position: relative;
   top: 2px;
 }
+
+.h5p-theme .joubel-simple-rounded-button:active {
+  position: unset;
+  background-color: unset;
+  -webkit-box-shadow: unset;
+  -moz-box-shadow: unset;
+  box-shadow: unset;
+}
