@@ -27,10 +27,14 @@
   top: 2px;
 }
 
-.h5p-theme .joubel-simple-rounded-button:active {
-  position: unset;
-  background-color: unset;
-  -webkit-box-shadow: unset;
-  -moz-box-shadow: unset;
-  box-shadow: unset;
+/* H5P Theme */
+.h5p-theme .joubel-simple-rounded-button {
+  margin: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.h5p-theme .joubel-simple-rounded-button:active .joubel-simple-rounded-button-text {
+  top: 0;
 }
