@@ -13,6 +13,7 @@
   box-shadow: 0px 0px 5px 2px rgba(140,185,240,1);
   outline: rgba(140,185,240,1) solid 1px;
 }
+
 .using-mouse .joubel-tip-container:focus {
   box-shadow: none;
 }
@@ -71,4 +72,10 @@
 
 .h5p-theme .joubel-icon-tip-normal .h5p-icon-info:before {
   color: var(--h5p-theme-contrast-cta);
+}
+
+.h5p-theme .joubel-tip-container:focus {
+  z-index: 3000;
+  outline: 4px ridge var(--h5p-theme-main-cta-base);
+  border-radius: 4px;
 }
