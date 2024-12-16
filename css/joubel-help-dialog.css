@@ -50,8 +50,8 @@
 /* Close help dialog container */
 .joubel-help-text-remove {
   position: absolute;
-  right: 1.5em;
-  top: 0.8em;
+  right: var(--h5p-theme-spacing-xs);
+  top: var(--h5p-theme-spacing-s);
   cursor: pointer;
 }
 
@@ -66,3 +66,28 @@
   right: 0em;
   top: 0em;
 }
+
+.h5p-theme .joubel-help-text-remove:before {
+  font-family: 'h5p-theme';
+  content: '\e910';
+  display: inline-block;
+  transform: translateY(-0.48em);
+  padding: var(--h5p-theme-spacing-s);
+  border-radius: 50%;
+}
+
+.h5p-theme .joubel-help-text-remove:hover:before {
+  color: var(--h5p-theme-text-primary);
+  background-color: var(--h5p-theme-alternative-base);
+}
+
+.h5p-theme .joubel-help-text-header{
+  padding: var(--h5p-theme-spacing-m) var(--h5p-theme-spacing-l);
+  border-bottom: none;
+}
+
+.h5p-theme .joubel-help-text-body{
+  padding: 0 var(--h5p-theme-spacing-l) var(--h5p-theme-spacing-l) var(--h5p-theme-spacing-l);
+  margin: 0;
+}
+
