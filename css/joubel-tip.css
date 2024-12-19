@@ -75,7 +75,6 @@
 }
 
 .h5p-theme .joubel-tip-container:focus {
-  z-index: 3000;
   outline: 4px ridge var(--h5p-theme-main-cta-base);
   border-radius: 4px;
 }
