@@ -9,7 +9,8 @@
 }
 
 .joubel-simple-rounded-button:hover,
-.joubel-simple-rounded-button:focus {
+.h5p-content:not(:has(.h5p-theme)).joubel-simple-rounded-button:focus,
+.h5peditor:not(:has(.h5p-theme)).joubel-simple-rounded-button:focus {
   background-color: #1356a3;
 }
 
