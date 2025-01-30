@@ -171,7 +171,7 @@
   right: 0.3em;
   font-size: 1em;
   line-height: 1;
-  color: #1a73d9;
+  color: var(--h5p-theme-main-cta-base);
   margin-right: 0.2em;
 }
 .h5p-joubelui-score-bar .joubel-tip-container > .help-icon {
