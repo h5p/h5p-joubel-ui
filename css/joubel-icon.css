@@ -171,3 +171,8 @@
   background-color: var(--h5p-theme-ui-base);
 }
 
+.h5p-theme .joubel-icon-tip-normal.help-icon:before {
+  font-family: 'h5p-theme';
+  content: "\e917";
+}
+
