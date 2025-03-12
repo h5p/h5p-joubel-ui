@@ -54,4 +54,6 @@
 .h5p-theme .joubel-speech-bubble-inner-tail,
 .h5p-theme .joubel-speech-bubble-tail { 
   background-color: var(--h5p-theme-ui-base);
+  border-left: solid 1px var(--h5p-theme-stroke-1);
+  border-top: solid 1px var(--h5p-theme-stroke-1);
 }

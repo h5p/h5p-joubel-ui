@@ -103,7 +103,7 @@
 
 .h5p-theme .h5p-joubelui-button:before {
   font-family: 'h5p-theme';
-  padding-right: 0.5em;
+  padding-right: 0 !important;
 }
 
 .h5p-theme .h5p-joubelui-button:active {
