@@ -53,7 +53,7 @@
 .h5p-joubelui-button:hover,
 .h5p-joubelui-button:focus {
   background: #1356a3;
-  color: #fff;
+  color: var(--h5p-theme-contrast-cta);
   text-decoration: none;
   -webkit-transition: initial;
   -moz-transition: initial;
