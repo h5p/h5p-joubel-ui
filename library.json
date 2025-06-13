@@ -4,7 +4,7 @@
   "description": "UI utility library",
   "majorVersion": 1,
   "minorVersion": 3,
-  "patchVersion": 26,
+  "patchVersion": 27,
   "runnable": 0,
   "coreApi": {
     "majorVersion": 1,
@@ -45,6 +45,39 @@
     },
     {
       "path": "js/joubel-ui.js"
+    },
+    {
+      "path": "@legacy/js/joubel-help-dialog.js"
+    },
+    {
+      "path": "@legacy/js/joubel-message-dialog.js"
+    },
+    {
+      "path": "@legacy/js/joubel-progress-circle.js"
+    },
+    {
+      "path": "@legacy/js/joubel-simple-rounded-button.js"
+    },
+    {
+      "path": "@legacy/js/joubel-speech-bubble.js"
+    },
+    {
+      "path": "@legacy/js/joubel-throbber.js"
+    },
+    {
+      "path": "@legacy/js/joubel-tip.js"
+    },
+    {
+      "path": "@legacy/js/joubel-slider.js"
+    },
+    {
+      "path": "@legacy/js/joubel-score-bar.js"
+    },
+    {
+      "path": "@legacy/js/joubel-progressbar.js"
+    },
+    {
+      "path": "@legacy/js/joubel-ui.js"
     }
   ],
   "preloadedCss": [
@@ -80,6 +113,39 @@
     },
     {
       "path": "css/joubel-icon.css"
+    },
+    {
+      "path": "@legacy/css/joubel-help-dialog.css"
+    },
+    {
+      "path": "@legacy/css/joubel-message-dialog.css"
+    },
+    {
+      "path": "@legacy/css/joubel-progress-circle.css"
+    },
+    {
+      "path": "@legacy/css/joubel-simple-rounded-button.css"
+    },
+    {
+      "path": "@legacy/css/joubel-speech-bubble.css"
+    },
+    {
+      "path": "@legacy/css/joubel-tip.css"
+    },
+    {
+      "path": "@legacy/css/joubel-slider.css"
+    },
+    {
+      "path": "@legacy/css/joubel-score-bar.css"
+    },
+    {
+      "path": "@legacy/css/joubel-progressbar.css"
+    },
+    {
+      "path": "@legacy/css/joubel-ui.css"
+    },
+    {
+      "path": "@legacy/css/joubel-icon.css"
     }
   ],
   "preloadedDependencies": [
