@@ -9,7 +9,8 @@
 }
 
 .joubel-simple-rounded-button:hover,
-.joubel-simple-rounded-button:focus {
+.h5p-content:not(:has(.h5p-theme)).joubel-simple-rounded-button:focus,
+.h5peditor:not(:has(.h5p-theme)).joubel-simple-rounded-button:focus {
   background-color: #1356a3;
 }
 
@@ -25,4 +26,16 @@
 .joubel-simple-rounded-button:active .joubel-simple-rounded-button-text {
   position: relative;
   top: 2px;
+}
+
+/* H5P Theme */
+.h5p-theme .joubel-simple-rounded-button {
+  margin: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.h5p-theme .joubel-simple-rounded-button:active .joubel-simple-rounded-button-text {
+  top: 0;
 }

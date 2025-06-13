@@ -5,7 +5,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  color: #555;
+  color: var(--h5p-theme-text-primary);
   z-index: 2;
 }
 
@@ -16,8 +16,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: #555555;
-  opacity: 0.75;
+  background: rgba(0, 0, 0, 0.85);
 }
 
 /* ------------------------------------ Main content container ------------------------ */
@@ -27,7 +26,8 @@
   top: 3.5%;
   left: 20%;
   width: 60%;
-  background: #fff;
+  background: var(--h5p-theme-ui-base);
+  border-radius: var(--h5p-theme-border-radius-large);
   opacity: 1;
   max-height: 93%;
   overflow: auto;
@@ -35,8 +35,9 @@
 
 /* Header */
 .joubel-help-text-header {
-  font-size: 1.1em;
-  border-bottom: 1px solid #E0E0E0;
+  font-size: var(--h5p-theme-font-size-l);
+  font-weight: bold;
+  border-bottom: 1px solid var(--h5p-theme-stroke-1);
   padding: 0.75em 3em 0.75em 1.5em;
 }
 
@@ -49,8 +50,8 @@
 /* Close help dialog container */
 .joubel-help-text-remove {
   position: absolute;
-  right: 1.5em;
-  top: 0.8em;
+  right: var(--h5p-theme-spacing-xs);
+  top: var(--h5p-theme-spacing-s);
   cursor: pointer;
 }
 
@@ -65,3 +66,28 @@
   right: 0em;
   top: 0em;
 }
+
+.h5p-theme .joubel-help-text-remove:before {
+  font-family: 'h5p-theme';
+  content: '\e910';
+  display: inline-block;
+  transform: translateY(-0.48em);
+  padding: var(--h5p-theme-spacing-s);
+  border-radius: 50%;
+}
+
+.h5p-theme .joubel-help-text-remove:hover:before {
+  color: var(--h5p-theme-text-primary);
+  background-color: var(--h5p-theme-alternative-base);
+}
+
+.h5p-theme .joubel-help-text-header{
+  padding: var(--h5p-theme-spacing-m) var(--h5p-theme-spacing-l);
+  border-bottom: none;
+}
+
+.h5p-theme .joubel-help-text-body{
+  padding: 0 var(--h5p-theme-spacing-l) var(--h5p-theme-spacing-l) var(--h5p-theme-spacing-l);
+  margin: 0;
+}
+

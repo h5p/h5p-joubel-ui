@@ -2,8 +2,8 @@
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'H5PFontIcons' !important;
   speak: none;
-  font-size: 1.5em; 
-  line-height: 1.5em;
+  font-size: var(--h5p-theme-font-size-xxl); 
+  line-height: var(--h5p-theme-font-size-xxl);
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -62,10 +62,10 @@
   color: rgb(255, 255, 255);
 }
 .joubel-tip-container:hover .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
-  color: rgb(19, 86, 163);
+  color: var(--h5p-theme-main-cta-light);
 }
 .joubel-tip-container:active .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
-  color: rgb(16, 72, 136);
+  color: var(--h5p-theme-main-cta-dark);
   position: relative;
   top: 0.05em;
   left: 0.05em;
@@ -150,3 +150,29 @@
 .joubel-icon-tip-normal.help-icon > span {
   display: none;
 }
+
+/* H5P theme */
+
+.h5p-theme .joubel-icon-tip-normal .h5p-icon-shadow:before {
+  color: var(--h5p-theme-alternative-darker);
+}
+
+.h5p-theme .joubel-speech-bubble-inner {
+  background: var(--h5p-theme-ui-base);
+  border: solid 1px var(--h5p-theme-stroke-1);
+  border-radius: var(--h5p-theme-border-radius-small);
+  font-family: var(--h5p-theme-font-name);
+  color: var(--h5p-theme-text-primary);
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.08);
+}
+
+.h5p-theme .joubel-speech-bubble-tail {
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.08);
+  background-color: var(--h5p-theme-ui-base);
+}
+
+.h5p-theme .joubel-icon-tip-normal.help-icon:before {
+  font-family: 'h5p-theme';
+  content: "\e917";
+}
+

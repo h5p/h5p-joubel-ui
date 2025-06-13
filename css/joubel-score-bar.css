@@ -46,6 +46,13 @@
   transition: width 0.4s ease-in-out;
   -webkit-backface-visibility: hidden;
 }
+
+.h5p-theme .h5p-joubelui-score-bar-progress {
+  background: var(--h5p-theme-main-cta-base); /* For browsers not supporting linear-gradient */
+
+
+}
+
 /* The star */
 .h5p-joubelui-score-bar-star {
   height: 1.8em;
@@ -117,11 +124,25 @@
   visibility: hidden;
   fill: #ffc80b;
 }
+.h5p-theme .h5p-joubelui-score-bar-star-fill-full-score {
+  fill: var(--h5p-theme-main-cta-base) !important;
+}
+
 .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill {
   /* This  will be a fallback for browsers not supporting the filter,
      i.e. Safari */
   fill: #ffc80b;
 }
+.h5p-theme .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill {
+  /* This  will be a fallback for browsers not supporting the filter,
+     i.e. Safari */
+  fill: var(--h5p-theme-main-cta-base) !important;
+}
+
+.h5p-theme .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-border{
+  stroke: var(--h5p-theme-main-cta-base) !important;
+}
+
 .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill-full-score {
   visibility: visible;
 }
@@ -150,10 +171,22 @@
   right: 0.3em;
   font-size: 1em;
   line-height: 1;
-  color: #1a73d9;
+  color: var(--h5p-theme-main-cta-base);
   margin-right: 0.2em;
 }
 .h5p-joubelui-score-bar .joubel-tip-container > .help-icon {
   font-size: 1em;
   line-height: 1;
+}
+
+/* H5P THEME */
+
+.h5p-theme .h5p-joubelui-score-bar-star filter feFlood {
+  flood-color: var(--h5p-theme-main-cta-base);
+}
+.h5p-theme .h5p-joubelui-score-bar{
+  background-color: var(--h5p-theme-ui-base);
+}
+.h5p-theme .h5p-joubelui-score-number{
+  color: var(--h5p-theme-text-primary);
 }

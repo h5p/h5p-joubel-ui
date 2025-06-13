@@ -53,7 +53,7 @@
 .h5p-joubelui-button:hover,
 .h5p-joubelui-button:focus {
   background: #1356a3;
-  color: #fff;
+  color: var(--h5p-theme-contrast-cta);
   text-decoration: none;
   -webkit-transition: initial;
   -moz-transition: initial;
@@ -68,6 +68,7 @@
   -moz-box-shadow: inset 0 4px 0 #0e407a;
   box-shadow: inset 0 4px 0 #0e407a;
 }
+
 .h5p-joubelui-button:active .h5p-joubelui-button-text {
   position: relative;
   top: 2px;
@@ -85,6 +86,9 @@
 .h5p-question-show-solution:before {
   content: "\F06E";
 }
+.h5p-theme .h5p-question-show-solution:before {
+  content: "\e90a";
+}
 
 .h5p-question-check-answer:before {
   content: "\F058";
@@ -93,4 +97,26 @@
 /* Remove outline for all elements having tabIndex="-1"*/
 .h5p-content [tabIndex="-1"] {
   outline: none;
+}
+
+/* H5P Theme */
+
+.h5p-theme .h5p-joubelui-button:before {
+  font-family: 'h5p-theme';
+  padding-right: 0 !important;
+}
+
+.h5p-theme .h5p-joubelui-button:active {
+  position: relative;
+  background: var(--h5p-theme-main-cta-dark);
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+@container (max-width: 350px) {
+  .h5p-theme .h5p-joubelui-button:before {
+    padding-right: unset;
+  }
 }

@@ -22,14 +22,16 @@
   opacity: 1;
 }
 .joubel-speech-bubble-inner {
-  background: #fbfbfb;
+  background: var(--h5p-theme-ui-base);
+  border: solid 1px var(--h5p-theme-stroke-1);
   box-shadow: 0 0 0.5em #2c2c2c;
-  border-radius: 0.5em;
-  padding: 0.2em 0.5em;
+  border-radius: var(--h5p-theme-border-radius-medium);
+  padding: 0.4rem 0.6rem;
   text-align: left;
   position: relative;
   word-wrap: break-word; /* Long words have to break */
   z-index: 1;
+  font-family: var(--h5p-theme-font-name);
 }
 .joubel-speech-bubble-inner-tail,
 .joubel-speech-bubble-tail {
@@ -47,4 +49,11 @@
 }
 .joubel-speech-bubble-tail {
   box-shadow: 0 0 0.5em #2c2c2c;
+}
+
+.h5p-theme .joubel-speech-bubble-inner-tail,
+.h5p-theme .joubel-speech-bubble-tail { 
+  background-color: var(--h5p-theme-ui-base);
+  border-left: solid 1px var(--h5p-theme-stroke-1);
+  border-top: solid 1px var(--h5p-theme-stroke-1);
 }
