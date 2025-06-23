@@ -6,7 +6,7 @@ var H5P = H5P || {};
 H5P.JoubelSpeechBubble = (function ($) {
 
   var $currentSpeechBubble;
-  var $currentContainer;  
+  var $currentContainer;
   var $tail;
   var $innerTail;
   var removeSpeechBubbleTimeout;
@@ -70,14 +70,14 @@ H5P.JoubelSpeechBubble = (function ($) {
       '<div class="joubel-speech-bubble-inner">' +
       '<div class="joubel-speech-bubble-text">' + text + '</div>' +
       '</div>'
-    ).prepend($innerTail);
+    );
 
     $currentSpeechBubble = $(
       '<div class="joubel-speech-bubble ' +
         (($container.closest('.h5p-theme').length) ? 'h5p-theme"' : '"') +
         '" aria-live="assertive"' +
       '>'
-    ).append([$tail, $innerBubble])
+    ).append([$tail, $innerTail, $innerBubble])
      .appendTo($h5pContainer);
 
     // Show speech bubble with transition
@@ -113,7 +113,7 @@ H5P.JoubelSpeechBubble = (function ($) {
 
   /**
    * Returns the closest h5p container for the given DOM element.
-   * 
+   *
    * @param {object} $container jquery element
    * @return {object} the h5p container (jquery element)
    */
@@ -137,9 +137,9 @@ H5P.JoubelSpeechBubble = (function ($) {
 
   /**
    * Repositions the speech bubble according to the position of the container.
-   * 
-   * @param {object} $currentSpeechbubble the speech bubble that should be positioned   
-   * @param {object} $container the container to which the speech bubble should point 
+   *
+   * @param {object} $currentSpeechbubble the speech bubble that should be positioned
+   * @param {object} $container the container to which the speech bubble should point
    * @param {number} maxWidth the maximum width of the speech bubble
    * @param {object} $tail the tail (the triangle that points to the referenced container)
    * @param {object} $innerTail the inner tail (the triangle that points to the referenced container)
@@ -160,6 +160,10 @@ H5P.JoubelSpeechBubble = (function ($) {
     // Using same font-size as parent. In that way it will grow accordingly
     // when resizing
     var fontSize = 16;//parseFloat($parent.css('font-size'));
+
+    const isTop = direction === 'top';
+    $currentSpeechBubble.toggleClass('joubel-speech-bubble-top', isTop)
+      .toggleClass('joubel-speech-bubble-bottom', !isTop);
 
     // Set width and position of speech bubble
     $currentSpeechBubble.css(bubbleCSS(
