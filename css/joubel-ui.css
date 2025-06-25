@@ -98,25 +98,3 @@
 .h5p-content [tabIndex="-1"] {
   outline: none;
 }
-
-/* H5P Theme */
-
-.h5p-theme .h5p-joubelui-button:before {
-  font-family: 'h5p-theme';
-  padding-right: 0 !important;
-}
-
-.h5p-theme .h5p-joubelui-button:active {
-  position: relative;
-  background: var(--h5p-theme-main-cta-dark);
-
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-
-@container (max-width: 350px) {
-  .h5p-theme .h5p-joubelui-button:before {
-    padding-right: unset;
-  }
-}
