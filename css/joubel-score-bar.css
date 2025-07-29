@@ -125,7 +125,7 @@
   fill: #ffc80b;
 }
 .h5p-theme .h5p-joubelui-score-bar-star-fill-full-score {
-  fill: var(--h5p-theme-main-cta-base) !important;
+  fill: var(--h5p-theme-contrast-cta-white) !important;
 }
 
 .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill {
