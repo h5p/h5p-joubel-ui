@@ -48,9 +48,7 @@
 }
 
 .h5p-theme .h5p-joubelui-score-bar-progress {
-  background: var(--h5p-theme-main-cta-base); /* For browsers not supporting linear-gradient */
-
-
+  background: var(--h5p-theme-contrast-cta-white); /* For browsers not supporting linear-gradient */
 }
 
 /* The star */
