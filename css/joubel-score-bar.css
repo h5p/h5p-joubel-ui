@@ -134,15 +134,11 @@
 .h5p-theme .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill {
   /* This  will be a fallback for browsers not supporting the filter,
      i.e. Safari */
-  fill: var(--h5p-theme-main-cta-base) !important;
+  fill: var(--h5p-theme-contrast-cta-white) !important;
 }
 
 .h5p-theme .h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-border{
-  stroke: var(--h5p-theme-main-cta-base) !important;
-}
-
-.h5p-joubelui-score-bar-full-score .h5p-joubelui-score-bar-star-fill-full-score {
-  visibility: visible;
+  stroke: var(--h5p-theme-contrast-cta-white) !important;
 }
 
 /* The numeric part on the end (score / maxScore) */
