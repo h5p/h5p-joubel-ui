@@ -4,7 +4,7 @@
   max-width: 100%;
   background: #fff;
   border-radius: 1.5em;
-  padding: var(--h5p-theme-spacing-s) !important;
+  padding: var(--h5p-theme-spacing-s);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
 }
