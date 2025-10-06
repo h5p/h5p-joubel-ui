@@ -142,7 +142,6 @@ H5P.JoubelScoreBar = (function ($) {
           tipLabel: scoreExplanationButtonLabel ? scoreExplanationButtonLabel : helpText,
           helpIcon: true
         }).appendTo(self.$scoreBar);
-        self.$scoreBar.addClass('h5p-score-bar-has-help');
       }
     };
 
@@ -203,7 +202,7 @@ H5P.JoubelScoreBar = (function ($) {
           self.$scoreBar.toggleClass('h5p-joubelui-score-bar-animation-active', self.score === self.maxScore);
 
           // Only allow the star animation to run once
-          self.$scoreBar.one("animationend", function() {
+          self.$scoreBar.one("animationend", function () {
             self.$scoreBar.removeClass("h5p-joubelui-score-bar-animation-active");
           });
         }, 600);
