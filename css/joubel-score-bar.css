@@ -2,8 +2,7 @@
   display: inline-flex;
   align-items: center;
   gap: calc(0.5 * var(--h5p-theme-spacing-s));
-  width: 15em;
-  max-width: 100%;
+  width: fit-content;
   background: #fff;
   border-radius: 1.5em;
   padding: var(--h5p-theme-spacing-s);
