@@ -1,12 +1,18 @@
 .h5p-joubelui-score-bar {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
   gap: calc(0.5 * var(--h5p-theme-spacing-s));
-  width: 15em;
+  width: calc(100% * var(--h5p-theme-scaling));
+  min-width: fit-content;
   max-width: 100%;
   background: #fff;
   border-radius: 1.5em;
   padding: var(--h5p-theme-spacing-s);
   border: 1px solid rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+.h5p-joubelui-score-bar.h5p-score-bar-has-tip {
+  box-sizing: content-box;
 }
 .h5p-joubelui-score-bar-visuals {
   flex: 1;

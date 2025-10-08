@@ -142,6 +142,7 @@ H5P.JoubelScoreBar = (function ($) {
           tipLabel: scoreExplanationButtonLabel ? scoreExplanationButtonLabel : helpText,
           helpIcon: true
         }).appendTo(self.$scoreBar);
+        self.$scoreBar.addClass('h5p-score-bar-has-tip');
       }
     };
 
