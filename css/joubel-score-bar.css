@@ -9,6 +9,10 @@
   border-radius: 1.5em;
   padding: var(--h5p-theme-spacing-s);
   border: 1px solid rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+.h5p-joubelui-score-bar.h5p-score-bar-has-tip {
+  box-sizing: content-box;
 }
 .h5p-joubelui-score-bar-visuals {
   flex: 1;
