@@ -82,7 +82,8 @@
 }
 
 .h5p-theme .joubel-help-text-header{
-  padding: var(--h5p-theme-spacing-m) var(--h5p-theme-spacing-l);
+  padding-block: var(--h5p-theme-spacing-m);
+  padding-inline: var(--h5p-theme-spacing-l) var(--h5p-theme-spacing-xl);
   border-bottom: none;
 }
 
