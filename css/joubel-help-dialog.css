@@ -83,7 +83,7 @@
 
 .h5p-theme .joubel-help-text-header{
   padding-block: var(--h5p-theme-spacing-m);
-  padding-inline: var(--h5p-theme-spacing-l) var(--h5p-theme-spacing-xl);
+  padding-inline: var(--h5p-theme-spacing-l) 3rem;
   border-bottom: none;
 }
 
