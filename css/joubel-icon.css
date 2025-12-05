@@ -186,12 +186,6 @@
   color: var(--h5p-theme-contrast-cta);
 }
 
-.h5p-theme .joubel-icon-comment-normal:focus-visible,
-.h5p-theme :focus-visible > .joubel-icon-comment-normal {
-  outline: 4px ridge var(--h5p-theme-contrast-cta-white);
-  border-radius: 4px;
-}
-
 .h5p-theme .joubel-icon-comment-normal:hover > .h5p-icon-speech-bubble:before {
   color: var(--h5p-theme-main-cta-light);
 }
