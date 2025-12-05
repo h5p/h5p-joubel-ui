@@ -47,6 +47,8 @@
   box-shadow: 0 0 0.5em #2c2c2c;
 }
 
+/* H5P Theme */
+
 .h5p-theme .joubel-speech-bubble-inner-tail {
   z-index: 2;
 }
@@ -58,9 +60,13 @@
   border-top: solid 1px var(--h5p-theme-stroke-1);
 }
 
-.h5p-theme.joubel-speech-bubble-top {
+.h5p-theme .joubel-speech-bubble-top {
   .joubel-speech-bubble-inner-tail,
   .joubel-speech-bubble-tail {
     transform: rotate(225deg);
   }
+}
+
+.h5p-theme .h5p-icon-speech-bubble:before {
+  color: var(--h5p-theme-contrast-cta-white);
 }
