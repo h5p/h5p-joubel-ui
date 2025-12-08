@@ -1,4 +1,5 @@
-[class^="joubel-icon-"], [class*=" joubel-icon-"] {
+[class^='joubel-icon-'],
+[class*=' joubel-icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'H5PFontIcons' !important;
   speak: none;
@@ -18,16 +19,16 @@
 
 /* Comment icon */
 .joubel-icon-comment-normal .h5p-icon-shadow:before {
-  content: "\e90a";
+  content: '\e90a';
   color: rgb(221, 221, 221);
 }
 .joubel-icon-comment-normal .h5p-icon-speech-bubble:before {
-  content: "\e908";
+  content: '\e908';
   margin-left: -1em;
   color: rgb(206, 114, 193);
 }
 .joubel-icon-comment-normal .h5p-icon-question:before {
-  content: "\e906";
+  content: '\e906';
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
@@ -48,23 +49,27 @@
 
 /* Tip icon */
 .joubel-icon-tip-normal .h5p-icon-shadow:before {
-  content: "\e90a";
+  content: '\e90a';
   color: rgb(221, 221, 221);
 }
 .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
-  content: "\e908";
+  content: '\e908';
   margin-left: -1em;
   color: rgb(26, 115, 217);
 }
 .joubel-icon-tip-normal .h5p-icon-info:before {
-  content: "\e905";
+  content: '\e905';
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.joubel-tip-container:hover .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
+.joubel-tip-container:hover
+  .joubel-icon-tip-normal
+  .h5p-icon-speech-bubble:before {
   color: var(--h5p-theme-main-cta-light);
 }
-.joubel-tip-container:active .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
+.joubel-tip-container:active
+  .joubel-icon-tip-normal
+  .h5p-icon-speech-bubble:before {
   color: var(--h5p-theme-main-cta-dark);
   position: relative;
   top: 0.05em;
@@ -78,12 +83,12 @@
 
 /* Edit icon */
 .joubel-icon-edit .h5p-icon-circle:before {
-  content: "\e90d";
+  content: '\e90d';
   color: #1d74c8;
   font-size: 1.5em;
 }
 .joubel-icon-edit .h5p-icon-pencil:before {
-  content: "\e90c";
+  content: '\e90c';
   color: #1d74c8;
   font-size: 0.8em;
   text-align: center;
@@ -91,7 +96,7 @@
   margin-left: -1.42em;
 }
 .joubel-icon-edit:hover .h5p-icon-circle:before {
-  content: "\e90e";
+  content: '\e90e';
   color: #1d74c8;
 }
 .joubel-icon-edit:hover .h5p-icon-pencil:before {
@@ -100,12 +105,12 @@
 
 /* Approve icon */
 .joubel-icon-approve .h5p-icon-circle:before {
-  content: "\e90d";
+  content: '\e90d';
   color: #3ea35f;
   font-size: 1.5em;
 }
 .joubel-icon-approve .h5p-icon-check:before {
-  content: "\e601";
+  content: '\e601';
   color: #3ea35f;
   font-size: 0.8em;
   text-align: center;
@@ -113,7 +118,7 @@
   margin-left: -1.42em;
 }
 .joubel-icon-approve:hover .h5p-icon-circle:before {
-  content: "\e90e";
+  content: '\e90e';
 }
 .joubel-icon-approve:hover .h5p-icon-check:before {
   color: #ffffff;
@@ -121,12 +126,12 @@
 
 /* Cancel icon */
 .joubel-icon-cancel .h5p-icon-circle:before {
-  content: "\e90d";
+  content: '\e90d';
   color: #de3354;
   font-size: 1.5em;
 }
 .joubel-icon-cancel .h5p-icon-cross:before {
-  content: "\e600";
+  content: '\e600';
   color: #de3354;
   font-size: 0.85em;
   text-align: center;
@@ -134,7 +139,7 @@
   margin-left: -1.38em;
 }
 .joubel-icon-cancel:hover .h5p-icon-circle:before {
-  content: "\e90e";
+  content: '\e90e';
 }
 .joubel-icon-cancel:hover .h5p-icon-cross:before {
   color: #ffffff;
@@ -143,7 +148,7 @@
 /* Custom override CSS */
 .joubel-icon-tip-normal.help-icon:before {
   font-family: 'H5PFontAwesome4';
-  content: "\f059";
+  content: '\f059';
 }
 
 /* Hide icon layers if using font awesome */
@@ -153,7 +158,8 @@
 
 /* H5P theme */
 
-.h5p-theme .joubel-icon-tip-normal .h5p-icon-shadow:before {
+.h5p-theme .joubel-icon-tip-normal .h5p-icon-shadow:before,
+.h5p-theme .joubel-icon-comment-normal .h5p-icon-shadow:before {
   color: var(--h5p-theme-alternative-darker);
 }
 
@@ -173,6 +179,17 @@
 
 .h5p-theme .joubel-icon-tip-normal.help-icon:before {
   font-family: 'h5p-theme';
-  content: "\e917";
+  content: '\e917';
 }
 
+.h5p-theme .joubel-icon-comment-normal .h5p-icon-question:before {
+  color: var(--h5p-theme-contrast-cta);
+}
+
+.h5p-theme .joubel-icon-comment-normal:hover > .h5p-icon-speech-bubble:before {
+  color: var(--h5p-theme-main-cta-light);
+}
+
+.h5p-theme .joubel-icon-comment-normal .h5p-icon-speech-bubble:before {
+  color: var(--h5p-theme-contrast-cta-white);
+}
