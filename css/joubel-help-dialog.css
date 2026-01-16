@@ -51,8 +51,15 @@
 .joubel-help-text-remove {
   position: absolute;
   right: var(--h5p-theme-spacing-xs);
-  top: var(--h5p-theme-spacing-s);
+  top: var(--h5p-theme-spacing-xs);
   cursor: pointer;
+}
+
+
+.joubel-help-text-remove:focus-visible {
+  outline: 2px ridge var(--h5p-theme-contrast-cta-white);
+  outline-offset: 4px;
+  border-radius: 50%;
 }
 
 .joubel-help-text-remove:hover {
@@ -71,7 +78,6 @@
   font-family: 'h5p-theme';
   content: '\e910';
   display: inline-block;
-  transform: translateY(-0.48em);
   padding: var(--h5p-theme-spacing-s);
   border-radius: 50%;
 }
