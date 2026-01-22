@@ -64,8 +64,9 @@
 }
 
 .h5p-theme .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
-  color: var(--h5p-theme-contrast-cta-white);
+  color: var(--h5p-theme-main-cta-base);
 }
+
 .h5p-theme .joubel-icon-tip-normal:hover .h5p-icon-speech-bubble:before {
   color: var(--h5p-theme-main-cta-light);
 }
