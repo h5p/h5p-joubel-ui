@@ -118,9 +118,14 @@ H5P.JoubelSpeechBubble = (function ($) {
    * @return {object} the h5p container (jquery element)
    */
   function getH5PContainer($container) {
-    var $h5pContainer = $container.closest('.h5p-frame');
+    // If h5p.content(.h5p-iframe) was chosen in fullscreen mode, the speech bubble would not show.
+    let $h5pContainer = $container.closest('.h5p-container.h5p-fullscreen');
 
-    // Check closest h5p frame first, then check for container in case there is no frame.
+    if (!$h5pContainer.length) {
+      $h5pContainer = $container.closest('.h5p-frame');
+    }
+
+    // Check closest h5p frame next, then check for container in case there is no frame.
     if (!$h5pContainer.length) {
       $h5pContainer = $container.closest('.h5p-container');
     }
