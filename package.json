@@ -1,0 +1,19 @@
+{
+  "name": "h5p-joubel-ui",
+  "version": "1.3.11",
+  "private": true,
+  "description": "Build tooling for H5P Joubel UI",
+  "scripts": {
+    "clean": "node ./scripts/clean.mjs",
+    "build:js": "vite build",
+    "build:package": "node ./scripts/package-build.mjs",
+    "build": "npm run clean && npm run build:js && npm run build:package",
+    "dev": "vite build --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "esbuild": "^0.25.5",
+    "postcss": "^8.4.49",
+    "vite": "^5.4.11"
+  }
+}
