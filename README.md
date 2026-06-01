@@ -4,6 +4,33 @@ h5p-joubel-ui
 This is a utility library for creating UI widgets. It does not implement attach, so it has to be actively used by
 other libraries
 
+
+Build
+=====
+
+Install dependencies:
+
+```
+npm install
+```
+
+Create distributable assets with Vite:
+
+```
+npm run build
+```
+
+This writes a versioned package to `dist/h5p-joubel-ui-<library-version>/` with:
+- `js/*.js` and `js/*.min.js` for all `preloadedJs` entries in `library.json`
+- `css/*.css` and `css/*.min.css` for all `preloadedCss` entries in `library.json`
+- copied `fonts/`, `library.json`, and `README.md`
+
+Watch JS entry builds during development:
+
+```
+npm run dev
+```
+
 Version history
 ===============
 Version  | Description
