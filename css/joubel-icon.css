@@ -65,12 +65,12 @@
 .joubel-tip-container:hover
   .joubel-icon-tip-normal
   .h5p-icon-speech-bubble:before {
-  color: var(--h5p-theme-main-cta-light);
+  color: var(--h5p-theme-contrast-cta-dark);
 }
 .joubel-tip-container:active
   .joubel-icon-tip-normal
   .h5p-icon-speech-bubble:before {
-  color: var(--h5p-theme-main-cta-dark);
+  color: var(--h5p-theme-contrast-cta-white);
   position: relative;
   top: 0.05em;
   left: 0.05em;
