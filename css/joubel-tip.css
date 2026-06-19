@@ -64,15 +64,15 @@
 }
 
 .h5p-theme .joubel-icon-tip-normal .h5p-icon-speech-bubble:before {
-  color: var(--h5p-theme-main-cta-base);
+  color: var(--h5p-theme-contrast-cta-white);
 }
 
 .h5p-theme .joubel-icon-tip-normal:hover .h5p-icon-speech-bubble:before {
-  color: var(--h5p-theme-main-cta-light);
+  color: var(--h5p-theme-contrast-cta-dark);
 }
 
 .h5p-theme .joubel-icon-tip-normal .h5p-icon-info:before {
-  color: var(--h5p-theme-contrast-cta);
+  color: var(--h5p-theme-ui-base);
 }
 
 .h5p-theme .joubel-tip-container:focus-visible {
