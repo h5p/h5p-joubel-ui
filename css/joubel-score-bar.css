@@ -45,6 +45,7 @@
   -o-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
   -webkit-backface-visibility: hidden;
+  user-select: none;
 }
 
 .h5p-theme .h5p-joubelui-score-bar-progress {
